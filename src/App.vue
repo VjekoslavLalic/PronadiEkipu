@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">HOME</router-link> |
       <router-link to="/Login">PRIJAVA</router-link> |
-      <router-link to="/Signup">Registracija</router-link>
+      <router-link to="/Signup">REGISTRACIJA</router-link>
     </div>
     <router-view />
   </div>
