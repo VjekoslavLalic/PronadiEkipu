@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Rokkitt:wght@300;500&display=swap');
+*{
+    font-family: 'Rokkitt', serif;
+}
+h1{
+    font-size: 40px;
+}
+.button{
+    background-color: #E4857F;
+    border-style: none;
+    font-size: 32px;
+    width: 304px;
+    height: 57px;
+    left: 28px;
+    margin-top:10px;
+    
+}
+.forma-pozicija{
+    top:50%;
+}
+.label1{
+    text-align: left;
+}
