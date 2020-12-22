@@ -12,12 +12,26 @@ h1{
     width: 304px;
     height: 57px;
     left: 28px;
-    margin-top:10px;
+    margin-top: 10px;
     
 }
 .forma-pozicija{
-    top:50%;
+    margin-top: 10px;
 }
 .label1{
     text-align: left;
+}
+.logoReg img{  
+    margin-top:10px;
+    width: 200px;
+    height: 180px;
+    left: 134px;
+    top: 14px;
+}
+.logoLog img{  
+    margin-top:10px;
+    width: 340px;
+    height: 300px;
+    left: 134px;
+    top: 14px;
 }

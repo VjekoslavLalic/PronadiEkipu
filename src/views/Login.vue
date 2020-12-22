@@ -1,5 +1,8 @@
 <template>
   <div class="about">
+    <div class="logoLog">
+      <img alt="logo" src="../assets/logoPronadiEkipu.png" />
+    </div>
     <h1>Prijavi se</h1>
     <div class="container">
       <div class="row">

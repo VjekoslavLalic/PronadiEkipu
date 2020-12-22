@@ -1,5 +1,8 @@
 <template>
-  <div class="reg">
+  <div class="about">
+    <div class="logoReg">
+      <img alt="logo" src="../assets/logoPronadiEkipu.png" />
+    </div>
     <h1>Registriraj se</h1>
     <div class="container">
       <div class="container">
