@@ -3,7 +3,23 @@
     <router-view />
   </div>
 </template>
+<script>
+import { firebase } from "@/firebase.js";
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("***", user.email);
+  } else {
+    console.log("*** No user");
+  }
+});
 
+export default {
+  name: "app",
+  data() {
+    return {};
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

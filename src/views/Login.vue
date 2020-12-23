@@ -15,6 +15,7 @@
               </div>
               <input
                 type="email"
+                v-model="email"
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
@@ -27,12 +28,15 @@
               </div>
               <input
                 type="password"
+                v-model="lozinka"
                 class="form-control"
                 id="exampleInputPassword1"
                 placeholder=""
               />
             </div>
-            <button type="submit" class="button">Prijavi se</button>
+            <button type="button" @click="login()" class="button">
+              Prijavi se
+            </button>
           </form>
           <small id="emailHelp" class="form-text text-muted"
             >Nemate account?</small
@@ -44,3 +48,31 @@
     </div>
   </div>
 </template>
+<script>
+import { firebase } from "@/firebase.js";
+export default {
+  name: "login",
+  data() {
+    return {
+      email: "",
+      lozinka: "",
+    };
+  },
+  methods: {
+    login() {
+      console.log("login..." + this.email);
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.lozinka)
+        .then((result) => {
+          console.log("Uspješna prijava", result);
+          this.$router.replace({ name: "Home" }); //ovdje umjesto home ce biti stranica od stele  i treba napraviti putanju do nje u router pa index.js
+        })
+        .catch(function (e) {
+          console.error("Greška", e);
+        });
+    },
+  },
+};
+</script>
