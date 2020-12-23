@@ -11,10 +11,11 @@
           <form class="form-pozicija">
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputName">Ime</label>
+                <label for="exampleInputName1">Ime</label>
               </div>
               <input
                 type="text"
+                v-model="Ime"
                 class="form-control"
                 id="exampleInputIme1"
                 aria-describedby="emailHelp"
@@ -24,12 +25,13 @@
 
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputName">Prezime</label>
+                <label for="exampleInputPrezime1">Prezime</label>
               </div>
               <input
                 type="text"
+                v-model="Prezime"
                 class="form-control"
-                id="exampleInputIme1"
+                id="exampleInputPrezime1"
                 aria-describedby="emailHelp"
                 placeholder=""
               />
@@ -37,10 +39,11 @@
 
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputName">Email</label>
+                <label for="exampleInputEmail1">Email</label>
               </div>
               <input
                 type="email"
+                v-model="Email"
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
@@ -49,10 +52,11 @@
             </div>
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputName">Lozinka</label>
+                <label for="exampleInputLozinka1">Lozinka</label>
               </div>
               <input
                 type="password"
+                v-model="Lozinka"
                 class="form-control"
                 id="exampleInputPassword1"
                 placeholder=""
@@ -60,10 +64,11 @@
             </div>
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputName">Opis</label>
+                <label for="exampleInputOpis1">Opis</label>
               </div>
               <textarea
                 type="text"
+                v-model="Opis"
                 class="form-control"
                 id="exampleInputOpis1"
                 aria-describedby="emailHelp"
@@ -72,7 +77,9 @@
               ></textarea>
             </div>
 
-            <button type="submit" class="button">Registriraj se</button>
+            <button type="button" @click="signup" class="button">
+              Registriraj se
+            </button>
           </form>
         </div>
         <div class="col-sm"></div>
@@ -80,3 +87,33 @@
     </div>
   </div>
 </template>
+
+<script>
+import { firebase } from "@/firebase.js";
+export default {
+  name: "Signup",
+  data() {
+    return {
+      Ime: "",
+      Prezime: "",
+      Email: "",
+      Lozinka: "",
+      Opis: "",
+    };
+  },
+  methods: {
+    signup() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.Email, this.Lozinka)
+        .then(function () {
+          console.log("Uspješna registracija");
+        })
+        .catch(function (error) {
+          console.error("Doslo je do greske", error);
+        });
+      console.log("nastavak");
+    },
+  },
+};
+</script>
