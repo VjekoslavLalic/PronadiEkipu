@@ -22,6 +22,7 @@ export default {
 </script>
 <style lang="scss">
 #app {
+  background-image: url("C:\Users\Vlalic\Documents\GitHub\PronadiEkipu\src\assets\home1slika.png");
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
