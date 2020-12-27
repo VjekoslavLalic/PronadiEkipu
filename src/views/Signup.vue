@@ -106,8 +106,9 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
-        .then(function () {
-          console.log("Uspješna registracija");
+        .then((result) => {
+          console.log("Uspješna registracija", result);
+          this.$router.replace({ name: "Home2" });
         })
         .catch(function (error) {
           console.error("Doslo je do greske", error);
