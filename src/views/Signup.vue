@@ -108,7 +108,7 @@ export default {
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
         .then((result) => {
           console.log("Uspješna registracija", result);
-          this.$router.replace({ name: "Home2" });
+          this.$router.replace({ name: "Home" });
         })
         .catch(function (error) {
           console.error("Doslo je do greske", error);

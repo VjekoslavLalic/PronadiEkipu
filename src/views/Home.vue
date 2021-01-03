@@ -1,5 +1,8 @@
 <template>
-  <router-link to="/Login">prijava</router-link>
+  <div>
+    <router-link to="/Login">prijava</router-link>
+    <div class="ruter"><p>bababuj</p></div>
+  </div>
 </template>
 
 <script>
