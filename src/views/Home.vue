@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ruter"><p>bababuj</p></div>
+    <div class="ruter"><p>DRUŽENJA</p></div>
   </div>
 </template>
 
