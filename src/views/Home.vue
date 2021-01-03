@@ -1,7 +1,15 @@
 <template>
-  <div>
-    <div class="ruter"><p>DRUŽENJA</p></div>
+  <div class="container">
+  <div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-10">
+      DRUŽENJA
+    </div>
+    <div class="col-1">
+    </div>
   </div>
+</div>
 </template>
 
 <script>
