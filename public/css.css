@@ -35,3 +35,27 @@ h1{
     left: 134px;
     top: 14px;
 }
+header{
+    background-color: #e0a8a4;
+}
+.profilna img{
+    width: 100px;
+    border-radius: 50%;
+}
+
+.imeLokacija p {
+    margin: 5px 0px;
+}
+
+
+.podaci{
+    text-align: left;
+    width: 225px;
+    margin: 5px 0px;
+   
+}
+.podaci img{
+    width:80px;
+    margin: 5px 0px;
+}
+
