@@ -28,15 +28,15 @@
         >
       </li>
       <li class="nav-item" role="presentation">
-        <a
+        <router-link
+          color="black"
+          to="/profil"
           class="nav-link"
           id="ex1-tab-3"
           data-mdb-toggle="tab"
-          href="#ex1-tabs-3"
           role="tab"
-          aria-controls="ex1-tabs-3"
           aria-selected="false"
-          >Profil</a
+          >Profil</router-link
         >
       </li>
     </ul>
@@ -74,7 +74,7 @@
 </template>
 <script>
 import { firebase } from "@/firebase.js";
-import store from "@/store";
+
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log("***", user.email);

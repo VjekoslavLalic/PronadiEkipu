@@ -1,27 +1,25 @@
 <template>
-  <div  class="container my-4">
-      <!--Grid column-->
-      <div class="col-md-6 mb-4">
-        <form class="md-form">
-          <div class="file-field">
-            <div class="mb-4">
-              <img
-                src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-                class="rounded-circle z-depth-1-half avatar-pic"
-                alt="example placeholder avatar"
-              />
-            </div>
-            <div class="d-flex justify-content-center">
-              <div class="btn btn-mdb-color btn-rounded float-left">
-                <input type="file" />
-              </div>
+  <div class="container my-4">
+    <!--Grid column-->
+    <div class="col-md-6 mb-4">
+      <form class="md-form">
+        <div class="file-field">
+          <div class="mb-4">
+            <img
+              src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+              class="rounded-circle z-depth-1-half avatar-pic"
+              alt="example placeholder avatar"
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="btn btn-mdb-color btn-rounded float-left">
+              <input type="file" />
             </div>
           </div>
-        </form>
-      </div>
-      <!--Grid column-->
+        </div>
+      </form>
     </div>
-    <!--Grid row-->
+    <!--Grid column-->
   </div>
 </template>
 
