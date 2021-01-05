@@ -1,27 +1,27 @@
 <template>
-  <div class="profil">
-    <header>
-      <div class="profilna"><img src="@/assets/profilna.png" /></div>
-      <div class="imeLokacija">
-        <p>Vjekoslav Lalić</p>
-        <p>Hrvatska, Pula</p>
+  <div  class="container my-4">
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+        <form class="md-form">
+          <div class="file-field">
+            <div class="mb-4">
+              <img
+                src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                class="rounded-circle z-depth-1-half avatar-pic"
+                alt="example placeholder avatar"
+              />
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="btn btn-mdb-color btn-rounded float-left">
+                <input type="file" />
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-      <div>rating</div>
-    </header>
-    <main>
-      <div class="podaciLogo">
-        <div class="podaci">
-          <!-- obavezno prepraviti nesmije biti paragraf -->
-          <p>Gender: Male</p>
-          <p>E-mail: lalicvjeko34@gmail.com</p>
-          <p>Number: 0919805009</p>
-          <p>Age: 21</p>
-          <img src="@/assets/messenger.png" />
-        </div>
-        <div class="messengerLogo"></div>
-      </div>
-      <div class="opis"></div>
-    </main>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
   </div>
 </template>
 
@@ -33,4 +33,28 @@ export default {
     return {};
   },
 };
+// ZA PROFIL
 </script>
+<!-- some CSS styling changes and overrides -->
+<style>
+.kv-avatar .krajee-default.file-preview-frame,
+.kv-avatar .krajee-default.file-preview-frame:hover {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+}
+.kv-avatar {
+  display: inline-block;
+}
+.kv-avatar .file-input {
+  display: table-cell;
+  width: 213px;
+}
+.kv-reqd {
+  color: red;
+  font-family: monospace;
+  font-weight: normal;
+}
+</style>
