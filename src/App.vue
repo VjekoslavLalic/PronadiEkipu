@@ -74,6 +74,7 @@
 </template>
 <script>
 import { firebase } from "@/firebase.js";
+import store from "@/store";
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log("***", user.email);

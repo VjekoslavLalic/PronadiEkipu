@@ -38,7 +38,21 @@ h1{
 /* avatar css */
 .avatar-pic {
     width: 120px;
-    }
+}
+.redovi {
+    background-color:#E4857F;
+    color: black;
+    text-align: center;
+    display: flex;
+    margin: 0px auto;
+}
 
-
-
+.red {
+    margin: 10px auto;
+    padding: 5px 5px;
+    width:110px;
+}
+.red a{
+    color: black;
+    text-decoration: none;
+}
