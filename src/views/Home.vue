@@ -3,7 +3,7 @@
     <div class="redovi">
       <div class="red"></div>
       <div class="red">DRUŽENJA</div>
-      <div class="red"><a href="#" @click="logout()">Logout</a></div>
+      <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
   </div>
 </template>
@@ -12,8 +12,15 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import { firebase } from "@/firebase.js";
+import store from "@/store";
+
 export default {
   name: "Home",
+  data() {
+    return {
+      store,
+    };
+  },
   components: {
     HelloWorld,
   },

@@ -19,7 +19,7 @@
         </div>
       </form>
     </div>
-    <!--Grid column-->
+    <!-- editable input -->
   </div>
 </template>
 

@@ -2,7 +2,12 @@
   <div id="app">
     <router-view />
     <!-- Tabs navs -->
-    <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+    <div v-if="store.currentUser">
+      <ul
+      class="nav nav-tabs mb-3"
+      id="ex1"
+      role="tablist"
+    >
       <li class="nav-item" role="presentation">
         <a
           class="nav-link active"
@@ -69,26 +74,36 @@
         Tab 3 content
       </div>
     </div>
+      </div
     <!-- Tabs content -->
   </div>
 </template>
 <script>
 import { firebase } from "@/firebase.js";
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log("***", user.email);
-  } else {
-    console.log("*** No user");
-  }
-});
+import store from "@/store";
+import router from "@/router";
 
 export default {
   name: "app",
   data() {
-    return {};
+    return {
+      store,
+    };
   },
 };
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("***", user.email);
+    store.currentUser = user.email;
+  } else {
+    console.log("*** No user");
+    store.currentUser = null;
+
+    //if (router.name != "Login") {
+    //router.push({ name: "Login" });}
+  }
+});
 </script>
 <style lang="scss">
 #app {
