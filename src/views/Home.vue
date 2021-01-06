@@ -10,9 +10,10 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Card from "@/components/Card.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
+
 
 export default {
   name: "Home",
@@ -22,7 +23,7 @@ export default {
     };
   },
   components: {
-    HelloWorld,
+    Card,
   },
   methods: {
     logout() {

@@ -54,6 +54,7 @@
         id="ex1-tabs-1"
         role="tabpanel"
         aria-labelledby="ex1-tab-1"
+        <Card/>
       >
         Tab 1 content
       </div>
@@ -79,6 +80,7 @@
   </div>
 </template>
 <script>
+import Card from "@/components/Card.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import router from "@/router";
@@ -90,7 +92,11 @@ export default {
       store,
     };
   },
+  components: {
+    Card,
+  },
 };
+ 
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
