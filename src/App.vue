@@ -55,6 +55,7 @@
         role="tabpanel"
         aria-labelledby="ex1-tab-1"
         <Card/>
+        <Card/>
       >
         Tab 1 content
       </div>
