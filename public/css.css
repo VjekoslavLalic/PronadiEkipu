@@ -93,12 +93,12 @@ h1{
     background-color: #e09590;
     color: black;
   }
-  
+  /*  register forma */
   .about {
-      max-width: 500px;
-      width: 100%;
-      margin: 0px auto;
-      left: 0;
-      right: 0;
+    max-width: 500px;
+    width: 100%;
+    margin: 0px auto;
+    left: 0;
+    right: 0;
   }
   
