@@ -88,11 +88,12 @@ import router from "@/router";
 let cards = [];
 
 cards=[
-"../assets/drustvene_igre.png",
-"../assets/vanjske_aktivnosti.jpg",
-"../assets/cuganja.png",
-"../assets/sportovi.jpg",
-"../assets/online.jpg",
+  
+'@/assets/drustvene_igre.png',
+'@/assets/vanjske_aktivnosti.jpg',
+'@/assets/cuganja.png',
+'@/assets/sportovi.jpg',
+'@/assets/online.jpg',
 ];
 
 export default {
