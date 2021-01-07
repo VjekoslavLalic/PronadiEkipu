@@ -16,7 +16,6 @@
 </template>
 
 
-
 <script>
 // @ is an alias to /src
 import Card from "@/components/Card.vue";
@@ -27,21 +26,21 @@ let cards = [];
 
 cards=[
   
-{img: require("@/assets/drustvene_igre.png"),
- description: "Društvene igre",},
-{img: require("@/assets/vanjske_aktivnosti.jpg"),
- description: "Vanjske aktivnosti"},
-{img: require("@/assets/cuganja.png"),
- description: "Cuganja"},
-{img: require("@/assets/sportovi.jpg"),
- description: "Sportovi"},
-{img: require("@/assets/online.jpg"),
- description: "Online"},
+{img: require("@/assets/covjece_ne_ljuti_se.png"),
+ description: "Čovječe ne ljuti se",
+{img: require("@/assets/uno.png"),
+ description: "Uno"},
+{img: require("@/assets/belot.png"),
+ description: "Belot"},
+{img: require("@/assets/poker.png"),
+ description: "Poker"},
+{img: require("@/assets/briskula.png"),
+ description: "Briškula"},
 ];
 
 
 export default {
-  name: "Home",
+  name: "Drustvene_igre",
   data() {
     return {
       store,
