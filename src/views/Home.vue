@@ -28,7 +28,8 @@ let cards = [];
 cards=[
   
 {img: require("@/assets/drustvene_igre.png"),
- description: "Društvene igre",},
+ description: "Društvene igre",
+ page: " src\views\Drustvene_igre.vue"},
 {img: require("@/assets/vanjske_aktivnosti.jpg"),
  description: "Vanjske aktivnosti"},
 {img: require("@/assets/cuganja.png"),

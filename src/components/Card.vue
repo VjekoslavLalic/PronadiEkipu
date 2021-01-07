@@ -1,7 +1,8 @@
 <template>
 <div class="card">
   <div class="card-body p-0">
-  <img class="card-img-top" :src="info.img" >
+    <a :href="info.page">
+  <img class="card-img-top" :src="info.img"> </a>
   <div class="container">
     <h4><b>{{info.description}}</b></h4>
   </div>
@@ -17,7 +18,6 @@ export default {
 </script>
 
 <style>
-
 
 
 .card {
