@@ -54,7 +54,7 @@
         id="ex1-tabs-1"
         role="tabpanel"
         aria-labelledby="ex1-tab-1"
-        <card v-for="card in cards" :key="card" :info="card"/>
+       
       >
         Tab 1 content
       </div>
@@ -80,32 +80,18 @@
   </div>
 </template>
 <script>
-import Card from "@/components/Card.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import router from "@/router";
 
-let cards = [];
 
-cards=[
-  
-'@/assets/drustvene_igre.png',
-'@/assets/vanjske_aktivnosti.jpg',
-'@/assets/cuganja.png',
-'@/assets/sportovi.jpg',
-'@/assets/online.jpg',
-];
 
 export default {
   name: "app",
   data() {
     return {
       store,
-      cards,
     };
-  },
-  components: {
-    Card,
   },
 };
  
