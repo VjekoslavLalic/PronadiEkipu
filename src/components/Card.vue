@@ -1,10 +1,9 @@
 <template>
 <div class="card">
   <div class="card-body p-0">
-  <img class="card-img-top" :src="info" >
+  <img class="card-img-top" :src="info.img" >
   <div class="container">
-    <h4><b>John Doe</b></h4>
-    <p>Architect & Engineer</p>
+    <h4><b>{{info.description}}</b></h4>
   </div>
   </div>
 </div>

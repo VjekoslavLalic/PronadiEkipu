@@ -4,16 +4,14 @@
       <div class="red"></div>
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
-      </div>
-    <div class="container">
-  <div class="row">
-    <div class="col-12">
-      
-       <card v-for="card in cards" :key="card" :info="card"/>
     </div>
-  
-  </div>
-</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <card v-for="card in cards" :key="card" :info="card" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,11 +27,16 @@ let cards = [];
 
 cards=[
   
-require("@/assets/drustvene_igre.png"),
-require("@/assets/vanjske_aktivnosti.jpg"),
-require("@/assets/cuganja.png"),
-require("@/assets/sportovi.jpg"),
-require("@/assets/online.jpg"),
+{img: require("@/assets/drustvene_igre.png"),
+ description: "Društvene igre"},
+{img: require("@/assets/vanjske_aktivnosti.jpg"),
+ description: "Vanjske aktivnosti"},
+{img: require("@/assets/cuganja.png"),
+ description: "Cuganja"},
+{img: require("@/assets/sportovi.jpg"),
+ description: "Sportovi"},
+{img: require("@/assets/online.jpg"),
+ description: "Online"},
 ];
 
 
