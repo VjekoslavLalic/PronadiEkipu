@@ -1,9 +1,11 @@
 <template>
 <div class="card">
+  <div class="card-body p-0">
   <img class="card-img-top" :src="info" >
   <div class="container">
     <h4><b>John Doe</b></h4>
     <p>Architect & Engineer</p>
+  </div>
   </div>
 </div>
 </template>

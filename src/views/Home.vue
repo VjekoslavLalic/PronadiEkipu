@@ -4,21 +4,14 @@
       <div class="red"></div>
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
-      <div class="container">
       </div>
-    </div>
     <div class="container">
   <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
+    <div class="col-12">
+      
        <card v-for="card in cards" :key="card" :info="card"/>
     </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
+  
   </div>
 </div>
   </div>
@@ -36,11 +29,11 @@ let cards = [];
 
 cards=[
   
-'@/assets/drustvene_igre.png',
-'@/assets/vanjske_aktivnosti.jpg',
-'@/assets/cuganja.png',
-'@/assets/sportovi.jpg',
-'@/assets/online.jpg',
+require("@/assets/drustvene_igre.png"),
+require("@/assets/vanjske_aktivnosti.jpg"),
+require("@/assets/cuganja.png"),
+require("@/assets/sportovi.jpg"),
+require("@/assets/online.jpg"),
 ];
 
 
