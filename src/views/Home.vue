@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <card v-for="card in cards" :key="card" :info="card" />
+          <card v-for="(card, drac) in cards" :key="drac" :info="card" />
         </div>
       </div>
     </div>
@@ -25,22 +25,23 @@ import store from "@/store";
 
 let cards = [];
 
-cards=[
-  
-{img: require("@/assets/drustvene_igre.png"),
- description: "Društvene igre",
- page: " src\views\Drustvene_igre.vue"},
-{img: require("@/assets/vanjske_aktivnosti.jpg"),
- description: "Vanjske aktivnosti"},
-{img: require("@/assets/cuganja.png"),
- description: "Cuganja"},
-{img: require("@/assets/sportovi.jpg"),
- description: "Sportovi"},
-{img: require("@/assets/online.jpg"),
- description: "Online"},
+cards = [
+  {
+    img: require("@/assets/drustvene_igre.png"),
+    description: "Društvene igre",
+    page: "/Drustvene_igre",
+  },
+  {
+    img: require("@/assets/vanjske_aktivnosti.jpg"),
+    description: "Vanjske aktivnosti",
+  },
+  { img: require("@/assets/cuganja.png"), description: "Cuganja" },
+  { img: require("@/assets/sportovi.jpg"), description: "Sportovi" },
+  { img: require("@/assets/online.jpg"), description: "Online" },
 ];
-
-
+function imgRedirect(destination) {
+  location.href = destination;
+}
 export default {
   name: "Home",
   data() {

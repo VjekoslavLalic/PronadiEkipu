@@ -1,90 +1,18 @@
 <template>
   <div id="app">
     <router-view />
-    <!-- Tabs navs -->
-    <div v-if="store.currentUser">
-      <ul
-      class="nav nav-tabs mb-3"
-      id="ex1"
-      role="tablist"
-    >
-      <li class="nav-item" role="presentation">
-        <a
-          class="nav-link active"
-          id="ex1-tab-1"
-          data-mdb-toggle="tab"
-          href="#ex1-tabs-1"
-          role="tab"
-          aria-controls="ex1-tabs-1"
-          aria-selected="true"
-          >Druženja</a
-        >
-      </li>
-      <li class="nav-item" role="presentation">
-        <a
-          class="nav-link"
-          id="ex1-tab-2"
-          data-mdb-toggle="tab"
-          href="#ex1-tabs-2"
-          role="tab"
-          aria-controls="ex1-tabs-2"
-          aria-selected="false"
-          >Naslovna</a
-        >
-      </li>
-      <li class="nav-item" role="presentation">
-        <router-link
-          color="black"
-          to="/profil"
-          class="nav-link"
-          id="ex1-tab-3"
-          data-mdb-toggle="tab"
-          role="tab"
-          aria-selected="false"
-          >Profil</router-link
-        >
-      </li>
-    </ul>
-    <!-- Tabs navs -->
-
-    <!-- Tabs content -->
-    <div class="tab-content" id="ex1-content">
-      <div
-        class="tab-pane fade show active"
-        id="ex1-tabs-1"
-        role="tabpanel"
-        aria-labelledby="ex1-tab-1"
-       
-      >
-        Tab 1 content
-      </div>
-      <div
-        class="tab-pane fade"
-        id="ex1-tabs-2"
-        role="tabpanel"
-        aria-labelledby="ex1-tab-2"
-      >
-        Tab 2 content
-      </div>
-      <div
-        class="tab-pane fade"
-        id="ex1-tabs-3"
-        role="tabpanel"
-        aria-labelledby="ex1-tab-3"
-      >
-        Tab 3 content
-      </div>
+    <div class="navbar" v-if="store.currentUser">
+      <a href="/Home">Home</a>
+      <a href="#">Naslovna</a>
+      <a href="/profil">Profil</a>
     </div>
-      </div
-    <!-- Tabs content -->
+    <!-- Tabs navs -->
   </div>
 </template>
 <script>
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import router from "@/router";
-
-
 
 export default {
   name: "app",
@@ -94,7 +22,6 @@ export default {
     };
   },
 };
- 
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {

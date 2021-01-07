@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <card v-for="card in cards" :key="card" :info="card" />
+          <card v-for="(card, drac) in cards" :key="drac" :info="card" />
         </div>
       </div>
     </div>
@@ -25,18 +25,15 @@ import store from "@/store";
 
 let cards = [];
 
-cards=[
-  
-{img: require("@/assets/covjece_ne_ljuti_se.png"),
- description: "Čovječe ne ljuti se"},
-{img: require("@/assets/uno.png"),
- description: "Uno"},
-{img: require("@/assets/belot.png"),
- description: "Belot"},
-{img: require("@/assets/poker.png"),
- description: "Poker"},
-{img: require("@/assets/briskula.png"),
- description: "Briškula"},
+cards = [
+  {
+    img: require("@/assets/covjece_ne_ljuti_se.png"),
+    description: "Čovječe ne ljuti se",
+  },
+  { img: require("@/assets/uno.png"), description: "Uno" },
+  { img: require("@/assets/belot.png"), description: "Belot" },
+  { img: require("@/assets/poker.png"), description: "Poker" },
+  { img: require("@/assets/briskula.png"), description: "Briškula" },
 ];
 
 export default {
