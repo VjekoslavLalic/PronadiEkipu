@@ -5,6 +5,7 @@
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
+
     <div class="container">
       <div class="row">
         <div class="col-12">

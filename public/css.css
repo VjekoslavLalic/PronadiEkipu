@@ -45,6 +45,8 @@ h1{
     color: black;
     text-align: center;
     display: flex;
+    max-width: 800px;
+    width: 100%;
     margin: 0px auto 5px auto;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -63,17 +65,21 @@ h1{
 /* navbar tu smo odredili da stoji fixiran na dnu ekrana i ostalo */
 .navbar {
     background-color: #E4857F;
+    margin: 0px auto 0px auto;
     overflow: hidden;
     position: fixed;
+    display: flex;
     bottom: 0;
+    max-width: 800px;
     width: 100%;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    left: 0;
+    right: 0;
   }
+
   /* linkovi unutar navigacije */
 .navbar a {
-    float: left;
-    display: block;
     color: black;
     text-align: center;
     padding: 10px 16px;
@@ -88,4 +94,11 @@ h1{
     color: black;
   }
   
+  .about {
+      max-width: 500px;
+      width: 100%;
+      margin: 0px auto;
+      left: 0;
+      right: 0;
+  }
   

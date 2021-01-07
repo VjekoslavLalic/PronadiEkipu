@@ -19,7 +19,7 @@
         </div>
       </form>
     </div>
-    <!-- editable input -->
+    <div class="profilForma"></div>
   </div>
 </template>
 
