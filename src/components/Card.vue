@@ -25,7 +25,7 @@ export default {
   max-width: 750px;
   left: 0;
   right: 0;
-  margin: 0px auto;
+  margin: 0px auto 50px auto;
 }
 
 /* On mouse-over, add a deeper shadow */

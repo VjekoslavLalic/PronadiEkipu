@@ -74,6 +74,7 @@
                 aria-describedby="emailHelp"
                 rows="5"
                 cols="50"
+                placeholder="Napišite nešto o sebi."
               ></textarea>
             </div>
 

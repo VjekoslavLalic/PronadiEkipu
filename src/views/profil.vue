@@ -46,6 +46,8 @@
       <textarea
         contenteditable="true"
         placeholder="Napišite nešto o sebi."
+        rows="5"
+        cols="50"
       ></textarea>
     </div>
     <!-- / container my-4 -->
