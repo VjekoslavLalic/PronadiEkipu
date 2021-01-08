@@ -69,7 +69,16 @@ export default {
       newImageUrl: "",
     };
   },
+
   methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "Login" });
+        });
+    },
     postNewImage() {
       console.log("ok");
 
