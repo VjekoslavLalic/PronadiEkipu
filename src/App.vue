@@ -3,7 +3,7 @@
     <router-view />
     <div class="navbar" v-if="store.currentUser">
       <a href="/Home">Home</a>
-      <a href="#">Naslovna</a>
+      <a href="/Naslovna">Naslovna</a>
       <a href="/profil">Profil</a>
     </div>
     <!-- Tabs navs -->
@@ -24,15 +24,23 @@ export default {
 };
 
 firebase.auth().onAuthStateChanged((user) => {
+  //const currentRoute = router.currentRoute;
+
+  //console.log("PROVJERA STANJA LOGINA!");
   if (user) {
     console.log("***", user.email);
     store.currentUser = user.email;
+    //if (currentRoute.meta.needsUser) {
+    //router.push({ name: "home" });}
   } else {
     console.log("*** No user");
     store.currentUser = null;
 
-    //if (router.name != "Login") {
-    //router.push({ name: "Login" });}
+    //if (currentRoute.meta.needsUser) {
+    // router.push({ name: "/" });}}
+    if (router.name !== "Login") {
+      router.push({ name: "Login" });
+    }
   }
 });
 </script>

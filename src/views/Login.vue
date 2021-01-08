@@ -67,7 +67,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.lozinka)
         .then((result) => {
           console.log("Uspješna prijava", result);
-          this.$router.replace({ name: "Home" }); // sad je dobro.....ovdje umjesto home ce biti stranica od stele  i treba napraviti putanju do nje u router pa index.js
+          this.$router.replace({ name: "Home" });
         })
         .catch(function (e) {
           console.error("Greška", e);

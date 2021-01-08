@@ -40,9 +40,9 @@ cards = [
   { img: require("@/assets/sportovi.jpg"), description: "Sportovi" },
   { img: require("@/assets/online.jpg"), description: "Online" },
 ];
-function imgRedirect(destination) {
-  location.href = destination;
-}
+//proba
+//function imgRedirect(destination) {
+// location.href = destination;}
 export default {
   name: "Home",
   data() {
