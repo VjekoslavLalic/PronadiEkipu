@@ -46,6 +46,22 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Drustvene_igre.vue')
   },
   {
+    path: '/Vanjske_aktivnosti',
+    name: 'Vanjske_aktivnosti',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Vanjske_aktivnosti.vue')
+  },
+  {
+    path: '/Cuganja',
+    name: 'Cuganja',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Cuganja.vue')
+  },
+  {
     path: '/Naslovna',
     name: 'naslovna',
     // route level code-splitting
@@ -53,6 +69,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Naslovna.vue')
   },
+
 
 ]
 
