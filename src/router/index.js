@@ -24,50 +24,42 @@ const routes = [
   {
     path: '/Signup',
     name: 'Signup',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Signup.vue')
+    component: () => import( '../views/Signup.vue')
   },
   {
     path: '/profil',
     name: 'profil',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/profil.vue')
+    component: () => import( '../views/profil.vue')
   },
   {
     path: '/Drustvene_igre',
     name: 'Drustvene_igre',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Drustvene_igre.vue')
+    component: () => import('../views/Drustvene_igre.vue')
   },
   {
     path: '/Vanjske_aktivnosti',
     name: 'Vanjske_aktivnosti',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Vanjske_aktivnosti.vue')
+    component: () => import('../views/Vanjske_aktivnosti.vue')
   },
   {
     path: '/Cuganja',
     name: 'Cuganja',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Cuganja.vue')
+    component: () => import( '../views/Cuganja.vue')
+  },
+  {
+    path: '/Sportovi',
+    name: 'Sportovi',
+    component: () => import('../views/Sportovi.vue')
+  },
+  {
+    path: '/Online',
+    name: 'Online',
+    component: () => import('../views/Online.vue')
   },
   {
     path: '/Naslovna',
     name: 'naslovna',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Naslovna.vue')
+    component: () => import( '../views/Naslovna.vue')
   },
 
 

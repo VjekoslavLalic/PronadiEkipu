@@ -5,7 +5,6 @@
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
-
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -27,36 +26,13 @@ import store from "@/store";
 let cards = [];
 
 cards = [
-  {
-    img: require("@/assets/drustvene_igre.png"),
-    description: "Društvene igre",
-    page: "/Drustvene_igre",
-  },
-  {
-    img: require("@/assets/vanjske_aktivnosti.jpg"),
-    description: "Vanjske aktivnosti",
-    page: "/Vanjske_aktivnosti"
-  },
-  { 
-    img: require("@/assets/cuganja.png"),
-    description: "Cuganja",
-    page: "/Cuganja" 
-    },
-  { 
-    img: require("@/assets/sportovi.jpg"), 
-    description: "Sportovi",
-    page: "/Sportovi"
-    },
-  { 
-    img: require("@/assets/online.jpg"), 
-    description: "Online",
-    page: "/Online" },
+
+  { img: require("@/assets/gaming.png"), description: "Gaming" },
+  { img: require("@/assets/kamera.png"), description: "Kamera" },
 ];
-//proba
-//function imgRedirect(destination) {
-// location.href = destination;}
+
 export default {
-  name: "Home",
+  name: "Online",
   data() {
     return {
       store,
@@ -78,3 +54,6 @@ export default {
   },
 };
 </script>
+
+
+

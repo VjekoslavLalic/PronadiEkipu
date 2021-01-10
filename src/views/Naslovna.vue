@@ -57,12 +57,16 @@ cards = [
   { img: require("@/assets/belot.png"), description: "Belot" },
   { img: require("@/assets/poker.png"), description: "Poker" },
   { img: require("@/assets/briskula.png"), description: "Briškula" },
-  { img: require("@/assets/kava.png"),
-    description: "Kava" },
+  { img: require("@/assets/kava.png"), description: "Kava" },
   { img: require("@/assets/setnja.png"), description: "Šetnja" },
   { img: require("@/assets/trcanje.png"), description: "Trčanje" },
-  { img: require("@/assets/voznja_biciklom.png"), description: "Vožnja biciklom" },
+  {
+    img: require("@/assets/voznja_biciklom.png"),
+    description: "Vožnja biciklom",
+  },
   { img: require("@/assets/rolanje.png"), description: "Rolanje" },
+  { img: require("@/assets/vani.png"), description: "Vani" },
+  { img: require("@/assets/kod_kuce.png"), description: "Kod kuće" },
 ];
 
 export default {
