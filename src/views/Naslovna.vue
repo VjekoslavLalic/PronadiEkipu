@@ -46,9 +46,7 @@ import { firebase } from "@/firebase.js";
 import store from "@/store";
 import { db } from "@/firebase";
 
-let cards = [];
-
-cards = [
+/*cards = [
   {
     img: require("@/assets/covjece_ne_ljuti_se.png"),
     description: "Čovječe ne ljuti se",
@@ -67,20 +65,42 @@ cards = [
   { img: require("@/assets/rolanje.png"), description: "Rolanje" },
   { img: require("@/assets/vani.png"), description: "Vani" },
   { img: require("@/assets/kod_kuce.png"), description: "Kod kuće" },
-];
+]; */
 
 export default {
   name: "naslovna",
   data() {
     return {
+      cards: [],
       store,
-      cards,
       newImageDescription: "",
       newImageUrl: "",
     };
   },
-
+  mounted() {
+    this.getPosts();
+  },
   methods: {
+    getPosts() {
+      console.log("firebase dohvat...");
+
+      db.collection("posts")
+        .get()
+        .then((query) => {
+          query.forEach((doc) => {
+            this.cards = [];
+            const data = doc.data();
+            console.log(data);
+
+            this.cards.push({
+              id: doc.id,
+              time: data.posted_at,
+              description: data.desc,
+              url: data.url,
+            });
+          });
+        });
+    },
     logout() {
       firebase
         .auth()
