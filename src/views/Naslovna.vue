@@ -92,17 +92,20 @@ export default {
       //drugi razlog zašto je get posts izdvojen u methods je taj da kad god pozovem metodu getPosts želim da mi se osvježe postovi, kada to radimo? Radimo prilikom brisanja nekog posta ili dodavanja nekog posta, htjet ćemo osvježiti podatke iz firestorea odnosno imat ćemo "svježe stanje".
 
       //sad gledamo u firebase API koja nam metoda treba za dohvat nečega iz kolekcija
+      //krećemo sa objektom firestore odnosno odaberemo javascript i idemo na firestore zašto ? zato jer smo krenuli sa firestorom koji nam je dao db to se nalazi pod firebase.js fileu db je instanca firestorea onda gledamo koje metode imamo i prvo sto pozivam je collection#1
       console.log("firebase dohvat...");
 
-      db.collection("posts")
+      db.collection("posts") //#1 onda navodim koij collection pristupam i sada kad sam dohvatio kolekciju pogledam pod collection i vidim da dobivam collection reference idem na to i vidim sta on poodržava  i vidim da podržava ad  sto smo koristili orije i vidim da ima get sto cemo sad koristit ima cak i orderby ima limit sto ce nam trebat otvaramo get  i vidimo on vraća promise njega pozivamo bez posebnih parametara ako vraća promis moramo ici .then i u taj promise vraćamo funkciju  then prima querysnapshot query je instanca query snapshota  query ima metodu for each kliknem na nju i vidim da on treba callback to znači da u for each ide nova funkcija u kojoj će biti dokument a doc je querydocument snapshot on ima metodu data i propertie id  doc.id kad pristupam propertio+u nepozivam ga kao funkciju
         .get()
         .then((query) => {
           query.forEach((doc) => {
-            this.cards = [];
+            //u svakom trenutku pozivanja doc nam gleda jeda po jedan dokument a pristupamo sa query
+            this.cards = []; //praznimo cards ako se vise puta pozove ovosve
             const data = doc.data();
             console.log(data);
 
             this.cards.push({
+              //this je klasicna metoda za dodavanje u array
               id: doc.id,
               time: data.posted_at,
               description: data.desc,
@@ -111,6 +114,10 @@ export default {
           });
         });
     },
+    //computed: {
+    // filteredCards() {
+    //    let termin = this.store.searchTerm;
+    //  return this.cards.filter((card) => card.description.includes(termin));},},
     logout() {
       firebase
         .auth()
