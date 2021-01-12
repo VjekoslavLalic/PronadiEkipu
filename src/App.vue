@@ -38,9 +38,10 @@ firebase.auth().onAuthStateChanged((user) => {
 
     //if (currentRoute.meta.needsUser) {
     // router.push({ name: "/" });}}
-    if (router.name !== "Login") {
-      router.push({ name: "Login" });
-    }
+
+    //ovo ce morat biti ovdje
+    // if (router.name != "Login") {
+    //  router.push({ name: "Login" });}
   }
 });
 </script>

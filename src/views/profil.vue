@@ -62,9 +62,9 @@ export default {
     return {};
   },
 };
-// ZA PROFIL
+
 </script>
-<!-- some CSS styling changes and overrides -->
+
 <style>
 .kv-avatar .krajee-default.file-preview-frame,
 .kv-avatar .krajee-default.file-preview-frame:hover {
