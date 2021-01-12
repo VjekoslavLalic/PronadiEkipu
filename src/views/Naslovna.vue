@@ -65,23 +65,33 @@ import { db } from "@/firebase";
   { img: require("@/assets/rolanje.png"), description: "Rolanje" },
   { img: require("@/assets/vani.png"), description: "Vani" },
   { img: require("@/assets/kod_kuce.png"), description: "Kod kuće" },
+
+  //ovo je statično jer smo ih ručno unijeli ne mijenjaju se tijekom izvođenja applikcijje 
 ]; */
 
 export default {
   name: "naslovna",
   data() {
+    // v-model se uvijek veže na atribute iz data dijela
     return {
-      cards: [],
+      cards: [], //premjestili smo jer idemo raditi lokalno ne statično
       store,
       newImageDescription: "",
       newImageUrl: "",
     };
   },
+  //prilikom prikazivanja ove komponente moramo dovući postavke iz firebasea
+  //sad je pitanje kad dolazi komponenta na red za to koristimo mounted metodu onda nam pokaziva točan trenutak kada nam komponenta dolazi na red
+
   mounted() {
-    this.getPosts();
+    //sada u tom trenutku ide dohvat iz firebasea  a za taj dohvat stavljamo metodu get posts da bude kod čišći i pregledniji i pozivamo metodu
+    this.getPosts(); //1. radnja itd
   },
   methods: {
     getPosts() {
+      //drugi razlog zašto je get posts izdvojen u methods je taj da kad god pozovem metodu getPosts želim da mi se osvježe postovi, kada to radimo? Radimo prilikom brisanja nekog posta ili dodavanja nekog posta, htjet ćemo osvježiti podatke iz firestorea odnosno imat ćemo "svježe stanje".
+
+      //sad gledamo u firebase API koja nam metoda treba za dohvat nečega iz kolekcija
       console.log("firebase dohvat...");
 
       db.collection("posts")
@@ -110,24 +120,29 @@ export default {
         });
     },
     postNewImage() {
-      console.log("ok");
-
       const imageUrl = this.newImageUrl;
       const imageDescription = this.newImageDescription;
 
-      db.collection("posts")
+      db.collection("posts") //spremamo u kolekciju posts
         .add({
-          url: imageUrl,
+          //add metoda vraća promise zato cemo nakraju imat then i catch
+          //add prima parametar kao objekt
+          url: imageUrl, //atributi koji su nam potrebni
           desc: imageDescription,
-          email: store.currentUser,
-          posted_at: Date.now(),
+          email: store.currentUser, //email nam se nalazi u store ono currentUSER :NULL;
+          posted_at: Date.now(), //Date je ugrađen objekt i nemora se importat a u njemu imamo ugrađenu metodu now ralun aono od datuma do sada koliko je prošlo ...
         })
         .then((doc) => {
-          console.log("Spremljeno", doc);
+          //funkcija za uspijeh
+          //then je metoda
+          //ako dođe do uspiješnog spremanja :)
+          console.log("Spremljeno", doc); //ako sam dovde dosao znaci sve je uspijesno i onda brisemo sadržaj koji jeu data dijelu sa ovim this.newimagedescription="";
           this.newImageDescription = "";
           this.newImageUrl = "";
         })
         .catch((e) => {
+          //funkcija za grešku
+          //catch je metoda ona sadrži funkciju za grešku
           console.error(e);
         });
     },
