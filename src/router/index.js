@@ -58,10 +58,14 @@ const routes = [
   },
   {
     path: '/Naslovna',
-    name: 'naslovna',
+    name: 'Naslovna',
     component: () => import( '../views/Naslovna.vue')
   },
-
+  {
+    path: '/Chat',
+    name: 'Chat',
+    component: () => import( '../views/Chat.vue')
+  },
 
 ]
 

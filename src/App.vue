@@ -40,8 +40,8 @@ firebase.auth().onAuthStateChanged((user) => {
     // router.push({ name: "/" });}}
 
     //ovo ce morat biti ovdje
-    // if (router.name != "Login") {
-    //  router.push({ name: "Login" });}
+     // if (router.name != "Login") {
+     // router.push({ name: "Login" });}
   }
 });
 </script>

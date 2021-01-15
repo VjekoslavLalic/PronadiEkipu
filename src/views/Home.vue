@@ -50,7 +50,8 @@ cards = [
   { 
     img: require("@/assets/online.jpg"), 
     description: "Online",
-    page: "/Online" },
+    page: "/Online" 
+    },
 ];
 //proba
 //function imgRedirect(destination) {
