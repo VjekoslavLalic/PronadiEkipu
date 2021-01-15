@@ -13,7 +13,7 @@ Funkcionalnost: aplikacija je namjenjena kao način mladim ljudima da upoznaju n
 
 Prototip: https://www.figma.com/proto/3LniLzJkpnuCzoXe8DkiAi/Pozovi-Ekipu?node-id=83%3A1478&scaling=scale-down
 
-Zaduženja: Ademir Hodžić - Programiranje chat funkcije Vjekoslav Lalić - Programiranje login,sign up i profil funkcije Stela Gal - dizajniranje baze podataka te povezivanje
+Zaduženja: Ademir Hodžić - Programiranje chat funkcije, Vjekoslav Lalić - Programiranje login, sign up, profila, naslovna, povezivanje firebasea za sign up, login i naslovnu,  Stela Gal - dizajniranje baze podataka te povezivanje
 ## Project setup
 ```
 npm install
