@@ -66,6 +66,11 @@ const routes = [
     name: 'Chat',
     component: () => import( '../views/Chat.vue')
   },
+  {
+    path: '/Inbox',
+    name: 'Inbox',
+    component: () => import( '../views/Inbox.vue')
+  },
 
 ]
 
