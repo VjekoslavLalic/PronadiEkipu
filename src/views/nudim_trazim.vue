@@ -19,7 +19,6 @@
 
 
 <script>
-// @ is an alias to /src
 import Osoba from "@/components/Osoba.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
