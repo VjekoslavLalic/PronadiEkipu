@@ -67,9 +67,9 @@ const routes = [
     component: () => import( '../views/Chat.vue')
   },
   {
-    path: '/Inbox',
-    name: 'Inbox',
-    component: () => import( '../views/Inbox.vue')
+    path: '/nudim_trazim',
+    name: 'nudim_trazim',
+    component: () => import( '../views/nudim_trazim.vue')
   },
 
 ]
