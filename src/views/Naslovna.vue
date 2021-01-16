@@ -40,24 +40,23 @@
     </div>
     <div class="form-container">
       <form action="#" class="form-wrap" method="POST">
-        <h2>New Post</h2>
+        <h2>Ponudi druženje</h2>
         <div class="form-box">
-          <input type="text" placeholder="title" />
+          <select class="custom-select">
+            <option selected>Odaberi druženje</option>
+            <option value="1">Čovječe ne ljuti se</option>
+            <option value="2">Uno</option>
+            <option value="3">Belot</option>
+          </select>
         </div>
         <div class="form-box">
-          <textarea rows="25" cols="10" placeholder="content"></textarea>
+          <textarea rows="25" cols="10" placeholder="Opiši druženje"></textarea>
         </div>
         <div class="form-submit">
           <input type="submit" value="Publish" />
         </div>
       </form>
     </div>
-    <select class="custom-select">
-      <option selected>Open this select menu</option>
-      <option value="1">Čovječe ne ljuti se</option>
-      <option value="2">Uno</option>
-      <option value="3">Belot</option>
-    </select>
   </div>
 </template>
 <script>
