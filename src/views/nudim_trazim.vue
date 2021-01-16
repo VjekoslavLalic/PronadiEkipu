@@ -42,6 +42,8 @@ cards = [
     name: "Petra Brekalo",
     description: "Petra iz Zadra, 24 godine",
   },
+
+// npr dodamo ako traži da bude obojano sve u plavo, a ako nudi da bude žuto, bubam samo...
 ];
 //proba
 //function imgRedirect(destination) {
