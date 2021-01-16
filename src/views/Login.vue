@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputPassword1">Lozinka</label>
+                <label for="exampleInputPassword1" id="myInput">Lozinka</label>
               </div>
               <input
                 type="password"
@@ -34,7 +34,7 @@
                 placeholder=""
               />
             </div>
-            <button type="button" @click="login()" class="button">
+            <button type="button" @click="login()" class="button" id="myBtn">
               Prijavi se
             </button>
           </form>
