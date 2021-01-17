@@ -1,22 +1,25 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
-      <a :href="info.page"> <img class="card-img-top" :src="info.img" /> </a>
+      <img class="card-img-top" :src="info.url" />
       <div class="container">
-        <h4>
-          <p>{{ info.img }}</p>
-          <p>{{ info.description }}</p>
-          <p>{{ info.time }}</p>
-        </h4>
+        <p>{{ info.description }}</p>
+        <p>{{ postedFromNow }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from "moment";
 export default {
   props: ["info"],
   name: "Post",
+  computed: {
+    postedFromNow() {
+      return moment(this.info.time).fromNow();
+    },
+  },
 };
 </script>
 
