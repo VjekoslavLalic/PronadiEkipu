@@ -12,15 +12,7 @@
         method="POST"
         @submit.prevent="postNewImage"
       >
-        <button
-          type="button"
-          class="btn btn-info btn-lg"
-          data-toggle="modal"
-          data-target="#myModal"
-        >
-          Open Modal
-        </button>
-
+        <!-- da se ne izgubim -->
         <h2>Ponudi druženje</h2>
         <div class="form-box">
           <select class="custom-select" v-model="newPostGame" id="postGame">
@@ -67,7 +59,9 @@
         </div>
       </form>
     </div>
-    <card v-for="(card, drac) in cards" :key="drac" :info="card" />
+    <div class="post">
+      <card v-for="(card, drac) in cards" :key="drac" :info="card" />
+    </div>
   </div>
 </template>
 <script>
