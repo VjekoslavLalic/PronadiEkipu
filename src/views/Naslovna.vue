@@ -5,44 +5,16 @@
       <div class="red">NASLOVNA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <form @submit.prevent="postNewImage" class="form-inline mb-5">
-            <div class="form-group">
-              <label for="imageUrl">Image URL</label>
-              <input
-                v-model="newImageUrl"
-                type="text"
-                class="form-control ml-2"
-                placeholder="Enter the image URL"
-                id="imageUrl"
-              />
-            </div>
-            <div class="form-group">
-              <label for="imageDescription">Description</label>
-              <input
-                v-model="newImageDescription"
-                type="text"
-                class="form-control ml-2"
-                placeholder="Enter the image description"
-                id="imageDescription"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary ml-2">
-              Post image
-            </button>
-          </form>
-          <card v-for="(card, drac) in cards" :key="drac" :info="card" />
-        </div>
-      </div>
-    </div>
     <div class="form-container">
-      <form action="#" class="form-wrap" method="POST">
+      <form
+        action="#"
+        class="form-wrap"
+        method="POST"
+        @submit.prevent="postNewImage"
+      >
         <h2>Ponudi druženje</h2>
         <div class="form-box">
-          <select class="custom-select">
+          <select class="custom-select" v-model="newPostGame" id="postGame">
             <option selected>Odaberi druženje</option>
             <option value="1">Čovječe ne ljuti se</option>
             <option value="2">Uno</option>
@@ -50,7 +22,14 @@
           </select>
         </div>
         <div class="form-box">
-          <textarea rows="25" cols="10" placeholder="Opiši druženje"></textarea>
+          <textarea
+            rows="25"
+            cols="10"
+            placeholder="Opiši druženje"
+            v-model="newPostOpis"
+            type="text"
+            id="postOpis"
+          ></textarea>
         </div>
         <div class="form-submit">
           <input type="submit" value="Publish" />
@@ -91,40 +70,29 @@ import { db } from "@/firebase";
 export default {
   name: "naslovna",
   data() {
-    // v-model se uvijek veže na atribute iz data dijela
     return {
-      cards: [], //premjestili smo jer idemo raditi lokalno ne statično
+      cards: [],
       store,
-      newImageDescription: "",
-      newImageUrl: "",
+      newPostOpis: "",
+      newPostGame: "",
     };
   },
-  //prilikom prikazivanja ove komponente moramo dovući postavke iz firebasea
-  //sad je pitanje kad dolazi komponenta na red za to koristimo mounted metodu onda nam pokaziva točan trenutak kada nam komponenta dolazi na red
-
   mounted() {
-    //sada u tom trenutku ide dohvat iz firebasea  a za taj dohvat stavljamo metodu get posts da bude kod čišći i pregledniji i pozivamo metodu
-    this.getPosts(); //1. radnja itd
+    this.getPosts();
   },
   methods: {
     getPosts() {
-      //drugi razlog zašto je get posts izdvojen u methods je taj da kad god pozovem metodu getPosts želim da mi se osvježe postovi, kada to radimo? Radimo prilikom brisanja nekog posta ili dodavanja nekog posta, htjet ćemo osvježiti podatke iz firestorea odnosno imat ćemo "svježe stanje".
-
-      //sad gledamo u firebase API koja nam metoda treba za dohvat nečega iz kolekcija
-      //krećemo sa objektom firestore odnosno odaberemo javascript i idemo na firestore zašto ? zato jer smo krenuli sa firestorom koji nam je dao db to se nalazi pod firebase.js fileu db je instanca firestorea onda gledamo koje metode imamo i prvo sto pozivam je collection#1
       console.log("firebase dohvat...");
 
-      db.collection("posts") //#1 onda navodim koij collection pristupam i sada kad sam dohvatio kolekciju pogledam pod collection i vidim da dobivam collection reference idem na to i vidim sta on poodržava  i vidim da podržava ad  sto smo koristili orije i vidim da ima get sto cemo sad koristit ima cak i orderby ima limit sto ce nam trebat otvaramo get  i vidimo on vraća promise njega pozivamo bez posebnih parametara ako vraća promis moramo ici .then i u taj promise vraćamo funkciju  then prima querysnapshot query je instanca query snapshota  query ima metodu for each kliknem na nju i vidim da on treba callback to znači da u for each ide nova funkcija u kojoj će biti dokument a doc je querydocument snapshot on ima metodu data i propertie id  doc.id kad pristupam propertio+u nepozivam ga kao funkciju
+      db.collection("posts")
         .get()
         .then((query) => {
           query.forEach((doc) => {
-            //u svakom trenutku pozivanja doc nam gleda jeda po jedan dokument a pristupamo sa query
-            this.cards = []; //praznimo cards ako se vise puta pozove ovosve
+            this.cards = [];
             const data = doc.data();
             console.log(data);
 
             this.cards.push({
-              //this je klasicna metoda za dodavanje u array
               id: doc.id,
               time: data.posted_at,
               description: data.desc,
@@ -137,39 +105,41 @@ export default {
     // filteredCards() {
     //    let termin = this.store.searchTerm;
     //  return this.cards.filter((card) => card.description.includes(termin));},},
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ name: "Login" });
-        });
-    },
-    postNewImage() {
-      const imageUrl = this.newImageUrl;
-      const imageDescription = this.newImageDescription;
 
-      db.collection("posts") //spremamo u kolekciju posts
+    postNewImage() {
+      // sprema ono sto je korisnik unio u formu
+      // sada kad ih imamo u data možemo ovo popuniti post game = cemu itd
+      const postGame = this.newPostGame;
+      const postOpis = this.newPostOpis;
+      // i sada je bit da posaljemo varijable na firebase  da bi ostvarili komunikaciju sa firebaseom treba nam db varijabla i moramo ju importati kako bu ju koristili
+
+      db.collection("posts")
         .add({
-          //add metoda vraća promise zato cemo nakraju imat then i catch
-          //add prima parametar kao objekt
-          url: imageUrl, //atributi koji su nam potrebni
-          desc: imageDescription,
-          email: store.currentUser, //email nam se nalazi u store ono currentUSER :NULL;
-          posted_at: Date.now(), //Date je ugrađen objekt i nemora se importat a u njemu imamo ugrađenu metodu now ralun aono od datuma do sada koliko je prošlo ...
+          option: postGame,
+          desc: postOpis,
+          email: store.currentUser,
+          posted_at: Date.now(),
         })
         .then((doc) => {
           //funkcija za uspijeh
           //then je metoda
           //ako dođe do uspiješnog spremanja :)
           console.log("Spremljeno", doc); //ako sam dovde dosao znaci sve je uspijesno i onda brisemo sadržaj koji jeu data dijelu sa ovim this.newimagedescription="";
-          this.newImageDescription = "";
-          this.newImageUrl = "";
+          this.newPostGame = "";
+          this.newPostOpis = "";
         })
         .catch((e) => {
           //funkcija za grešku
           //catch je metoda ona sadrži funkciju za grešku
           console.error(e);
+        });
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "Login" });
         });
     },
   },
