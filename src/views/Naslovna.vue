@@ -16,9 +16,11 @@
         <div class="form-box">
           <select class="custom-select" v-model="newPostGame" id="postGame">
             <option selected>Odaberi druženje</option>
-            <option value="Čovječe ne ljuti se">Čovječe ne ljuti se</option>
-            <option value="Uno">Uno</option>
-            <option value="Belot">Belot</option>
+            <option value="@/assets/covjece_ne_ljuti_se.png">
+              Čovječe ne ljuti se
+            </option>
+            <option value="https://picsum.photos/200/300">Uno</option>
+            <option value="@/assets/belot.png">Belot</option>
             <option value="Poker">Poker</option>
             <option value="Briškula">Briškula</option>
           </select>
@@ -55,7 +57,6 @@ export default {
       store,
       newPostOpis: "",
       newPostGame: "",
-      newPostImg: "",
     };
   },
   mounted() {
@@ -65,7 +66,6 @@ export default {
     postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
-      const postImg = this.newPostImg;
 
       db.collection("posts")
         .add({
@@ -73,7 +73,6 @@ export default {
           desc: postOpis,
           email: store.currentUser,
           posted_at: Date.now(),
-          img: postImg,
         })
         .then((doc) => {
           console.log("Spremljeno", doc);
@@ -99,7 +98,6 @@ export default {
               time: data.posted_at,
               description: data.desc,
               option: data.option,
-              img: data.postImg,
             });
           });
         });

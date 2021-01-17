@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
-      <img class="card-img-top" :src="info.url" />
+      <img class="card-img-top" :src="info.option" />
       <div class="container">
         <p>{{ info.description }}</p>
         <p>{{ postedFromNow }}</p>
