@@ -54,9 +54,9 @@ h1{
 }
 /*elementi naslov("DRUŽENJA") i logout*/
 .red {
-    margin: 10px auto;
-    padding: 5px 5px;
-    width:110px;
+    margin: auto;
+    padding: 12px 12px;
+    width: 100%;
 }/* uređuje logout (inače logout je kao link)*/
 .red a {
     color: black;
@@ -82,11 +82,21 @@ h1{
 .navbar a {
     color: black;
     text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  /*
+  .navbar i {
+    color: black;
+    text-align: center;
     padding: 10px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 18px;
+    margin-left:10px;
   }
-  
+  */
+
   /*  boja linka kad pređemo preko njega to ako bude nekim slučajem na PC-u
   na mobu nam to netreba  */
   .navbar a:hover {
@@ -153,6 +163,7 @@ h1{
       color: #fff;
       border: none;
   }
+
 
 
 

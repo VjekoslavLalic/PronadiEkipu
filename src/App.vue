@@ -2,9 +2,19 @@
   <div id="app">
     <router-view />
     <div class="navbar" v-if="store.currentUser">
-      <a href="/Home">Home</a>
-      <a href="/Naslovna">Naslovna</a>
-      <a href="/profil">Profil</a>
+      <a href="/Home"
+        ><img src="https://img.icons8.com/ios-filled/28/000000/friends.png"
+      /></a>
+
+      <!-- <a href="/Home">Home</a> -->
+
+      <a href="/Naslovna" class="fa fa-home fa-2x"></a>
+      <a
+        href="/profil"
+        style="font-size: 25px"
+        class="fa fa-user-circle fa-2x"
+      ></a>
+      <!-- <a href="/profil">Profil</a> -->
     </div>
     <!-- Tabs navs -->
   </div>
@@ -40,8 +50,8 @@ firebase.auth().onAuthStateChanged((user) => {
     // router.push({ name: "/" });}}
 
     //ovo ce morat biti ovdje
-     // if (router.name != "Login") {
-     // router.push({ name: "Login" });}
+    // if (router.name != "Login") {
+    // router.push({ name: "Login" });}
   }
 });
 </script>
