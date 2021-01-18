@@ -57,13 +57,14 @@ h1{
     margin: auto;
     padding: 12px 12px;
     width: 100%;
+    
 }/* uređuje logout (inače logout je kao link)*/
 .red a {
     color: black;
     text-decoration: none;
 }
 
-/* navbar tu smo odredili da stoji fixiran na dnu ekrana i ostalo */
+/* doljnji navbar tu smo odredili da stoji fixiran na dnu ekrana i ostalo */
 .navbar {
     background-color: #E4857F;
     margin: 0px auto 0px auto;
@@ -79,7 +80,7 @@ h1{
     right: 0;
   }
 
-  /* linkovi unutar navigacije */
+  /* linkovi unutar navigacije ILITI ikonice*/
 .navbar a {
     color: black;
     text-align: center;
@@ -108,7 +109,7 @@ h1{
     left: 0;
     right: 0;
   }
-/* forma za post na naslovnoj*/
+/* forma za post ILI TI PostForm.vue*/
   .form-container {
       display: flex;
       justify-content: center;
