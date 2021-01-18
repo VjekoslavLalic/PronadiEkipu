@@ -2,17 +2,17 @@
   <div id="app">
     <router-view />
     <div class="navbar" v-if="store.currentUser">
-      <a href="/Home"
+      <a class="facss" href="/Home"
         ><img src="https://img.icons8.com/ios-filled/28/000000/friends.png"
       /></a>
 
       <!-- <a href="/Home">Home</a> -->
 
-      <a href="/Naslovna" class="fa fa-home fa-2x"></a>
+      <a href="/Naslovna" class="fa fa-home fa-2x facss"></a>
       <a
         href="/profil"
         style="font-size: 25px"
-        class="fa fa-user-circle fa-2x"
+        class="fa fa-user-circle fa-2x facss"
       ></a>
       <!-- <a href="/profil">Profil</a> -->
     </div>

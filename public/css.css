@@ -62,6 +62,7 @@ h1{
     color: black;
     text-decoration: none;
 }
+
 /* navbar tu smo odredili da stoji fixiran na dnu ekrana i ostalo */
 .navbar {
     background-color: #E4857F;
@@ -86,18 +87,12 @@ h1{
     text-decoration: none;
     margin-right: 15px;
     margin-left:15px;
+    
+  }
+  .facss {
     opacity: 93%;
   }
-  /*
-  .navbar i {
-    color: black;
-    text-align: center;
-    padding: 10px 16px;
-    text-decoration: none;
-    font-size: 18px;
-    margin-left:10px;
-  }
-  */
+  
 
   /*  boja linka kad pređemo preko njega to ako bude nekim slučajem na PC-u
   na mobu nam to netreba  */

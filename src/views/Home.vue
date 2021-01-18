@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <div class="redovi">
-      <div class="red"></div>
+      <div class="red">
+        <a class="fa fa-plus-circle fa-lg facss" href="/PostForm"></a>
+      </div>
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
@@ -35,23 +37,23 @@ cards = [
   {
     img: require("@/assets/vanjske_aktivnosti.jpg"),
     description: "Vanjske aktivnosti",
-    page: "/Vanjske_aktivnosti"
+    page: "/Vanjske_aktivnosti",
   },
-  { 
+  {
     img: require("@/assets/cuganja.png"),
     description: "Cuganja",
-    page: "/Cuganja" 
-    },
-  { 
-    img: require("@/assets/sportovi.jpg"), 
+    page: "/Cuganja",
+  },
+  {
+    img: require("@/assets/sportovi.jpg"),
     description: "Sportovi",
-    page: "/Sportovi"
-    },
-  { 
-    img: require("@/assets/online.jpg"), 
+    page: "/Sportovi",
+  },
+  {
+    img: require("@/assets/online.jpg"),
     description: "Online",
-    page: "/Online" 
-    },
+    page: "/Online",
+  },
 ];
 //proba
 //function imgRedirect(destination) {

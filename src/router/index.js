@@ -24,12 +24,12 @@ const routes = [
   {
     path: '/Signup',
     name: 'Signup',
-    component: () => import( '../views/Signup.vue')
+    component: () => import('../views/Signup.vue')
   },
   {
     path: '/profil',
     name: 'profil',
-    component: () => import( '../views/profil.vue')
+    component: () => import('../views/profil.vue')
   },
   {
     path: '/Drustvene_igre',
@@ -44,7 +44,7 @@ const routes = [
   {
     path: '/Cuganja',
     name: 'Cuganja',
-    component: () => import( '../views/Cuganja.vue')
+    component: () => import('../views/Cuganja.vue')
   },
   {
     path: '/Sportovi',
@@ -59,17 +59,22 @@ const routes = [
   {
     path: '/Naslovna',
     name: 'Naslovna',
-    component: () => import( '../views/Naslovna.vue')
+    component: () => import('../views/Naslovna.vue')
   },
   {
     path: '/Chat',
     name: 'Chat',
-    component: () => import( '../views/Chat.vue')
+    component: () => import('../views/Chat.vue')
   },
   {
     path: '/nudim_trazim',
     name: 'nudim_trazim',
-    component: () => import( '../views/nudim_trazim.vue')
+    component: () => import('../views/nudim_trazim.vue')
+  },
+  {
+    path: '/PostForm',
+    name: 'PostForm',
+    component: () => import('../views/PostForm.vue')
   },
 
 ]
