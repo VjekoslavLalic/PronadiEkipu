@@ -67,16 +67,15 @@ const routes = [
     component: () => import('../views/Chat.vue')
   },
   {
-    path: '/nudim_trazim',
-    name: 'nudim_trazim',
-    component: () => import('../views/nudim_trazim.vue')
-  },
-  {
     path: '/PostForm',
     name: 'PostForm',
     component: () => import('../views/PostForm.vue')
   },
-
+  {
+    path: '/Pocetna',
+    name: 'Pocetna',
+    component: () => import('../views/Pocetna.vue')
+  },
 ]
 
 
