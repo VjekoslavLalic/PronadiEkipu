@@ -57,7 +57,7 @@ h1{
     margin: auto;
     padding: 12px 12px;
     width: 100%;
-    
+
 }/* uređuje logout (inače logout je kao link)*/
 .red a {
     color: black;
@@ -161,6 +161,7 @@ h1{
       color: #fff;
       border: none;
   }
+  
 
 
 
