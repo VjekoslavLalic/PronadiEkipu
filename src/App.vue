@@ -31,14 +31,14 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log("***", user.email);
     store.currentUser = user.email;
-    //if (currentRoute.meta.needsUser) {
-    //router.push({ name: "home" });}
+    if (currentRoute.meta.needsUser) {
+    router.push({ name: "home" });}
   } else {
     console.log("*** No user");
     store.currentUser = null;
 
     //if (currentRoute.meta.needsUser) {
-    // router.push({ name: "/" });}}
+    //router.push({ name: "/" });}}
 
     //ovo ce morat biti ovdje
     if (router.name !== "Login") {
