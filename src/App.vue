@@ -31,6 +31,13 @@ export default {
       store,
     };
   },
+  methods: {
+    logout(){
+      firebase.auth().signOuth().then(() => {
+        this.$router.push({ name: 'login'});
+      }); 
+    }
+  }
 };
 
 firebase.auth().onAuthStateChanged((user) => {
