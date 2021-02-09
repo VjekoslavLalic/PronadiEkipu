@@ -24,22 +24,6 @@ import { firebase } from "@/firebase.js";
 import store from "@/store";
 import router from "@/router";
 
-export default {
-  name: "app",
-  data() {
-    return {
-      store,
-    };
-  },
-  methods: {
-    logout(){
-      firebase.auth().signOuth().then(() => {
-        this.$router.push({ name: 'login'});
-      }); 
-    }
-  }
-};
-
 firebase.auth().onAuthStateChanged((user) => {
   //const currentRoute = router.currentRoute;
 
@@ -57,10 +41,30 @@ firebase.auth().onAuthStateChanged((user) => {
     // router.push({ name: "/" });}}
 
     //ovo ce morat biti ovdje
-    // if (router.name != "Login") {
-    // router.push({ name: "Login" });}
+    if (router.name !== "Login") {
+    router.push({ name: "Login" })
   }
+
+  }  
 });
+
+export default {
+  name: "app",
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {
+    logout(){
+      firebase.auth().signOuth().then(() => {
+        this.$router.push({ name: 'login'});
+      }); 
+    }
+  }
+};
+
+
 </script>
 <style lang="scss">
 #app {
