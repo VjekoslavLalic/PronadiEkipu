@@ -31,8 +31,9 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log("***", user.email);
     store.currentUser = user.email;
-    if (currentRoute.meta.needsUser) {
-    router.push({ name: "home" });}
+    /* if (currentRoute.meta.needsUser) {
+      router.push({ name: "home" });
+    } */
   } else {
     console.log("*** No user");
     store.currentUser = null;
@@ -41,13 +42,11 @@ firebase.auth().onAuthStateChanged((user) => {
     //router.push({ name: "/" });}}
 
     //ovo ce morat biti ovdje
-    if (router.name !== "Login") {
-    router.push({ name: "Login" })
+    /* if (router.name !== "Login") {
+      router.push({ name: "Login" });
+    } */
   }
-
-  }  
 });
-
 export default {
   name: "app",
   data() {
@@ -56,15 +55,16 @@ export default {
     };
   },
   methods: {
-    logout(){
-      firebase.auth().signOuth().then(() => {
-        this.$router.push({ name: 'login'});
-      }); 
-    }
-  }
+    /*  logout() {
+      firebase
+        .auth()
+        .signOuth()
+        .then(() => {
+          this.$router.push({ name: "login" });
+        });
+    }, */
+  },
 };
-
-
 </script>
 <style lang="scss">
 #app {

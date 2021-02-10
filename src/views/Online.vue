@@ -26,7 +26,6 @@ import store from "@/store";
 let cards = [];
 
 cards = [
-
   { img: require("@/assets/gaming.png"), description: "Gaming" },
   { img: require("@/assets/kamera.png"), description: "Kamera" },
 ];
@@ -48,7 +47,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.push({ name: "Login" });
+          this.$router.push({ name: "Pocetna" });
         });
     },
   },

@@ -51,7 +51,7 @@
 <script>
 import { firebase } from "@/firebase.js";
 export default {
-  name: "login",
+  name: "Login",
   data() {
     return {
       email: "",

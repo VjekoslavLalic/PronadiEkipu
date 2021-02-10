@@ -32,7 +32,10 @@ cards = [
   },
   { img: require("@/assets/setnja.png"), description: "Šetnja" },
   { img: require("@/assets/trcanje.png"), description: "Trčanje" },
-  { img: require("@/assets/voznja_biciklom.png"), description: "Vožnja biciklom" },
+  {
+    img: require("@/assets/voznja_biciklom.png"),
+    description: "Vožnja biciklom",
+  },
   { img: require("@/assets/rolanje.png"), description: "Rolanje" },
 ];
 
@@ -53,7 +56,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.push({ name: "Login" });
+          this.$router.push({ name: "Pocetna" });
         });
     },
   },
