@@ -95,7 +95,7 @@
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 export default {
-  /name: "Signup",
+  name: "Signup",
   data() {
     return {
       Ime: "",
