@@ -30,7 +30,7 @@
           <!-- / profilPodaci1 -->
         </div>
         <div class="profilPodaci2">
-          <p contenteditable="true">Male</p>
+          <p contenteditable="true">Male</p>    
           <p contenteditable="true">lalicvjeko34@gmail.com</p>
           <p contenteditable="true">0919805009</p>
           <p contenteditable="true">21</p>

@@ -50,6 +50,7 @@
                 placeholder=""
               />
             </div>
+
             <div class="form-group">
               <div class="label1">
                 <label for="exampleInputLozinka1">Lozinka</label>
@@ -61,6 +62,7 @@
                 id="exampleInputPassword1"
                 placeholder=""
               />
+              
             </div>
             <div class="form-group">
               <div class="label1">
@@ -91,8 +93,9 @@
 
 <script>
 import { firebase } from "@/firebase.js";
+import store from "@/store";
 export default {
-  name: "Signup",
+  /name: "Signup",
   data() {
     return {
       Ime: "",
@@ -107,6 +110,13 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
+        .then((user) => {
+					firebase
+						.auth()
+						.currentUser.updateProfile({ displayName: this.Ime
+            });
+
+				})
         .then((result) => {
           console.log("Uspješna registracija", result);
           this.$router.replace({ name: "Home" });
