@@ -23,15 +23,15 @@
     <div class="profilForma">
       <div class="profilPodaci">
         <div class="profilPodaci1">
-          <p>Gender:</p>
+          <p>Ime:</p>
           <p>E-mail:</p>
           <p>Number:</p>
           <p>Age:</p>
           <!-- / profilPodaci1 -->
         </div>
         <div class="profilPodaci2">
-          <li v-if="store.currentUser" class="nav-item">
-          <p contenteditable="true">{{ store.userDisplayName }}</p></li>    
+  
+          <p contenteditable="true" >{{ store.userDisplayName }}</p>  
           <p contenteditable="true">lalicvjeko34@gmail.com</p>
           <p contenteditable="true">0919805009</p>
           <p contenteditable="true">21</p>
@@ -69,7 +69,7 @@ firebase.auth().onAuthStateChanged(user => {
     console.log("emailVerified:" + user.emailVerified);
 
    /* if (!currentRoute.meta.requiredUser && user.emailVerified) {
-      router.push({ name: "Fipugram" });
+      router.push({ name: "Home" });
     }*/
 
     if (user.displayName) {

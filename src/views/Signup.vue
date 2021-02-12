@@ -18,7 +18,7 @@
                 v-model="Ime"
                 class="form-control"
                 id="exampleInputIme1"
-                aria-describedby="emailHelp"
+                aria-describedby="ImeHelp"
                 placeholder=""
               />
             </div>
@@ -32,7 +32,7 @@
                 v-model="Prezime"
                 class="form-control"
                 id="exampleInputPrezime1"
-                aria-describedby="emailHelp"
+                aria-describedby="PrezimeHelp"
                 placeholder=""
               />
             </div>
@@ -80,7 +80,7 @@
               ></textarea>
             </div>
 
-            <button type="button" @click="signup" class="button">
+            <button type="button" @click="signup()" class="button">
               Registriraj se
             </button>
           </form>
@@ -93,7 +93,7 @@
 
 <script>
 import { firebase } from "@/firebase.js";
-import store from "@/store";
+
 
 export default {
   name: "Signup",
@@ -111,17 +111,18 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
-        .then((result) => {
-          console.log("Uspješna registracija", result);
+        .then(function() {
+          console.log("Uspješna registracija");
         })
        .then((user) => {
 					firebase
 						.auth()
-						.currentUser.updateProfile({ displayName: this.Ime });
+            .currentUser.updateProfile({ displayName: this.Ime });
 					this.verifyEmail();
 				})
 				.then(() => {
 					this.Ime = "";
+          this.Prezime ="";
 					this.Email = "";
 					this.Lozinka = "";
 					firebase
