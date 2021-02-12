@@ -94,6 +94,7 @@
 <script>
 import { firebase } from "@/firebase.js";
 import store from "@/store";
+
 export default {
   name: "Signup",
   data() {
@@ -110,22 +111,47 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
-        .then((user) => {
-					firebase
-						.auth()
-						.currentUser.updateProfile({ displayName: this.Ime
-            });
-
-				})
         .then((result) => {
           console.log("Uspješna registracija", result);
-          this.$router.replace({ name: "Home" });
         })
-        .catch(function (error) {
-          console.error("Doslo je do greske", error);
-        });
-      console.log("nastavak");
-    },
+       .then((user) => {
+					firebase
+						.auth()
+						.currentUser.updateProfile({ displayName: this.Ime });
+					this.verifyEmail();
+				})
+				.then(() => {
+					this.Ime = "";
+					this.Email = "";
+					this.Lozinka = "";
+					firebase
+						.auth()
+						.signOut()
+						.then(() => {
+							alert("Potrebno je verificirati e-mail prije korištenja aplikacije pomoću poslanog linka.")
+							this.$router.push({ name: "Login" });
+						});
+				})
+				.catch(function (error) {
+					console.error("Došlo je do greške: ", error);
+					if (error.message) {
+						alert(error.message);
+					}
+				});
+		},
+		verifyEmail() {
+			firebase
+				.auth()
+				.currentUser.sendEmailVerification()
+				.then(function () {
+					// Verification email sent.
+					console.log("Verification email sent");
+				})
+				.catch(function (error) {
+					// Error occurred. Inspect error.code.
+					console.error("verifyError " + error);
+				});
+		},
   },
 };
 </script>

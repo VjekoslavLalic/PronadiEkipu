@@ -30,7 +30,8 @@
           <!-- / profilPodaci1 -->
         </div>
         <div class="profilPodaci2">
-          <p contenteditable="true">Male</p>    
+          <li v-if="store.currentUser" class="nav-item">
+          <p contenteditable="true">{{ store.userDisplayName }}</p></li>    
           <p contenteditable="true">lalicvjeko34@gmail.com</p>
           <p contenteditable="true">0919805009</p>
           <p contenteditable="true">21</p>
@@ -56,11 +57,47 @@
 
 
 <script>
+import store from "@/store";
+import { firebase } from "@/firebase";
+import router from "@/router";
+
+firebase.auth().onAuthStateChanged(user => {
+ // const currentRoute = router.currentRoute;
+  if (user) {
+    // User is signed in.
+    store.currentUser = user.email;
+    console.log("emailVerified:" + user.emailVerified);
+
+   /* if (!currentRoute.meta.requiredUser && user.emailVerified) {
+      router.push({ name: "Fipugram" });
+    }*/
+
+    if (user.displayName) {
+      store.userDisplayName = user.displayName;
+    } else {
+      store.userDisplayName = user.email;
+    }
+  } else {
+    // No user is signed in.
+    store.currentUser = null;
+
+ /*   if (currentRoute.meta.requiredUser) {
+      router.push({ name: "Login" });
+    }*/
+  }
+});
+
+
+
+
 export default {
   name: "profil",
-  data() {
-    return {};
+  data(){
+    return{
+      store,
+    };
   },
+ 
 };
 
 </script>
