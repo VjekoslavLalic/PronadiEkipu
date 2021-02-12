@@ -102,8 +102,7 @@ export default {
        .then((user) => {
 					firebase
 						.auth()
-            .currentUser.updateProfile({ displayName: this.Imeiprezime  })
-            .email({email: this.Email});
+            .currentUser.updateProfile({ displayName: this.Imeiprezime  });
 					this.verifyEmail();
 				})
 				.then(() => {
