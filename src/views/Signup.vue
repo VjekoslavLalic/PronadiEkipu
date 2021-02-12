@@ -11,28 +11,14 @@
           <form class="form-pozicija">
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputName1">Ime</label>
+                <label for="exampleInputName1">Ime i prezime</label>
               </div>
               <input
                 type="text"
-                v-model="Ime"
+                v-model="Imeiprezime"
                 class="form-control"
                 id="exampleInputIme1"
                 aria-describedby="ImeHelp"
-                placeholder=""
-              />
-            </div>
-
-            <div class="form-group">
-              <div class="label1">
-                <label for="exampleInputPrezime1">Prezime</label>
-              </div>
-              <input
-                type="text"
-                v-model="Prezime"
-                class="form-control"
-                id="exampleInputPrezime1"
-                aria-describedby="PrezimeHelp"
                 placeholder=""
               />
             </div>
@@ -99,8 +85,7 @@ export default {
   name: "Signup",
   data() {
     return {
-      Ime: "",
-      Prezime: "",
+      Imeiprezime: "",
       Email: "",
       Lozinka: "",
       Opis: "",
@@ -117,12 +102,11 @@ export default {
        .then((user) => {
 					firebase
 						.auth()
-            .currentUser.updateProfile({ displayName: this.Ime });
+            .currentUser.updateProfile({ displayName: this.Imeiprezime  });
 					this.verifyEmail();
 				})
 				.then(() => {
-					this.Ime = "";
-          this.Prezime ="";
+					this.Imeiprezime = "";
 					this.Email = "";
 					this.Lozinka = "";
 					firebase

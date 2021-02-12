@@ -23,7 +23,7 @@
     <div class="profilForma">
       <div class="profilPodaci">
         <div class="profilPodaci1">
-          <p>Ime:</p>
+          <p>Ime i prezime:</p>
           <p>E-mail:</p>
           <p>Number:</p>
           <p>Age:</p>
