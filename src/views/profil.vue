@@ -4,17 +4,17 @@
     <div class="profilHeader">
       <form class="md-form">
         <div class="profilSlika">
-          <img
-            src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-            class="rounded-circle z-depth-1-half avatar-pic"
-            alt="example placeholder avatar"
-          />
+          <croppa
+            :width="100"
+            :height="100"
+            placeholder="Učitaj sliku"
+            v-model="imageReference"
+          ></croppa>
+          <div class="form-submit" href="/Naslovna">
+            <button type="submit" value="Objavi" id="objavi">Objavi</button>
+            <!--<input type="submit" value="Objavi" id="objavi" />-->
+          </div>
           <!-- mb-4 -->
-        </div>
-
-        <div class="btn btn-mdb-color btn-rounded mb-4">
-          <input type="file" />
-          <!-- btn btn-mdb-color btn-rounded float-left -->
         </div>
         <!-- md-form -->
       </form>
@@ -30,8 +30,7 @@
           <!-- / profilPodaci1 -->
         </div>
         <div class="profilPodaci2">
-  
-          <p contenteditable="true" >{{ store.userDisplayName }}</p>  
+          <p contenteditable="true">{{ store.userDisplayName }}</p>
           <p contenteditable="true">{{ store.userEmail }}</p>
           <p contenteditable="true">0919805009</p>
           <p contenteditable="true">21</p>
@@ -60,48 +59,97 @@
 import store from "@/store";
 import { firebase } from "@/firebase";
 import router from "@/router";
+import { db } from "@/firebase";
 
-firebase.auth().onAuthStateChanged(user => {
- // const currentRoute = router.currentRoute;
+firebase.auth().onAuthStateChanged((user) => {
+  // const currentRoute = router.currentRoute;
   if (user) {
     // User is signed in.
     store.currentUser = user.email;
     console.log("emailVerified:" + user.emailVerified);
 
-   /* if (!currentRoute.meta.requiredUser && user.emailVerified) {
+    /* if (!currentRoute.meta.requiredUser && user.emailVerified) {
       router.push({ name: "Home" });
     }*/
 
     if (user.displayName) {
       store.userDisplayName = user.displayName;
-    } 
+    }
   } else {
     // No user is signed in.
     store.currentUser = null;
 
- /*   if (currentRoute.meta.requiredUser) {
+    /*   if (currentRoute.meta.requiredUser) {
       router.push({ name: "Login" });
     }*/
   }
 
-  if(user.email){
+  if (user.email) {
     store.userEmail = user.email;
   }
 });
 
-
-
-
 export default {
   name: "profil",
-  data(){
-    return{
+  data() {
+    return {
       store,
+      imageReference: null,
     };
   },
- 
-};
+  mounted() {
+    this.getPosts();
+  },
+  methods: {
+    postNewImage() {
+      const postGame = this.newPostGame;
+      const postOpis = this.newPostOpis;
 
+      db.collection("posts")
+        .add({
+          option: postGame,
+          desc: postOpis,
+          email: store.currentUser,
+          posted_at: Date.now(),
+        })
+        .then((doc) => {
+          console.log("Spremljeno", doc);
+          this.newPostGame = "";
+          this.newPostOpis = "";
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
+    getPosts() {
+      console.log("firebase dohvat...");
+
+      db.collection("posts")
+        .get()
+        .then((query) => {
+          query.forEach((doc) => {
+            const data = doc.data();
+            console.log(data);
+
+            this.cards.push({
+              id: doc.id,
+              time: data.posted_at,
+              description: data.desc,
+              option: data.option,
+            });
+          });
+        });
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "Login" });
+        });
+    },
+  },
+};
 </script>
 
 <style>

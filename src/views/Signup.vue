@@ -48,7 +48,6 @@
                 id="exampleInputPassword1"
                 placeholder=""
               />
-              
             </div>
             <div class="form-group">
               <div class="label1">
@@ -80,7 +79,6 @@
 <script>
 import { firebase } from "@/firebase.js";
 
-
 export default {
   name: "Signup",
   data() {
@@ -96,48 +94,50 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
-        .then(function() {
+        .then(function () {
           console.log("Uspješna registracija");
         })
-       .then((user) => {
-					firebase
-						.auth()
-            .currentUser.updateProfile({ displayName: this.Imeiprezime  })
-            .email({email: this.Email});
-					this.verifyEmail();
-				})
-				.then(() => {
-					this.Imeiprezime = "";
-					this.Email = "";
-					this.Lozinka = "";
-					firebase
-						.auth()
-						.signOut()
-						.then(() => {
-							alert("Potrebno je verificirati e-mail prije korištenja aplikacije pomoću poslanog linka.")
-							this.$router.push({ name: "Login" });
-						});
-				})
-				.catch(function (error) {
-					console.error("Došlo je do greške: ", error);
-					if (error.message) {
-						alert(error.message);
-					}
-				});
-		},
-		verifyEmail() {
-			firebase
-				.auth()
-				.currentUser.sendEmailVerification()
-				.then(function () {
-					// Verification email sent.
-					console.log("Verification email sent");
-				})
-				.catch(function (error) {
-					// Error occurred. Inspect error.code.
-					console.error("verifyError " + error);
-				});
-		},
+        .then((user) => {
+          firebase
+            .auth()
+            .currentUser.updateProfile({ displayName: this.Imeiprezime })
+            .email({ email: this.Email });
+          this.verifyEmail();
+        })
+        .then(() => {
+          this.Imeiprezime = "";
+          this.Email = "";
+          this.Lozinka = "";
+          firebase
+            .auth()
+            .signOut()
+            .then(() => {
+              alert(
+                "Potrebno je verificirati e-mail prije korištenja aplikacije pomoću poslanog linka."
+              );
+              this.$router.push({ name: "Login" });
+            });
+        })
+        .catch(function (error) {
+          console.error("Došlo je do greške: ", error);
+          if (error.message) {
+            alert(error.message);
+          }
+        });
+    },
+    verifyEmail() {
+      firebase
+        .auth()
+        .currentUser.sendEmailVerification()
+        .then(function () {
+          // Verification email sent.
+          console.log("Verification email sent");
+        })
+        .catch(function (error) {
+          // Error occurred. Inspect error.code.
+          console.error("verifyError " + error);
+        });
+    },
   },
 };
 </script>
