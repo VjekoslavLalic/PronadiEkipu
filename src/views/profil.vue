@@ -32,7 +32,7 @@
         <div class="profilPodaci2">
   
           <p contenteditable="true" >{{ store.userDisplayName }}</p>  
-          <p contenteditable="true">lalicvjeko34@gmail.com</p>
+          <p contenteditable="true">{{ store.userEmail }}</p>
           <p contenteditable="true">0919805009</p>
           <p contenteditable="true">21</p>
           <!-- / profilPodaci2 -->
@@ -74,9 +74,7 @@ firebase.auth().onAuthStateChanged(user => {
 
     if (user.displayName) {
       store.userDisplayName = user.displayName;
-    } else {
-      store.userDisplayName = user.email;
-    }
+    } 
   } else {
     // No user is signed in.
     store.currentUser = null;
@@ -84,6 +82,10 @@ firebase.auth().onAuthStateChanged(user => {
  /*   if (currentRoute.meta.requiredUser) {
       router.push({ name: "Login" });
     }*/
+  }
+
+  if(user.email){
+    store.userEmail = user.email;
   }
 });
 
