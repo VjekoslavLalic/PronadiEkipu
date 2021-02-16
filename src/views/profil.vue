@@ -2,7 +2,7 @@
   <div class="container my-4">
     <!--Grid column-->
     <div class="profilHeader">
-      <form class="md-form" method="POST" @submit.prevent="postNewOpis">
+      <form class="md-form" method="POST">
         <div class="profilSlika">
           <croppa
             :width="100"
@@ -15,6 +15,7 @@
             <!--<input type="submit" value="Objavi" id="objavi" />-->
           </div>
           <!-- mb-4 -->
+          <p contenteditable="true">{{ store.userDisplayName }}</p>
         </div>
         <!-- md-form -->
       </form>
@@ -23,14 +24,12 @@
     <div class="profilForma">
       <div class="profilPodaci">
         <div class="profilPodaci1">
-          <p>Ime i prezime:</p>
-          <p>E-mail:</p>
+          <p>Email:</p>
           <p>Broj:</p>
           <p>Age:</p>
           <!-- / profilPodaci1 -->
         </div>
         <div class="profilPodaci2">
-          <p contenteditable="true">{{ store.userDisplayName }}</p>
           <p contenteditable="true">{{ store.userEmail }}</p>
           <p contenteditable="true">{{ store.userPhoneNumber }}</p>
           <p contenteditable="true">21</p>
@@ -227,12 +226,12 @@ export default {
   margin: 0px 15px 0px 0px;
 }
 .profilPodaci2 {
-  margin: 0px auto 0px 30px;
+  margin: 0px auto 0px 0px;
 }
 
 .messengerLogo {
   text-align: center;
-  margin: 0px auto 0px 50px;
+  margin: 0px auto 0px 0px;
   margin-top: 25px;
 }
 .messengerLogo img {
@@ -249,5 +248,9 @@ export default {
 }
 .profilSlika img {
   margin: 0px auto;
+}
+.profilSlika {
+  margin: 0;
+  background-color: #e4857f;
 }
 </style>
