@@ -96,28 +96,29 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
-        .then(function() {
-          console.log("Uspješna registracija");
+        .then((result) => {
+          console.log("Uspješna prijava", result);
+          this.$router.replace({ name: "Home" });
         })
        .then((user) => {
 					firebase
 						.auth()
             .currentUser.updateProfile({ displayName: this.Imeiprezime  });
-					this.verifyEmail();
+				//	this.verifyEmail();
 				})
 				.then(() => {
 					this.Imeiprezime = "";
 					this.Email = "";
 					this.Lozinka = "";
-					firebase
+				/*	firebase
 						.auth()
 						.signOut()
 						.then(() => {
 							alert("Potrebno je verificirati e-mail prije korištenja aplikacije pomoću poslanog linka.")
 							this.$router.push({ name: "Login" });
-						});
+						});*/
 				})
-				.catch(function (error) {
+			/*	.catch(function (error) {
 					console.error("Došlo je do greške: ", error);
 					if (error.message) {
 						alert(error.message);
@@ -136,7 +137,8 @@ export default {
 					// Error occurred. Inspect error.code.
 					console.error("verifyError " + error);
 				});
-		},
+		},*/
+    }
   },
 };
 </script>
