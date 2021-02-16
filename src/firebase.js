@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import 'firebase/storage';
+
 // web app's Firebase konfiguracija
 var firebaseConfig = {
     apiKey: "AIzaSyBRr6ut3NtRy94vilpDxjyQi2EWBqbABdk",
@@ -15,5 +17,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 let db = firebase.firestore();
+let storage = firebase.storage();
 
-export { firebase, db };
+export { firebase, db, storage };

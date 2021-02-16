@@ -136,6 +136,7 @@ import Card from "@/components/Post.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import { db } from "@/firebase";
+
 export default {
   name: "PostForm",
   data() {
