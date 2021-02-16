@@ -25,14 +25,14 @@
         <div class="profilPodaci1">
           <p>Ime i prezime:</p>
           <p>E-mail:</p>
-          <p>Number:</p>
+          <p>Broj:</p>
           <p>Age:</p>
           <!-- / profilPodaci1 -->
         </div>
         <div class="profilPodaci2">
           <p contenteditable="true">{{ store.userDisplayName }}</p>
           <p contenteditable="true">{{ store.userEmail }}</p>
-          <p contenteditable="true">0919805009</p>
+          <p contenteditable="true">{{ store.userPhoneNumber}}</p>
           <p contenteditable="true">21</p>
           <!-- / profilPodaci2 -->
         </div>
@@ -86,6 +86,10 @@ firebase.auth().onAuthStateChanged((user) => {
 
   if (user.email) {
     store.userEmail = user.email;
+  }
+
+   if (user.phoneNumber) {
+    store.userPhoneNumber = user.phoneNumber;
   }
 });
 

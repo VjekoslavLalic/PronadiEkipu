@@ -23,6 +23,20 @@
               />
             </div>
 
+             <div class="form-group">
+              <div class="label1">
+                <label for="exampleInputNumber1">Broj</label>
+              </div>
+              <input
+                type="number"
+                v-model="Broj"
+                class="form-control"
+                id="exampleInputNumber1"
+                aria-describedby="emailHelp"
+                placeholder=""
+              />
+            </div>
+
             <div class="form-group">
               <div class="label1">
                 <label for="exampleInputEmail1">Email</label>
@@ -86,6 +100,7 @@ export default {
   data() {
     return {
       Imeiprezime: "",
+      Broj: "",
       Email: "",
       Lozinka: "",
       Opis: "",
@@ -98,16 +113,18 @@ export default {
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
         .then((result) => {
           console.log("Uspješna prijava", result);
-          this.$router.replace({ name: "Home" });
+          this.$router.replace({ name: "Home" }); 
         })
        .then((user) => {
 					firebase
 						.auth()
-            .currentUser.updateProfile({ displayName: this.Imeiprezime  });
+            .currentUser.updateProfile({ displayName: this.Imeiprezime})
+            
 				//	this.verifyEmail();
 				})
 				.then(() => {
 					this.Imeiprezime = "";
+          this.Broj = "";
 					this.Email = "";
 					this.Lozinka = "";
 				/*	firebase
