@@ -59,7 +59,7 @@
 import store from "@/store";
 import { firebase } from "@/firebase";
 import router from "@/router";
-import { db } from "@/firebase";
+import { db, storage } from "@/firebase";
 
 firebase.auth().onAuthStateChanged((user) => {
   // const currentRoute = router.currentRoute;
@@ -97,11 +97,29 @@ export default {
       imageReference: null,
     };
   },
-  mounted() {
-    this.getPosts();
-  },
+
   methods: {
     postNewImage() {
+      this.imageReference.generateBlob((blobData) => {
+        console.log(blobData);
+
+        let imageName =
+          "posts/" + store.currentUser + "/" + Date.now() + ".png";
+        console.log(imageName);
+
+        storage
+          .ref(imageName)
+          .put(blobData)
+          .then((result) => {
+            // uspjesna linija
+            console.log(result);
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      });
+      return;
+
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
 
@@ -138,14 +156,6 @@ export default {
               option: data.option,
             });
           });
-        });
-    },
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ name: "Login" });
         });
     },
   },
