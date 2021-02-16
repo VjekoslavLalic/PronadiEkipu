@@ -144,7 +144,7 @@ export default {
       cards: [],
       store,
       newPostOpis: "",
-      newPostGame: "",
+      newPostGame: ""
     };
   },
   mounted() {
@@ -160,14 +160,14 @@ export default {
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
-          posted_at: Date.now(),
+          posted_at: Date.now()
         })
-        .then((doc) => {
+        .then(doc => {
           console.log("Spremljeno", doc);
           this.newPostGame = "";
           this.newPostOpis = "";
         })
-        .catch((e) => {
+        .catch(e => {
           console.error(e);
         });
     },
@@ -176,8 +176,8 @@ export default {
 
       db.collection("posts")
         .get()
-        .then((query) => {
-          query.forEach((doc) => {
+        .then(query => {
+          query.forEach(doc => {
             const data = doc.data();
             console.log(data);
 
@@ -185,7 +185,7 @@ export default {
               id: doc.id,
               time: data.posted_at,
               description: data.desc,
-              option: data.option,
+              option: data.option
             });
           });
         });
@@ -197,7 +197,7 @@ export default {
         .then(() => {
           this.$router.push({ name: "Login" });
         });
-    },
-  },
+    }
+  }
 };
 </script>

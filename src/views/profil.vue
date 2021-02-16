@@ -2,7 +2,7 @@
   <div class="container my-4">
     <!--Grid column-->
     <div class="profilHeader">
-      <form class="md-form">
+      <form class="md-form" method="POST" @submit.prevent="postNewOpis">
         <div class="profilSlika">
           <croppa
             :width="100"
@@ -10,7 +10,7 @@
             placeholder="Učitaj sliku"
             v-model="imageReference"
           ></croppa>
-          <div class="form-submit" href="/Naslovna">
+          <div class="form-submit">
             <button type="submit" value="Objavi" id="objavi">Objavi</button>
             <!--<input type="submit" value="Objavi" id="objavi" />-->
           </div>
@@ -32,7 +32,7 @@
         <div class="profilPodaci2">
           <p contenteditable="true">{{ store.userDisplayName }}</p>
           <p contenteditable="true">{{ store.userEmail }}</p>
-          <p contenteditable="true">{{ store.userPhoneNumber}}</p>
+          <p contenteditable="true">{{ store.userPhoneNumber }}</p>
           <p contenteditable="true">21</p>
           <!-- / profilPodaci2 -->
         </div>
@@ -41,15 +41,22 @@
       <div class="messengerLogo"><img src="@/assets/messenger.png" /></div>
       <!-- / profilForma -->
     </div>
-    <div class="profilOpis">
-      <p>Opis:</p>
-      <textarea
-        contenteditable="true"
-        placeholder="Napišite nešto o sebi."
-        rows="5"
-        cols="50"
-      ></textarea>
-    </div>
+    <form method="POST" @submit.prevent="postNewOpis">
+      <div class="profilOpis">
+        <p>Opis:</p>
+        <textarea
+          contenteditable="true"
+          placeholder="Napišite nešto o sebi."
+          rows="5"
+          cols="50"
+          v-model="newUserOpis"
+        >
+        </textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
+      </div>
+    </form>
     <!-- / container my-4 -->
   </div>
 </template>
@@ -61,12 +68,12 @@ import { firebase } from "@/firebase";
 import router from "@/router";
 import { db, storage } from "@/firebase";
 
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged(user => {
   // const currentRoute = router.currentRoute;
   if (user) {
     // User is signed in.
     store.currentUser = user.email;
-    console.log("emailVerified:" + user.emailVerified);
+    /* console.log("emailVerified:" + user.emailVerified); */
 
     /* if (!currentRoute.meta.requiredUser && user.emailVerified) {
       router.push({ name: "Home" });
@@ -88,7 +95,7 @@ firebase.auth().onAuthStateChanged((user) => {
     store.userEmail = user.email;
   }
 
-   if (user.phoneNumber) {
+  if (user.phoneNumber) {
     store.userPhoneNumber = user.phoneNumber;
   }
 });
@@ -99,12 +106,28 @@ export default {
     return {
       store,
       imageReference: null,
+      newUserOpis: ""
     };
   },
 
   methods: {
-    postNewImage() {
-      this.imageReference.generateBlob((blobData) => {
+    postNewOpis() {
+      const userOpis = this.newUserOpis;
+      db.collection("userData")
+        .add({
+          email: store.currentUser,
+          opis: userOpis
+        })
+        .then(doc => {
+          console.log("Spremljeno", doc);
+          this.newUserOpis = "";
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    }
+    /* postNewImage() {
+      this.imageReference.generateBlob(blobData => {
         console.log(blobData);
 
         let imageName =
@@ -114,11 +137,11 @@ export default {
         storage
           .ref(imageName)
           .put(blobData)
-          .then((result) => {
+          .then(result => {
             // uspjesna linija
             console.log(result);
           })
-          .catch((e) => {
+          .catch(e => {
             console.error(e);
           });
       });
@@ -132,24 +155,24 @@ export default {
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
-          posted_at: Date.now(),
+          posted_at: Date.now()
         })
-        .then((doc) => {
+        .then(doc => {
           console.log("Spremljeno", doc);
           this.newPostGame = "";
           this.newPostOpis = "";
         })
-        .catch((e) => {
+        .catch(e => {
           console.error(e);
         });
-    },
-    getPosts() {
+    }, */
+    /* getPosts() {
       console.log("firebase dohvat...");
 
       db.collection("posts")
         .get()
-        .then((query) => {
-          query.forEach((doc) => {
+        .then(query => {
+          query.forEach(doc => {
             const data = doc.data();
             console.log(data);
 
@@ -157,12 +180,12 @@ export default {
               id: doc.id,
               time: data.posted_at,
               description: data.desc,
-              option: data.option,
+              option: data.option
             });
           });
         });
-    },
-  },
+    } */
+  }
 };
 </script>
 
