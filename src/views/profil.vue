@@ -108,7 +108,9 @@ export default {
       newUserOpis: ""
     };
   },
-
+  mounted() {
+    console.log("MOUNTED");
+  },
   methods: {
     postNewOpis() {
       const userOpis = this.newUserOpis;
@@ -168,7 +170,7 @@ export default {
     /* getPosts() {
       console.log("firebase dohvat...");
 
-      db.collection("posts")
+      db.collection("userData")
         .get()
         .then(query => {
           query.forEach(doc => {
