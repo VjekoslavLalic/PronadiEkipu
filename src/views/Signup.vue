@@ -120,11 +120,12 @@ export default {
 						.auth()
             .currentUser.updateProfile({ displayName: this.Imeiprezime})
             
+            
 				//	this.verifyEmail();
 				})
+
 				.then(() => {
 					this.Imeiprezime = "";
-          this.Broj = "";
 					this.Email = "";
 					this.Lozinka = "";
 				/*	firebase

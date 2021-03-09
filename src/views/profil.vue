@@ -31,7 +31,7 @@
         </div>
         <div class="profilPodaci2">
           <p contenteditable="true">{{ store.userEmail }}</p>
-          <p contenteditable="true">{{ store.userPhoneNumber }}</p>
+          <p contenteditable="true">broj moba</p>
           <p contenteditable="true">21</p>
           <!-- / profilPodaci2 -->
         </div>
@@ -55,6 +55,7 @@
       <div class="form-submit">
         <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
       </div>
+
     </form>
     <!-- / container my-4 -->
   </div>
