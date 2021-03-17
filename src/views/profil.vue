@@ -15,7 +15,9 @@
             <!--<input type="submit" value="Objavi" id="objavi" />-->
           </div>
           <!-- mb-4 -->
-          <p contenteditable="true">{{ store.userDisplayName }}</p>
+          <p contenteditable="true">
+            {{ store.userDisplayName }}
+          </p>
         </div>
         <!-- md-form -->
       </form>
@@ -55,7 +57,6 @@
       <div class="form-submit">
         <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
       </div>
-
     </form>
     <!-- / container my-4 -->
   </div>
@@ -73,6 +74,7 @@ firebase.auth().onAuthStateChanged(user => {
   if (user) {
     // User is signed in.
     store.currentUser = user.email;
+
     /* console.log("emailVerified:" + user.emailVerified); */
 
     /* if (!currentRoute.meta.requiredUser && user.emailVerified) {

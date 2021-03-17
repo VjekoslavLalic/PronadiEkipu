@@ -23,7 +23,7 @@
               />
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
               <div class="label1">
                 <label for="exampleInputNumber1">Broj</label>
               </div>
@@ -62,7 +62,6 @@
                 id="exampleInputPassword1"
                 placeholder=""
               />
-              
             </div>
             <div class="form-group">
               <div class="label1">
@@ -94,7 +93,6 @@
 <script>
 import { firebase } from "@/firebase.js";
 
-
 export default {
   name: "Signup",
   data() {
@@ -103,7 +101,7 @@ export default {
       Broj: "",
       Email: "",
       Lozinka: "",
-      Opis: "",
+      Opis: ""
     };
   },
   methods: {
@@ -111,32 +109,31 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
-        .then((result) => {
+        .then(result => {
           console.log("Uspješna prijava", result);
-          this.$router.replace({ name: "Home" }); 
+          this.$router.replace({ name: "Home" });
         })
-       .then((user) => {
-					firebase
-						.auth()
-            .currentUser.updateProfile({ displayName: this.Imeiprezime})
-            
-            
-				//	this.verifyEmail();
-				})
+        .then(user => {
+          firebase
+            .auth()
+            .currentUser.updateProfile({ displayName: this.Imeiprezime });
 
-				.then(() => {
-					this.Imeiprezime = "";
-					this.Email = "";
-					this.Lozinka = "";
-				/*	firebase
+          //	this.verifyEmail();
+        })
+
+        .then(() => {
+          this.Imeiprezime = "";
+          this.Email = "";
+          this.Lozinka = "";
+          /*	firebase
 						.auth()
 						.signOut()
 						.then(() => {
 							alert("Potrebno je verificirati e-mail prije korištenja aplikacije pomoću poslanog linka.")
 							this.$router.push({ name: "Login" });
 						});*/
-				})
-			/*	.catch(function (error) {
+        });
+      /*	.catch(function (error) {
 					console.error("Došlo je do greške: ", error);
 					if (error.message) {
 						alert(error.message);
@@ -157,6 +154,6 @@ export default {
 				});
 		},*/
     }
-  },
+  }
 };
 </script>

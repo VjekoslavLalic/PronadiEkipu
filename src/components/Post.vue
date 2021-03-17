@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
+      <p>{{ info.name }}</p>
       <img class="card-img-top" :src="info.option" />
       <div class="container">
         <p>{{ info.description }}</p>
@@ -12,14 +13,23 @@
 
 <script>
 import moment from "moment";
+import { firebase } from "@/firebase.js";
+import store from "@/store";
+import router from "@/router";
+import { db, storage } from "@/firebase";
 export default {
   props: ["info"],
   name: "Post",
+  data() {
+    return {
+      store
+    };
+  },
   computed: {
     postedFromNow() {
       return moment(this.info.time).fromNow();
-    },
-  },
+    }
+  }
 };
 </script>
 

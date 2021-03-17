@@ -19,7 +19,8 @@
 import Card from "@/components/Post.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
-import { db } from "@/firebase";
+import router from "@/router";
+import { db, storage } from "@/firebase";
 
 export default {
   name: "naslovna",
@@ -29,6 +30,8 @@ export default {
       store,
       newPostOpis: "",
       newPostGame: "",
+      newPostName: "",
+      Imeiprezime: ""
     };
   },
   mounted() {
@@ -38,20 +41,23 @@ export default {
     postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
-
+      const postName = this.newPostName;
       db.collection("posts")
         .add({
+          //////////
+          userName: userDisplayName,
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
-          posted_at: Date.now(),
+          posted_at: Date.now()
         })
-        .then((doc) => {
+        .then(doc => {
           console.log("Spremljeno", doc);
           this.newPostGame = "";
           this.newPostOpis = "";
+          this.newPostName = "";
         })
-        .catch((e) => {
+        .catch(e => {
           console.error(e);
         });
     },
@@ -60,8 +66,8 @@ export default {
 
       db.collection("posts")
         .get()
-        .then((query) => {
-          query.forEach((doc) => {
+        .then(query => {
+          query.forEach(doc => {
             const data = doc.data();
             console.log(data);
 
@@ -70,6 +76,7 @@ export default {
               time: data.posted_at,
               description: data.desc,
               option: data.option,
+              name: data.userName
             });
           });
         });
@@ -81,10 +88,10 @@ export default {
         .then(() => {
           this.$router.push({ name: "Pocetna" });
         });
-    },
+    }
   },
   components: {
-    Card,
-  },
+    Card
+  }
 };
 </script>

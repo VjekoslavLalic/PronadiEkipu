@@ -144,19 +144,23 @@ export default {
       cards: [],
       store,
       newPostOpis: "",
-      newPostGame: ""
+      newPostGame: "",
+      newPostName: ""
     };
   },
+  //currentUser.updateProfile({ displayName: this.Imeiprezime });
   mounted() {
     this.getPosts();
   },
+
   methods: {
     postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
-
+      const postName = this.newPostName;
       db.collection("posts")
         .add({
+          userName: postName,
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
@@ -166,6 +170,7 @@ export default {
           console.log("Spremljeno", doc);
           this.newPostGame = "";
           this.newPostOpis = "";
+          this.newPostName = "";
         })
         .catch(e => {
           console.error(e);
@@ -185,7 +190,8 @@ export default {
               id: doc.id,
               time: data.posted_at,
               description: data.desc,
-              option: data.option
+              option: data.option,
+              name: data.userName
             });
           });
         });
@@ -200,4 +206,36 @@ export default {
     }
   }
 };
+firebase.auth().onAuthStateChanged(user => {
+  // const currentRoute = router.currentRoute;
+  if (user) {
+    // User is signed in.
+    store.currentUser = user.email;
+
+    /* console.log("emailVerified:" + user.emailVerified); */
+
+    /* if (!currentRoute.meta.requiredUser && user.emailVerified) {
+      router.push({ name: "Home" });
+    }*/
+
+    if (user.displayName) {
+      store.userDisplayName = user.displayName;
+    }
+  } else {
+    // No user is signed in.
+    store.currentUser = null;
+
+    /*   if (currentRoute.meta.requiredUser) {
+      router.push({ name: "Login" });
+    }*/
+  }
+
+  if (user.email) {
+    store.userEmail = user.email;
+  }
+
+  if (user.phoneNumber) {
+    store.userPhoneNumber = user.phoneNumber;
+  }
+});
 </script>
