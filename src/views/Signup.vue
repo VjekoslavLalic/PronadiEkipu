@@ -10,7 +10,6 @@
         <div class="col-sm">
           <form
             class="form-pozicija"
-            action="#"
             method="POST"
             @submit.prevent="registerUserData"
           >
@@ -22,7 +21,7 @@
                 type="text"
                 v-model="Imeiprezime"
                 class="form-control"
-                id="postName"
+                id="userName"
                 aria-describedby="ImeHelp"
                 placeholder=""
               />
@@ -97,6 +96,7 @@
 
 <script>
 import { firebase } from "@/firebase.js";
+import { db, storage } from "@/firebase";
 
 export default {
   name: "Signup",
@@ -110,6 +110,20 @@ export default {
     };
   },
   methods: {
+    registerUserData() {
+      const userName = this.Imeiprezime;
+
+      db.collection("userRegData")
+        .add({
+          userFullName: userName
+        })
+        .then(doc => {
+          console.log("Spremljeno", doc);
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    },
     signup() {
       firebase
         .auth()
@@ -122,7 +136,6 @@ export default {
           firebase
             .auth()
             .currentUser.updateProfile({ displayName: this.Imeiprezime });
-
           //	this.verifyEmail();
         })
 
@@ -130,6 +143,7 @@ export default {
           this.Imeiprezime = "";
           this.Email = "";
           this.Lozinka = "";
+
           /*	firebase
 						.auth()
 						.signOut()
@@ -158,23 +172,6 @@ export default {
 					console.error("verifyError " + error);
 				});
 		},*/
-    },
-    registerUserData() {
-      const postName = this.Imeiprezime;
-
-      db.collection("userRegData")
-        .add({
-          userName: postName
-        })
-        .then(doc => {
-          console.log("Spremljeno", doc);
-          this.newPostGame = "";
-          this.newPostOpis = "";
-          this.newPostName = "";
-        })
-        .catch(e => {
-          console.error(e);
-        });
     }
   }
 };
