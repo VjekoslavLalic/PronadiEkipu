@@ -56,10 +56,8 @@
 </template>
 
 <script>
-
 export default {
   props: ["post"],
-  name: "ModalPost",
+  name: "ModalPost"
 };
-}
 </script>

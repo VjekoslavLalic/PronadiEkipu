@@ -145,7 +145,7 @@ export default {
       store,
       newPostOpis: "",
       newPostGame: "",
-      newPostName: ""
+      Imeiprezime: ""
     };
   },
   //currentUser.updateProfile({ displayName: this.Imeiprezime });
@@ -157,7 +157,7 @@ export default {
     postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
-      const postName = this.newPostName;
+      const postName = this.Imeiprezime;
       db.collection("posts")
         .add({
           userName: postName,

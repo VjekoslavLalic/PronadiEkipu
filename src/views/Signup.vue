@@ -8,7 +8,12 @@
       <div class="container">
         <div class="col-sm"></div>
         <div class="col-sm">
-          <form class="form-pozicija">
+          <form
+            class="form-pozicija"
+            action="#"
+            method="POST"
+            @submit.prevent="registerUserData"
+          >
             <div class="form-group">
               <div class="label1">
                 <label for="exampleInputName1">Ime i prezime</label>
@@ -17,7 +22,7 @@
                 type="text"
                 v-model="Imeiprezime"
                 class="form-control"
-                id="exampleInputIme1"
+                id="postName"
                 aria-describedby="ImeHelp"
                 placeholder=""
               />
@@ -31,7 +36,7 @@
                 type="number"
                 v-model="Broj"
                 class="form-control"
-                id="exampleInputNumber1"
+                id="number"
                 aria-describedby="emailHelp"
                 placeholder=""
               />
@@ -45,7 +50,7 @@
                 type="email"
                 v-model="Email"
                 class="form-control"
-                id="exampleInputEmail1"
+                id="email"
                 aria-describedby="emailHelp"
                 placeholder=""
               />
@@ -59,7 +64,7 @@
                 type="password"
                 v-model="Lozinka"
                 class="form-control"
-                id="exampleInputPassword1"
+                id="lozinka"
                 placeholder=""
               />
             </div>
@@ -71,7 +76,7 @@
                 type="text"
                 v-model="Opis"
                 class="form-control"
-                id="exampleInputOpis1"
+                id="opis"
                 aria-describedby="emailHelp"
                 rows="5"
                 cols="50"
@@ -153,6 +158,23 @@ export default {
 					console.error("verifyError " + error);
 				});
 		},*/
+    },
+    registerUserData() {
+      const postName = this.Imeiprezime;
+
+      db.collection("userRegData")
+        .add({
+          userName: postName
+        })
+        .then(doc => {
+          console.log("Spremljeno", doc);
+          this.newPostGame = "";
+          this.newPostOpis = "";
+          this.newPostName = "";
+        })
+        .catch(e => {
+          console.error(e);
+        });
     }
   }
 };
