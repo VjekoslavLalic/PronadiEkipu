@@ -136,31 +136,46 @@ import Card from "@/components/Post.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import { db } from "@/firebase";
-
 export default {
   name: "PostForm",
   data() {
     return {
       cards: [],
+      cards2: [],
       store,
       newPostOpis: "",
       newPostGame: "",
       Imeiprezime: ""
     };
   },
-  //currentUser.updateProfile({ displayName: this.Imeiprezime });
+
   mounted() {
     this.getPosts();
   },
 
   methods: {
+    getName() {
+      db.collection("userData")
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            this.cards2 = [];
+            const data = doc.data();
+            this.cards2.push({
+              id: doc.id,
+              userFullName: data.userFullName
+            });
+          });
+        });
+    },
     postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
-      const postName = this.Imeiprezime;
+      const postName = this.cards2[userFullName];
+
       db.collection("posts")
         .add({
-          userName: Imeiprezime,
+          userName: postName,
           option: postGame,
           desc: postOpis,
           email: store.currentUser,

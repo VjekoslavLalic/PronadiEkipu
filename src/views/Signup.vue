@@ -110,11 +110,18 @@ export default {
   methods: {
     signup() {
       const userName = this.Imeiprezime;
+      const userEmail = this.Email;
+      const userNumber = this.Broj;
+      const userOpis = this.Opis;
+      const userPassword = this.Lozinka;
 
       db.collection("userData")
         .add({
-          email: store.currentUser,
-          userFullName: userName
+          Email: userEmail,
+          userFullName: userName,
+          Number: userNumber,
+          userPassword: userPassword,
+          userOpis: Opis
         })
         .then(doc => {
           console.log("Spremljeno", doc);

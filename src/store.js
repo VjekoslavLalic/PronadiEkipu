@@ -4,5 +4,4 @@ export default {
     currentUser: null,
     userDisplayName: null,
     userEmail: null,
-
 };
