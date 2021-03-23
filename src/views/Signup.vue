@@ -8,11 +8,7 @@
       <div class="container">
         <div class="col-sm"></div>
         <div class="col-sm">
-          <form
-            class="form-pozicija"
-            method="POST"
-            @submit.prevent="registerUserData"
-          >
+          <form class="form-pozicija" method="POST" @submit.prevent="signup">
             <div class="form-group">
               <div class="label1">
                 <label for="exampleInputName1">Ime i prezime</label>
@@ -95,7 +91,9 @@
 </template>
 
 <script>
-import { firebase } from "@/firebase.js";
+import store from "@/store";
+import { firebase } from "@/firebase";
+import router from "@/router";
 import { db, storage } from "@/firebase";
 
 export default {
@@ -110,11 +108,12 @@ export default {
     };
   },
   methods: {
-    registerUserData() {
+    signup() {
       const userName = this.Imeiprezime;
 
-      db.collection("userRegData")
+      db.collection("userData")
         .add({
+          email: store.currentUser,
           userFullName: userName
         })
         .then(doc => {
@@ -123,8 +122,7 @@ export default {
         .catch(e => {
           console.error(e);
         });
-    },
-    signup() {
+
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
@@ -138,7 +136,6 @@ export default {
             .currentUser.updateProfile({ displayName: this.Imeiprezime });
           //	this.verifyEmail();
         })
-
         .then(() => {
           this.Imeiprezime = "";
           this.Email = "";

@@ -160,7 +160,7 @@ export default {
       const postName = this.Imeiprezime;
       db.collection("posts")
         .add({
-          userName: postName,
+          userName: Imeiprezime,
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
