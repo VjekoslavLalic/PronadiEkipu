@@ -136,12 +136,12 @@ import Card from "@/components/Post.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import { db } from "@/firebase";
+
 export default {
   name: "PostForm",
   data() {
     return {
       cards: [],
-      cards2: [],
       store,
       newPostOpis: "",
       newPostGame: "",
@@ -154,28 +154,13 @@ export default {
   },
 
   methods: {
-    getName() {
-      db.collection("userData")
-        .get()
-        .then(query => {
-          query.forEach(doc => {
-            this.cards2 = [];
-            const data = doc.data();
-            this.cards2.push({
-              id: doc.id,
-              userFullName: data.userFullName
-            });
-          });
-        });
-    },
     postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
-      const postName = this.cards2[userFullName];
 
       db.collection("posts")
         .add({
-          userName: postName,
+          userName: store.userDisplayName,
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
@@ -185,7 +170,6 @@ export default {
           console.log("Spremljeno", doc);
           this.newPostGame = "";
           this.newPostOpis = "";
-          this.newPostName = "";
         })
         .catch(e => {
           console.error(e);
