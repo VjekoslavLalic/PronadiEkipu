@@ -129,8 +129,8 @@ export default {
         .catch(e => {
           console.error(e);
         });
-    }
-    /* postNewImage() {
+    },
+    postNewImage() {
       this.imageReference.generateBlob(blobData => {
         console.log(blobData);
 
@@ -149,46 +149,7 @@ export default {
             console.error(e);
           });
       });
-      return;
-
-      const postGame = this.newPostGame;
-      const postOpis = this.newPostOpis;
-
-      db.collection("posts")
-        .add({
-          option: postGame,
-          desc: postOpis,
-          email: store.currentUser,
-          posted_at: Date.now()
-        })
-        .then(doc => {
-          console.log("Spremljeno", doc);
-          this.newPostGame = "";
-          this.newPostOpis = "";
-        })
-        .catch(e => {
-          console.error(e);
-        });
-    }, */
-    /* getPosts() {
-      console.log("firebase dohvat...");
-
-      db.collection("userData")
-        .get()
-        .then(query => {
-          query.forEach(doc => {
-            const data = doc.data();
-            console.log(data);
-
-            this.cards.push({
-              id: doc.id,
-              time: data.posted_at,
-              description: data.desc,
-              option: data.option
-            });
-          });
-        });
-    } */
+    }
   }
 };
 </script>
