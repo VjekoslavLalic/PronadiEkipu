@@ -121,7 +121,7 @@ export default {
           userFullName: userName,
           Number: userNumber,
           userPassword: userPassword,
-          userOpis: Opis
+          userOpis: userOpis
         })
         .then(doc => {
           console.log("Spremljeno", doc);
