@@ -5,6 +5,8 @@
       <div class="container">
         <h4>
           <b>{{ info.description }}</b>
+            <br>
+        <a class="btn btn-primary" href="Sort" role="button">+</a>
         </h4>
       </div>
     </div>

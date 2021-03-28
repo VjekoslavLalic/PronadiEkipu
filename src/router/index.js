@@ -74,6 +74,11 @@ const routes = [
     name: 'Pocetna',
     component: () => import('../views/Pocetna.vue')
   },
+  {
+    path: '/',
+    name: 'Sort',
+    component: () => import('../views/Sort.vue')
+  },
 ]
 
 
