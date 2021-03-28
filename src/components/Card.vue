@@ -5,8 +5,14 @@
       <div class="container">
         <h4>
           <b>{{ info.description }}</b>
-            <br>
-        <a class="btn btn-primary" href="Sort" role="button">+</a>
+          <br />
+          <a
+            @click.prevent="sortByName"
+            class="btn btn-primary"
+            href="Sort"
+            role="button"
+            >+</a
+          >
         </h4>
       </div>
     </div>
@@ -18,6 +24,8 @@ import moment from "moment";
 export default {
   props: ["info"],
   name: "Card",
+
+  methods: {}
 };
 </script>
 

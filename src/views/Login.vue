@@ -34,6 +34,9 @@
                 placeholder=""
               />
             </div>
+            <p style="display:none" class="errorMessage" id="errorMsg">
+              ERROR: Netočan email ili lozinka
+            </p>
             <button type="button" @click="login()" class="button" id="myBtn">
               Prijavi se
             </button>
@@ -55,7 +58,7 @@ export default {
   data() {
     return {
       email: "",
-      lozinka: "",
+      lozinka: ""
     };
   },
   methods: {
@@ -65,14 +68,20 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.lozinka)
-        .then((result) => {
+        .then(result => {
           console.log("Uspješna prijava", result);
           this.$router.replace({ name: "Home" });
         })
-        .catch(function (e) {
+        .catch(function(e) {
           console.error("Greška", e);
+          document.getElementById("errorMsg").style.display = "block";
         });
-    },
-  },
+    }
+  }
 };
 </script>
+<style scoped>
+.errorMessage {
+  color: red;
+}
+</style>

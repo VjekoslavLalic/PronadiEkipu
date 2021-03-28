@@ -28,12 +28,12 @@ let cards = [];
 cards = [
   {
     img: require("@/assets/covjece_ne_ljuti_se.png"),
-    description: "Čovječe ne ljuti se",
+    description: "Čovječe ne ljuti se"
   },
   { img: require("@/assets/uno.png"), description: "Uno" },
   { img: require("@/assets/belot.png"), description: "Belot" },
   { img: require("@/assets/poker.png"), description: "Poker" },
-  { img: require("@/assets/briskula.png"), description: "Briškula" },
+  { img: require("@/assets/briskula.png"), description: "Briškula" }
 ];
 
 export default {
@@ -41,11 +41,11 @@ export default {
   data() {
     return {
       store,
-      cards,
+      cards
     };
   },
   components: {
-    Card,
+    Card
   },
   methods: {
     logout() {
@@ -55,8 +55,8 @@ export default {
         .then(() => {
           this.$router.push({ name: "Pocetna" });
         });
-    },
-  },
+    }
+  }
 };
 </script>
 
