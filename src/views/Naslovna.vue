@@ -65,6 +65,7 @@ export default {
       console.log("firebase dohvat...");
 
       db.collection("posts")
+        .orderBy ("posted_at", "desc")
         .get()
         .then(query => {
           query.forEach(doc => {
