@@ -25,26 +25,28 @@ import store from "@/store";
 import router from "@/router";
 
 firebase.auth().onAuthStateChanged(user => {
-  //const currentRoute = router.currentRoute;
+  const currentRoute = router.currentRoute;
 
   //console.log("PROVJERA STANJA LOGINA!");
   if (user) {
     console.log("***", user.email);
     store.currentUser = user.email;
-    /* if (currentRoute.meta.needsUser) {
-      router.push({ name: "home" });
-    } */
-  } else {
-    console.log("*** No user");
-    store.currentUser = null;
 
-    //if (currentRoute.meta.needsUser) {
-    //router.push({ name: "/" });}}
+    if (!currentRoute.meta.needsUser) {
+      router.push({ name: "Home" });
+    } else {
+      console.log("*** No user");
+      store.currentUser = null;
 
-    //ovo ce morat biti ovdje
-    /* if (router.name !== "Login") {
+      if (currentRoute.meta.needsUser) {
+        router.push({ name: "/" });
+      }
+
+      //ovo ce morat biti ovdje
+      /* if (router.name !== "Login") {
       router.push({ name: "Login" });
     } */
+    }
   }
 });
 export default {

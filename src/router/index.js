@@ -10,9 +10,9 @@ const routes = [
     path: '/Home',
     name: 'Home',
     component: Home,
-    //meta: {
-    //needsUser: true,
-    //},
+    meta: {
+      needsUser: true,
+    },
   },
   {
     path: '/Login',
@@ -88,7 +88,7 @@ const router = new VueRouter({
   routes,
 });
 
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   console.log("Stara ruta", from.name, " -> ", "nova ruta", to.name, "korisnik", store.currentUser)
 
   const noUser = store.currentUser === null;
@@ -101,7 +101,7 @@ const router = new VueRouter({
   }
 
 });
-*/
+
 
 
 export default router;

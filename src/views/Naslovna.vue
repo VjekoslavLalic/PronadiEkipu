@@ -9,6 +9,7 @@
         <a href="#" @click.prevent="logout()">Logout</a>
       </div>
     </div>
+    <div></div>
 
     <div class="post">
       <card v-for="(card, drac) in cards" :key="drac" :info="card" />
@@ -65,7 +66,7 @@ export default {
       console.log("firebase dohvat...");
 
       db.collection("posts")
-        .orderBy ("posted_at", "desc")
+        .orderBy("posted_at", "desc")
         .get()
         .then(query => {
           query.forEach(doc => {

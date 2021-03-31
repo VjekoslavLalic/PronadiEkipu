@@ -8,7 +8,7 @@
           <br />
           <a
             @submit.prevent="myRoute"
-            class="btn btn-primary"
+            class="btn btnDruzenje"
             role="button"
             href="PostForm"
           >
@@ -52,6 +52,15 @@ export default {
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
+}
+
+.btnDruzenje {
+  border-color: #e4857f;
+  color: #e4857f;
+  border-radius: 10px;
+}
+.btnDruzenje:focus {
+  background-color: #e4857f;
 }
 </style>
 

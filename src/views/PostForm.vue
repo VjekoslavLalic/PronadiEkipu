@@ -170,6 +170,7 @@ export default {
           console.log("Spremljeno", doc);
           this.newPostGame = "";
           this.newPostOpis = "";
+          this.$router.push({ name: "Naslovna" });
         })
         .catch(e => {
           console.error(e);
