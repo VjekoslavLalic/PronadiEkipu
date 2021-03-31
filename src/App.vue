@@ -27,7 +27,6 @@ import router from "@/router";
 firebase.auth().onAuthStateChanged(user => {
   const currentRoute = router.currentRoute;
 
-  //console.log("PROVJERA STANJA LOGINA!");
   if (user) {
     console.log("***", user.email);
     store.currentUser = user.email;
