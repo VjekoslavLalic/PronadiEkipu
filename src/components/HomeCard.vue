@@ -6,14 +6,6 @@
         <h4>
           <b>{{ info.description }}</b>
           <br />
-          <a
-            @submit.prevent="myRoute"
-            class="btn btn-primary"
-            role="button"
-            href="PostForm"
-          >
-            Ponudi druženje
-          </a>
         </h4>
       </div>
     </div>
@@ -25,7 +17,7 @@ import moment from "moment";
 import router from "@/router";
 export default {
   props: ["info"],
-  name: "Card",
+  name: "HomeCard",
   methods: {
     myRoute() {
       consol.log(this.$router);
@@ -54,4 +46,3 @@ export default {
   padding: 2px 16px;
 }
 </style>
-

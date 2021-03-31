@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <div class="redovi">
-      <div class="red"></div>
+      <div class="red">
+        <a class="fa fa-plus-circle fa-lg facss" href="/PostForm"></a>
+      </div>
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
@@ -28,15 +30,15 @@ let cards = [];
 cards = [
   {
     img: require("@/assets/kava.png"),
-    description: "Kava",
+    description: "Kava"
   },
   { img: require("@/assets/setnja.png"), description: "Šetnja" },
   { img: require("@/assets/trcanje.png"), description: "Trčanje" },
   {
     img: require("@/assets/voznja_biciklom.png"),
-    description: "Vožnja biciklom",
+    description: "Vožnja biciklom"
   },
-  { img: require("@/assets/rolanje.png"), description: "Rolanje" },
+  { img: require("@/assets/rolanje.png"), description: "Rolanje" }
 ];
 
 export default {
@@ -44,11 +46,11 @@ export default {
   data() {
     return {
       store,
-      cards,
+      cards
     };
   },
   components: {
-    Card,
+    Card
   },
   methods: {
     logout() {
@@ -58,8 +60,8 @@ export default {
         .then(() => {
           this.$router.push({ name: "Pocetna" });
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

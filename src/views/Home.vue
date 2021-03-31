@@ -22,9 +22,10 @@
 
 <script>
 // @ is an alias to /src
-import Card from "@/components/Card.vue";
+
 import { firebase } from "@/firebase.js";
 import store from "@/store";
+import Card from "@/components/HomeCard.vue";
 
 let cards = [];
 
@@ -32,28 +33,29 @@ cards = [
   {
     img: require("@/assets/drustvene_igre.png"),
     description: "Društvene igre",
-    page: "/Drustvene_igre",
+    ind: "Drustvena",
+    page: "/Drustvene_igre"
   },
   {
     img: require("@/assets/vanjske_aktivnosti.jpg"),
     description: "Vanjske aktivnosti",
-    page: "/Vanjske_aktivnosti",
+    page: "/Vanjske_aktivnosti"
   },
   {
     img: require("@/assets/cuganja.png"),
     description: "Cuganja",
-    page: "/Cuganja",
+    page: "/Cuganja"
   },
   {
     img: require("@/assets/sportovi.jpg"),
     description: "Sportovi",
-    page: "/Sportovi",
+    page: "/Sportovi"
   },
   {
     img: require("@/assets/online.jpg"),
     description: "Online",
-    page: "/Online",
-  },
+    page: "/Online"
+  }
 ];
 //proba
 //function imgRedirect(destination) {
@@ -63,11 +65,11 @@ export default {
   data() {
     return {
       store,
-      cards,
+      cards
     };
   },
   components: {
-    Card,
+    Card
   },
   methods: {
     logout() {
@@ -77,7 +79,7 @@ export default {
         .then(() => {
           this.$router.push({ name: "Pocetna" });
         });
-    },
-  },
+    }
+  }
 };
 </script>

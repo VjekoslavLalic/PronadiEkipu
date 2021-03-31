@@ -104,11 +104,13 @@ export default {
       Broj: "",
       Email: "",
       Lozinka: "",
-      Opis: ""
+      Opis: "",
+      myRoute
     };
   },
   methods: {
     signup() {
+      let myRoute;
       const userName = this.Imeiprezime;
       const userEmail = this.Email;
       const userNumber = this.Broj;
@@ -135,6 +137,7 @@ export default {
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
         .then(result => {
           console.log("Uspješna prijava", result);
+
           this.$router.replace({ name: "Home" });
         })
         .then(user => {

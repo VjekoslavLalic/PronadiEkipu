@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <div class="redovi">
-      <div class="red"></div>
+      <div class="red">
+        <a class="fa fa-plus-circle fa-lg facss" href="/PostForm"></a>
+      </div>
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
@@ -30,7 +32,12 @@ cards = [
     img: require("@/assets/covjece_ne_ljuti_se.png"),
     description: "Čovječe ne ljuti se"
   },
-  { img: require("@/assets/uno.png"), description: "Uno" },
+  {
+    img: require("@/assets/uno.png"),
+    description: "Uno",
+    ind: "Uno",
+    link: "../views/PostForm.vue"
+  },
   { img: require("@/assets/belot.png"), description: "Belot" },
   { img: require("@/assets/poker.png"), description: "Poker" },
   { img: require("@/assets/briskula.png"), description: "Briškula" }

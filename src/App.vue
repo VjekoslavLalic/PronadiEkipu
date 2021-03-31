@@ -24,7 +24,7 @@ import { firebase } from "@/firebase.js";
 import store from "@/store";
 import router from "@/router";
 
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged(user => {
   //const currentRoute = router.currentRoute;
 
   //console.log("PROVJERA STANJA LOGINA!");
@@ -51,7 +51,7 @@ export default {
   name: "app",
   data() {
     return {
-      store,
+      store
     };
   },
   methods: {
@@ -63,7 +63,7 @@ export default {
           this.$router.push({ name: "login" });
         });
     }, */
-  },
+  }
 };
 </script>
 <style lang="scss">

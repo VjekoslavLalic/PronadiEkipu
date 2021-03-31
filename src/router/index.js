@@ -75,7 +75,7 @@ const routes = [
     component: () => import('../views/Pocetna.vue')
   },
   {
-    path: '/',
+    path: '/Sort',
     name: 'Sort',
     component: () => import('../views/Sort.vue')
   },
