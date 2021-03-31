@@ -57,7 +57,7 @@ const routes = [
   {
     path: '/Naslovna',
     name: 'Naslovna',
-    component: () => import('../views/Naslovna.vue')
+    component: () => import('../views/Naslovna.vue'),
   },
   {
     path: '/Chat',

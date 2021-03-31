@@ -57,9 +57,7 @@ cards = [
     page: "/Online"
   }
 ];
-//proba
-//function imgRedirect(destination) {
-// location.href = destination;}
+
 export default {
   name: "Home",
   data() {
@@ -77,6 +75,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
+          store.currentUser = null;
           this.$router.push({ name: "Pocetna" });
         });
     }
