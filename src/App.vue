@@ -2,15 +2,15 @@
   <div id="app">
     <router-view />
     <div class="navbar" v-if="store.currentUser">
-      <a class="facss" href="/Home"
+      <a class="facss" @click="routeHome()"
         ><img src="https://img.icons8.com/ios-filled/28/000000/friends.png"
       /></a>
 
       <!-- <a href="/Home">Home</a> -->
 
-      <a href="/Naslovna" class="fa fa-home fa-2x facss"></a>
+      <a @click="routeNaslovna()" class="fa fa-home fa-2x facss"></a>
       <a
-        href="/profil"
+        @click="routeProfil()"
         style="font-size: 25px"
         class="fa fa-user-circle fa-2x facss"
       ></a>
@@ -25,7 +25,7 @@ import store from "@/store";
 import router from "@/router";
 
 firebase.auth().onAuthStateChanged(user => {
-  const currentRoute = router.currentRoute;
+  const currentRoute = router.currentRoute; // citamo na kojoj smo ruti, router u sebi ima currentRoute atribut koji nam vraća jedan objekt trenutne rute ono sto ima name, component, meta i slicno to je ono pod router/index.js sto smo definirali za svaku rutu
 
   if (user) {
     console.log("***", user.email);
@@ -34,11 +34,12 @@ firebase.auth().onAuthStateChanged(user => {
     if (!currentRoute.meta.needsUser) {
       router.push({ name: "Home" });
     } else {
+      // Korisnik nije ulogiran
       console.log("*** No user");
       store.currentUser = null;
 
       if (currentRoute.meta.needsUser) {
-        router.push({ name: "/" });
+        router.push({ name: "Pocetna" });
       }
 
       //ovo ce morat biti ovdje
@@ -56,14 +57,15 @@ export default {
     };
   },
   methods: {
-    /*  logout() {
-      firebase
-        .auth()
-        .signOuth()
-        .then(() => {
-          this.$router.push({ name: "login" });
-        });
-    }, */
+    routeNaslovna() {
+      router.push({ name: "Naslovna" });
+    },
+    routeHome() {
+      router.push({ name: "Home" });
+    },
+    routeProfil() {
+      router.push({ name: "profil" });
+    }
   }
 };
 </script>

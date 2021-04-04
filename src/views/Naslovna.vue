@@ -88,6 +88,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
+          store.currentUser = null;
           this.$router.push({ name: "Pocetna" });
         });
     }
