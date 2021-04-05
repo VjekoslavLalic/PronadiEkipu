@@ -104,13 +104,13 @@ export default {
       Broj: "",
       Email: "",
       Lozinka: "",
-      Opis: "",
-      myRoute
+      Opis: ""
+      //myRoute
     };
   },
   methods: {
     signup() {
-      let myRoute;
+      //let myRoute;
       const userName = this.Imeiprezime;
       const userEmail = this.Email;
       const userNumber = this.Broj;

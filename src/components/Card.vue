@@ -6,14 +6,9 @@
         <h4>
           <b>{{ info.description }}</b>
           <br />
-          <a
-            @submit.prevent="myRoute"
-            class="btn btnDruzenje"
-            role="button"
-            href="PostForm"
+          <router-link class="btn btnDruzenje" role="button" to="/PostForm"
+            >Ponudi druženje</router-link
           >
-            Ponudi druženje
-          </a>
         </h4>
       </div>
     </div>
@@ -26,11 +21,7 @@ import router from "@/router";
 export default {
   props: ["info"],
   name: "Card",
-  methods: {
-    myRoute() {
-      consol.log(this.$router);
-    }
-  }
+  methods: {}
 };
 </script>
 

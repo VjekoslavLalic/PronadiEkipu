@@ -1,7 +1,9 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
-      <a :href="info.page"> <img class="card-img-top" :src="info.img" /> </a>
+      <router-link :to="info.page">
+        <img class="card-img-top" :src="info.img" />
+      </router-link>
       <div class="container">
         <h4>
           <b>{{ info.description }}</b>

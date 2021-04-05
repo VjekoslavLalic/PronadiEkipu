@@ -198,36 +198,4 @@ export default {
     }
   }
 };
-firebase.auth().onAuthStateChanged(user => {
-  // const currentRoute = router.currentRoute;
-  if (user) {
-    // User is signed in.
-    store.currentUser = user.email;
-
-    /* console.log("emailVerified:" + user.emailVerified); */
-
-    /* if (!currentRoute.meta.requiredUser && user.emailVerified) {
-      router.push({ name: "Home" });
-    }*/
-
-    if (user.displayName) {
-      store.userDisplayName = user.displayName;
-    }
-  } else {
-    // No user is signed in.
-    store.currentUser = null;
-
-    /*   if (currentRoute.meta.requiredUser) {
-      router.push({ name: "Login" });
-    }*/
-  }
-
-  if (user.email) {
-    store.userEmail = user.email;
-  }
-
-  if (user.phoneNumber) {
-    store.userPhoneNumber = user.phoneNumber;
-  }
-});
 </script>
