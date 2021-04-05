@@ -58,6 +58,9 @@
         <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
       </div>
     </form>
+    <div class="">
+      <card v-for="(card, drac) in cards" :key="drac" :info="card" />
+    </div>
     <!-- / container my-4 -->
   </div>
 </template>
@@ -68,6 +71,7 @@ import store from "@/store";
 import { firebase } from "@/firebase";
 import router from "@/router";
 import { db, storage } from "@/firebase";
+import Card from "@/components/userData.vue";
 
 firebase.auth().onAuthStateChanged(user => {
   // const currentRoute = router.currentRoute;
@@ -107,14 +111,35 @@ export default {
   data() {
     return {
       store,
+      cards: [],
       imageReference: null,
       newUserOpis: ""
     };
   },
   mounted() {
     console.log("MOUNTED");
+    this.getData();
   },
   methods: {
+    getData() {
+      console.log("firebase dohvat...");
+
+      db.collection("userData")
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            this.cards = [];
+            const data = doc.data();
+            console.log(data);
+            //i sada pristupamo cards i dodajemo sa metodom push novi objekt u kojem ovaj id time option...
+            this.cards.push({
+              id: doc.id,
+              userEmail: data.Email,
+              userPhoneNumber: data.Number
+            });
+          });
+        });
+    },
     postNewOpis() {
       const userOpis = this.newUserOpis;
       db.collection("userData")
@@ -150,6 +175,9 @@ export default {
           });
       });
     }
+  },
+  components: {
+    Card
   }
 };
 </script>

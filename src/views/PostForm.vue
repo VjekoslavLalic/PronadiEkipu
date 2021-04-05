@@ -211,11 +211,9 @@ firebase.auth().onAuthStateChanged(user => {
     // No user is signed in.
     store.currentUser = null;
   }
-
   if (user.email) {
     store.userEmail = user.email;
   }
-
   if (user.phoneNumber) {
     store.userPhoneNumber = user.phoneNumber;
   }
