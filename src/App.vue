@@ -2,19 +2,17 @@
   <div id="app">
     <router-view />
     <div class="navbar" v-if="store.currentUser">
-      <a class="facss" @click="routeHome()"
+      <router-link to="/Home" class="facss"
         ><img src="https://img.icons8.com/ios-filled/28/000000/friends.png"
-      /></a>
+      /></router-link>
 
-      <!-- <a href="/Home">Home</a> -->
+      <router-link to="/Naslovna" class="fa fa-home fa-2x facss"></router-link>
 
-      <a @click="routeNaslovna()" class="fa fa-home fa-2x facss"></a>
-      <a
-        @click="routeProfil()"
+      <router-link
+        to="/profil"
         style="font-size: 25px"
         class="fa fa-user-circle fa-2x facss"
-      ></a>
-      <!-- <a href="/profil">Profil</a> -->
+      ></router-link>
     </div>
     <!-- Tabs navs -->
   </div>

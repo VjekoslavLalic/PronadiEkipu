@@ -2,7 +2,10 @@
   <div class="naslovna">
     <div class="redovi">
       <div class="red">
-        <a class="fa fa-plus-circle fa-lg facss" href="/PostForm"></a>
+        <router-link
+          to="/PostForm"
+          class="fa fa-plus-circle fa-lg facss"
+        ></router-link>
       </div>
       <div class="red facss">NASLOVNA</div>
       <div class="red facss">

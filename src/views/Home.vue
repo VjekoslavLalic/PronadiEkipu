@@ -2,7 +2,10 @@
   <div class="home">
     <div class="redovi">
       <div class="red">
-        <a class="fa fa-plus-circle fa-lg facss" href="/PostForm"></a>
+        <router-link
+          to="/PostForm"
+          class="fa fa-plus-circle fa-lg facss"
+        ></router-link>
       </div>
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
@@ -33,7 +36,6 @@ cards = [
   {
     img: require("@/assets/drustvene_igre.png"),
     description: "Društvene igre",
-    ind: "Drustvena",
     page: "/Drustvene_igre"
   },
   {
