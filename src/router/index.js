@@ -81,14 +81,6 @@ const routes = [
     },
   },
   {
-    path: '/Chat',
-    name: 'Chat',
-    component: () => import('../views/Chat.vue'),
-    meta: {
-      needsUser: true,
-    },
-  },
-  {
     path: '/PostForm',
     name: 'PostForm',
     component: () => import('../views/PostForm.vue'),
