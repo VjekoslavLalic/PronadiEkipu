@@ -1,419 +1,365 @@
 <template>
-  <div class="container">
-    <h3 class=" text-center">Messaging</h3>
-    <div class="messaging">
-      <div class="inbox_msg">
-        <div class="inbox_people">
-          <div class="headind_srch">
-            <div class="recent_heading">
-              <h4>Recent</h4>
-            </div>
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar" placeholder="Search" />
-                <span class="input-group-addon">
-                  <button type="button">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="inbox_chat">
-            <div class="chat_list active_chat">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
-                </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
-                </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
-                </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
-                </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
-                </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
-                </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
-                </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mesgs">
-          <div class="msg_history">
-            <div
-              v-for="(message, poruka) in messages"
-              :key="poruka"
-              :info="message"
-              class="incoming_msg"
-            >
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>{{ message.message }}</p>
-                  <span class="time_date"> 11:01 AM | June 9</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <input
-                @keyup.enter="saveMessage"
-                v-model="message"
-                type="text"
-                class="write_msg"
-                placeholder="Type a message"
-              />
-              <button class="msg_send_btn" type="button">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
+  <div class="view login" v-if="state.username === '' || state.username === null">
+    <form class="login-form" @submit.prevent="Login">
+      <div class="form-inner">
+        <h1>Login to FireChat</h1>
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          v-model="inputUsername" 
+          placeholder="Please enter your username..." />
+        <input 
+          type="submit" 
+          value="Login" />
+      </div>
+    </form>
+  </div>
+  
+  <div class="view chat" v-else>
+    <header>
+      <button class="logout" @click="Logout">Logout</button>
+      <h1>Welcome, {{ state.username }}</h1>
+    </header>
+    
+    <section class="chat-box">
+      <div 
+        v-for="message in state.messages" 
+        :key="message.key" 
+        :class="(message.username == state.username ? 'message current-user' : 'message')">
+        <div class="message-inner">
+          <div class="username">{{ message.username }}</div>
+          <div class="content">{{ message.content }}</div>
         </div>
       </div>
+    </section>
 
-      <p class="text-center top_spac">
-        Design by
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/sunil-rajput-nattho-singh/"
-          >Sunil Rajput</a
-        >
-      </p>
-    </div>
+    <footer>
+      <form @submit.prevent="SendMessage">
+        <input 
+          type="text" 
+          v-model="inputMessage" 
+          placeholder="Write a message..." />
+        <input 
+          type="submit" 
+          value="Send" />
+      </form>
+    </footer>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import store from "@/store";
-import { firebase } from "@/firebase";
-import router from "@/router";
-import { db, storage } from "@/firebase";
+import { reactive, onMounted, ref } from 'vue';
+import db from './db';
 
 export default {
-  name: "Chat",
-  data() {
-    return {
-      message: null,
+  setup () {
+    const inputUsername = ref("");
+    const inputMessage = ref("");
+
+    const state = reactive({
+      username: "",
       messages: []
-    };
-  },
-  methods: {
-    saveMessage() {
-      //spremanje u firestore
-      db.collection("chat").add({
-        message: this.message
-      });
-      this.message = null;
-    },
-    fetchMessages() {
-      db.collection("chat")
-        .get()
-        .then(querySnapshot => {
-          let allMessages = [];
-          querySnapshot.forEach(doc => {
-            allMessages.push(doc.data());
+    });
+
+    const Login = () => {
+      if (inputUsername.value != "" || inputUsername.value != null) {
+        state.username = inputUsername.value;
+        inputUsername.value = "";
+      }
+    }
+
+    const Logout = () => {
+      state.username = "";
+    }
+
+    const SendMessage = () => {
+      const messagesRef = db.database().ref("messages");
+
+      if (inputMessage.value === "" || inputMessage.value === null) {
+        return;
+      }
+
+      const message = {
+        username: state.username,
+        content: inputMessage.value
+      }
+
+      messagesRef.push(message);
+      inputMessage.value = "";
+    }
+
+    onMounted(() => {
+      const messagesRef = db.database().ref("messages");
+
+      messagesRef.on('value', snapshot => {
+        const data = snapshot.val();
+        let messages = [];
+
+        Object.keys(data).forEach(key => {
+          messages.push({
+            id: key,
+            username: data[key].username,
+            content: data[key].content
           });
-          this.messages = allMessages;
         });
-    },
-    created() {
-      this.fetchMessages();
+
+        state.messages = messages;
+      });
+    });
+
+    return {
+      inputUsername,
+      Login,
+      state,
+      inputMessage,
+      SendMessage,
+      Logout
     }
   }
-};
+}
 </script>
 
-<style scoped>
-.container {
-  max-width: 1170px;
-  margin: auto;
-}
-img {
-  max-width: 100%;
-}
-.inbox_people {
-  background: #f8f8f8 none repeat scroll 0 0;
-  float: left;
-  overflow: hidden;
-  width: 40%;
-  border-right: 1px solid #c4c4c4;
-}
-.inbox_msg {
-  border: 1px solid #c4c4c4;
-  clear: both;
-  overflow: hidden;
-}
-.top_spac {
-  margin: 20px 0 0;
+<style lang="scss">
+* {
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-.recent_heading {
-  float: left;
-  width: 40%;
-}
-.srch_bar {
-  display: inline-block;
-  text-align: right;
-  width: 60%;
-  padding: 0px;
-}
-.headind_srch {
-  padding: 10px 29px 10px 20px;
-  overflow: hidden;
-  border-bottom: 1px solid #c4c4c4;
-}
+.view {
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	background-color: #ea526f;
+	
+	&.login {
+		align-items: center;
+		.login-form {
+			display: block;
+			width: 100%;
+			padding: 15px;
+			
+			.form-inner {
+				display: block;
+				background-color: #FFF;
+				padding: 50px 15px;
+				border-radius: 16px;
+				box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 
-.recent_heading h4 {
-  color: #05728f;
-  font-size: 21px;
-  margin: auto;
-}
-.srch_bar input {
-  border: 1px solid #cdcdcd;
-  border-width: 0 0 1px 0;
-  width: 80%;
-  padding: 2px 0 4px 6px;
-  background: none;
-}
-.srch_bar .input-group-addon button {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-  padding: 0;
-  color: #707070;
-  font-size: 18px;
-}
-.srch_bar .input-group-addon {
-  margin: 0 0 0 -27px;
-}
+				h1 {
+					color: #AAA;
+					font-size: 28px;
+					margin-bottom: 30px;
+				}
 
-.chat_ib h5 {
-  font-size: 15px;
-  color: #464646;
-  margin: 0 0 8px 0;
-}
-.chat_ib h5 span {
-  font-size: 13px;
-  float: right;
-}
-.chat_ib p {
-  font-size: 14px;
-  color: #989898;
-  margin: auto;
-}
-.chat_img {
-  float: left;
-  width: 11%;
-}
-.chat_ib {
-  float: left;
-  padding: 0 0 0 15px;
-  width: 88%;
-}
+				label {
+					display: block;
+					margin-bottom: 5px;
+					color: #AAA;
+					font-size: 16px;
+					transition: 0.4s;
+				}
 
-.chat_people {
-  overflow: hidden;
-  clear: both;
-}
-.chat_list {
-  border-bottom: 1px solid #c4c4c4;
-  margin: 0;
-  padding: 18px 16px 10px;
-}
-.inbox_chat {
-  height: 550px;
-  overflow-y: scroll;
-}
+				input[type="text"] {
+					appearance: none;
+					border: none;
+					outline: none;
+					background: none;
 
-.active_chat {
-  background: #ebebeb;
-}
+					display: block;
+					width: 100%;
+					padding: 10px 15px;
+					border-radius: 8px;
+					margin-bottom: 15px;
+					
+					color: #333;
+					font-size: 18px;
 
-.incoming_msg_img {
-  display: inline-block;
-  width: 6%;
-}
-.received_msg {
-  display: inline-block;
-  padding: 0 0 0 10px;
-  vertical-align: top;
-  width: 92%;
-}
-.received_withd_msg p {
-  background: #ebebeb none repeat scroll 0 0;
-  border-radius: 3px;
-  color: #646464;
-  font-size: 14px;
-  margin: 0;
-  padding: 5px 10px 5px 12px;
-  width: 100%;
-}
-.time_date {
-  color: #747474;
-  display: block;
-  font-size: 12px;
-  margin: 8px 0 0;
-}
-.received_withd_msg {
-  width: 57%;
-}
-.mesgs {
-  float: left;
-  padding: 30px 15px 0 25px;
-  width: 60%;
-}
+					box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+					background-color: #F3F3F3;
 
-.sent_msg p {
-  background: #05728f none repeat scroll 0 0;
-  border-radius: 3px;
-  font-size: 14px;
-  margin: 0;
-  color: #fff;
-  padding: 5px 10px 5px 12px;
-  width: 100%;
-}
-.outgoing_msg {
-  overflow: hidden;
-  margin: 26px 0 26px;
-}
-.sent_msg {
-  float: right;
-  width: 46%;
-}
-.input_msg_write input {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-  color: #4c4c4c;
-  font-size: 15px;
-  min-height: 48px;
-  width: 100%;
-}
+					transition: 0.4s;
 
-.type_msg {
-  border-top: 1px solid #c4c4c4;
-  position: relative;
-}
-.msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
-  border: medium none;
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  font-size: 17px;
-  height: 33px;
-  position: absolute;
-  right: 0;
-  top: 11px;
-  width: 33px;
-}
-.messaging {
-  padding: 0 0 50px 0;
-}
-.msg_history {
-  height: 516px;
-  overflow-y: auto;
+					&::placeholder {
+						color: #888;
+						transition: 0.4s;
+					}
+				}
+
+				input[type="submit"] {
+					appearance: none;
+					border: none;
+					outline: none;
+					background: none;
+
+					display: block;
+					width: 100%;
+					padding: 10px 15px;
+					background-color: #ea526f;
+					border-radius: 8px;
+
+					color: #FFF;
+					font-size: 18px;
+					font-weight: 700;
+				}
+
+				&:focus-within {
+					label {
+						color: #ea526f;
+					}
+
+					input[type="text"] {
+						background-color: #FFF;
+						box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+
+						&::placeholder {
+							color: #666;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.chat {
+		flex-direction: column;
+
+		header {
+			position: relative;
+			display: block;
+			width: 100%;
+			padding: 50px 30px 10px;
+
+			.logout {
+				position: absolute;
+				top: 15px;
+				right: 15px;
+				appearance: none;
+				border: none;
+				outline: none;
+				background: none;
+				
+				color: #FFF;
+				font-size: 18px;
+				margin-bottom: 10px;
+				text-align: right;
+			}
+
+			h1 {
+				color: #FFF;
+			}
+		}
+
+		.chat-box {
+			border-radius: 24px 24px 0px 0px;
+			background-color: #FFF;
+			box-shadow: 0px 0px 12px rgba(100, 100, 100, 0.2);
+			flex: 1 1 100%;
+			padding: 30px;
+
+			.message {
+				display: flex;
+				margin-bottom: 15px;
+				
+				.message-inner {
+					.username {
+						color: #888;
+						font-size: 16px;
+						margin-bottom: 5px;
+						padding-left: 15px;
+						padding-right: 15px;
+					}
+
+					.content {
+						display: inline-block;
+						padding: 10px 20px;
+						background-color: #F3F3F3;
+						border-radius: 999px;
+
+						color: #333;
+						font-size: 18px;
+						line-height: 1.2em;
+						text-align: left;
+					}
+				}
+
+				&.current-user {
+					margin-top: 30px;
+					justify-content: flex-end;
+					text-align: right;
+
+					.message-inner {
+						max-width: 75%;
+
+						.content {
+							color: #FFF;
+							font-weight: 600;
+							background-color: #ea526f;
+						}
+					}
+				}
+			}
+		}
+
+		footer {
+			position: sticky;
+			bottom: 0px;
+			background-color: #FFF;
+			padding: 30px;
+			box-shadow: 0px 0px 12px rgba(100, 100, 100, 0.2);
+
+			form {
+				display: flex;
+
+				input[type="text"] {
+					flex: 1 1 100%;
+
+					appearance: none;
+					border: none;
+					outline: none;
+					background: none;
+
+					display: block;
+					width: 100%;
+					padding: 10px 15px;
+					border-radius: 8px 0px 0px 8px;
+					
+					color: #333;
+					font-size: 18px;
+
+					box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+					background-color: #F3F3F3;
+
+					transition: 0.4s;
+
+					&::placeholder {
+						color: #888;
+						transition: 0.4s;
+					}
+				}
+				
+				input[type="submit"] {
+					appearance: none;
+					border: none;
+					outline: none;
+					background: none;
+
+					display: block;
+					padding: 10px 15px;
+					border-radius: 0px 8px 8px 0px;
+
+					background-color: #ea526f;
+
+					color: #FFF;
+					font-size: 18px;
+					font-weight: 700;
+				}
+			}
+		}
+	}
 }
 </style>
