@@ -28,6 +28,9 @@
       </form>
     </footer>
   </div>
+
+   <!-- sve što piše username moramo zamjeniti s našim podacima za usera za sad nek stoji ovako-->
+
 </template>
 
 <script>
@@ -82,11 +85,9 @@ export default {
 
     return {
       inputUsername,
-      Login,
       state,
       inputMessage,
       SendMessage,
-      Logout
     }
   }
 }
