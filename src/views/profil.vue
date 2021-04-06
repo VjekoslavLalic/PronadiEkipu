@@ -39,7 +39,7 @@
         </div>
         <!-- / profilPodaci -->
       </div>
-      <div class="messengerLogo"><img src="@/assets/messenger.png" /></div>
+      <router-link to="Chat"><div class="messengerLogo"><img src="@/assets/messenger.png" /></div></router-link>
       <!-- / profilForma -->
     </div>
     <form method="POST" @submit.prevent="postNewOpis">

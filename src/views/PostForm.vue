@@ -123,7 +123,7 @@
             id="postOpis"
           ></textarea>
         </div>
-        <div class="form-submit" href="/Naslovna">
+        <div class="form-submit" >
           <button type="submit" value="Objavi" id="objavi">Objavi</button>
           <!--<input type="submit" value="Objavi" id="objavi" />-->
         </div>
