@@ -2,16 +2,20 @@
   <div class="container my-4">
     <!--Grid column-->
     <div class="profilHeader">
-      <form class="md-form" method="POST">
+      <form class="md-form" method="POST" @submit.prevent="postNewImage">
         <div class="profilSlika">
           <croppa
+            id="croppaAvatar"
             :width="100"
             :height="100"
             placeholder="Učitaj sliku"
             v-model="imageReference"
           ></croppa>
+
           <div class="form-submit">
-            <button type="submit" value="Objavi" id="objavi">Objavi</button>
+            <button type="submit" value="Objavi" id="objavi">
+              Objavi
+            </button>
             <!--<input type="submit" value="Objavi" id="objavi" />-->
           </div>
           <!-- mb-4 -->
@@ -39,7 +43,9 @@
         </div>
         <!-- / profilPodaci -->
       </div>
-      <router-link to="Chat"><div class="messengerLogo"><img src="@/assets/messenger.png" /></div></router-link>
+      <router-link to="Chat"
+        ><div class="messengerLogo"><img src="@/assets/messenger.png" /></div
+      ></router-link>
       <!-- / profilForma -->
     </div>
     <form method="POST" @submit.prevent="postNewOpis">
@@ -58,9 +64,10 @@
         <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
       </div>
     </form>
-    <div class="">
+    <div class="Avatar">
       <card v-for="(card, drac) in cards" :key="drac" :info="card" />
     </div>
+
     <!-- / container my-4 -->
   </div>
 </template>
@@ -118,10 +125,10 @@ export default {
   },
   mounted() {
     console.log("MOUNTED");
-    this.getData();
+    this.getPosts();
   },
   methods: {
-    getData() {
+    /* getData() {
       console.log("firebase dohvat...");
 
       db.collection("userData")
@@ -136,6 +143,27 @@ export default {
               id: doc.id,
               userEmail: data.Email,
               userPhoneNumber: data.Number
+            });
+          });
+        });
+    }, */
+
+    getPosts() {
+      console.log("firebase dohvat...");
+
+      let collection = store.currentUser;
+
+      db.collection(collection)
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            this.cards = [];
+            const data = doc.data();
+            console.log(data);
+            //i sada pristupamo cards i dodajemo sa metodom push novi objekt u kojem ovaj id time option...
+            this.cards.push({
+              //id: doc.id,
+              img: data.url
             });
           });
         });
@@ -156,6 +184,7 @@ export default {
         });
     },
     postNewImage() {
+      let collection = store.currentUser;
       this.imageReference.generateBlob(blobData => {
         console.log(blobData);
 
@@ -168,7 +197,29 @@ export default {
           .put(blobData)
           .then(result => {
             // uspjesna linija
-            console.log(result);
+            result.ref
+              .getDownloadURL()
+              .then(url => {
+                console.log("Javni link", url);
+
+                db.collection(collection)
+                  .add({
+                    url: url,
+                    email: store.currentUser
+                  })
+                  .then(doc => {
+                    console.log("Spremljeno", doc);
+                    this.imageReference.remove();
+
+                    this.getPosts();
+                  })
+                  .catch(e => {
+                    console.error(e);
+                  });
+              })
+              .catch(e => {
+                console.error(e);
+              });
           })
           .catch(e => {
             console.error(e);

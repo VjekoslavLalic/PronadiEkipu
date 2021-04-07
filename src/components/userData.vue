@@ -1,8 +1,7 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
-      <p>{{ info.userEmail }}</p>
-      <p>{{ info.userPhoneNumber }}</p>
+      <img class="card-img-top" :src="info.img" />
     </div>
   </div>
 </template>
