@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged(user => {
     store.currentUser = user.email;
 
     if (!currentRoute.meta.needsUser) {
-      router.push({ name: "Home" });
+      router.push({ name: "Naslovna" });
     } else {
       // Korisnik nije ulogiran
       console.log("*** No user");

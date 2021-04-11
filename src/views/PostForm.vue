@@ -123,7 +123,7 @@
             id="postOpis"
           ></textarea>
         </div>
-        <div class="form-submit" >
+        <div class="form-submit">
           <button type="submit" value="Objavi" id="objavi">Objavi</button>
           <!--<input type="submit" value="Objavi" id="objavi" />-->
         </div>
@@ -149,17 +149,19 @@ export default {
     };
   },
 
-  mounted() {
+  /* mounted() {
     this.getPosts();
-  },
+  }, */
 
   methods: {
     postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
+      const pack_data = [];
 
       db.collection("posts")
         .add({
+          id: pack_data,
           userName: store.userDisplayName,
           option: postGame,
           desc: postOpis,
@@ -171,30 +173,14 @@ export default {
           this.newPostGame = "";
           this.newPostOpis = "";
           this.$router.push({ name: "Naslovna" });
+          let postId = doc.id;
         })
         .catch(e => {
           console.error(e);
         });
-    },
-    getPosts() {
-      console.log("firebase dohvat...");
-
-      db.collection("posts")
-        .get()
-        .then(query => {
-          query.forEach(doc => {
-            const data = doc.data();
-            console.log(data);
-
-            this.cards.push({
-              id: doc.id,
-              time: data.posted_at,
-              description: data.desc,
-              option: data.option,
-              name: data.userName
-            });
-          });
-        });
+      for (let x = 0; x < pack_data.length; x++) {
+        db.doc(pack_data[x].id);
+      }
     }
   }
 };

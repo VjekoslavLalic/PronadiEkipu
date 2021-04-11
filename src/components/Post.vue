@@ -6,10 +6,31 @@
       <div class="container">
         <p>{{ info.description }}</p>
         <p>{{ postedFromNow }}</p>
+        <div>
+          <div>Prikaz poruke:</div>
+          <form
+            action="#"
+            class="form-wrap"
+            method="POST"
+            @submit.prevent="newComment"
+          >
+            <label>Komentiraj: </label>
+            <input
+              v-model="newPostComment"
+              type="text"
+              id="fname"
+              name="fname"
+            /><br /><br />
+
+            <div class="form-submit">
+              <button type="submit" value="Objavi" id="objavi">Objavi</button>
+              <!--<input type="submit" value="Objavi" id="objavi" />-->
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -18,13 +39,33 @@ import { firebase } from "@/firebase.js";
 import store from "@/store";
 import router from "@/router";
 import { db, storage } from "@/firebase";
+
 export default {
   props: ["info"],
   name: "Post",
   data() {
     return {
-      store
+      store,
+      newPostComment: ""
     };
+  },
+  methods: {
+    newComment() {
+      const comment = this.newPostComment;
+
+      db.collection("posts")
+        .add({
+          //userName: userDisplayName,
+          comment: comment
+        })
+        .then(doc => {
+          console.log("Spremljen komentar", doc);
+          this.newPostComment = "";
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    }
   },
   computed: {
     postedFromNow() {

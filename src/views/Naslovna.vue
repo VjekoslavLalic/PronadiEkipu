@@ -36,16 +36,35 @@ export default {
       newPostGame: "",
       newPostName: "",
       Imeiprezime: ""
+      //newPostComment: ""
     };
   },
   mounted() {
     this.getPosts();
   },
   methods: {
-    postNewImage() {
+    /* newComment() {
+      const comment = this.newPostComment;
+      db.collection("posts")
+        .add({
+          userName: userDisplayName,
+          comment: this.comment,
+          posted_at: Date.now()
+        })
+        .then(doc => {
+          console.log("Spremljen komentar", doc);
+          this.newPostComment = "";
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    }, */
+
+    /* postNewImage() {
       const postGame = this.newPostGame;
       const postOpis = this.newPostOpis;
       const postName = this.newPostName;
+      
       db.collection("posts")
         .add({
           //////////
@@ -64,10 +83,9 @@ export default {
         .catch(e => {
           console.error(e);
         });
-    },
+    }, */
     getPosts() {
       console.log("firebase dohvat...");
-
       db.collection("posts")
         .orderBy("posted_at", "desc")
         .get()
