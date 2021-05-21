@@ -6,28 +6,7 @@
       <div class="container">
         <p>{{ info.description }}</p>
         <p>{{ postedFromNow }}</p>
-        <div>
-          <div>Prikaz poruke:</div>
-          <form
-            action="#"
-            class="form-wrap"
-            method="POST"
-            @submit.prevent="newComment"
-          >
-            <label>Komentiraj: </label>
-            <input
-              v-model="newPostComment"
-              type="text"
-              id="fname"
-              name="fname"
-            /><br /><br />
-
-            <div class="form-submit">
-              <button type="submit" value="Objavi" id="objavi">Objavi</button>
-              <!--<input type="submit" value="Objavi" id="objavi" />-->
-            </div>
-          </form>
-        </div>
+        <div></div>
       </div>
     </div>
   </div>
@@ -46,32 +25,15 @@ export default {
   data() {
     return {
       store,
-      newPostComment: ""
+      newPostComment: "",
     };
   },
-  methods: {
-    newComment() {
-      const comment = this.newPostComment;
-
-      db.collection("posts")
-        .add({
-          //userName: userDisplayName,
-          comment: comment
-        })
-        .then(doc => {
-          console.log("Spremljen komentar", doc);
-          this.newPostComment = "";
-        })
-        .catch(e => {
-          console.error(e);
-        });
-    }
-  },
+  methods: {},
   computed: {
     postedFromNow() {
       return moment(this.info.time).fromNow();
-    }
-  }
+    },
+  },
 };
 </script>
 

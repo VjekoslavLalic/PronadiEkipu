@@ -22,7 +22,7 @@ import { firebase } from "@/firebase.js";
 import store from "@/store";
 import router from "@/router";
 
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged((user) => {
   const currentRoute = router.currentRoute; // citamo na kojoj smo ruti, router u sebi ima currentRoute atribut koji nam vraća jedan objekt trenutne rute ono sto ima name, component, meta i slicno to je ono pod router/index.js sto smo definirali za svaku rutu
 
   if (user) {
@@ -51,20 +51,10 @@ export default {
   name: "app",
   data() {
     return {
-      store
+      store,
     };
   },
-  methods: {
-    routeNaslovna() {
-      router.push({ name: "Naslovna" });
-    },
-    routeHome() {
-      router.push({ name: "Home" });
-    },
-    routeProfil() {
-      router.push({ name: "profil" });
-    }
-  }
+  methods: {},
 };
 </script>
 <style lang="scss">

@@ -12,10 +12,12 @@
         <a href="#" @click.prevent="logout()">Logout</a>
       </div>
     </div>
-    <div></div>
+    <div class="pretraga">
+      <input v-model="store.searchTerm" type="search" placeholder="Pretraga" />
+    </div>
 
     <div class="post">
-      <card v-for="(card, drac) in cards" :key="drac" :info="card" />
+      <card v-for="(card, drac) in filteredCards" :key="drac" :info="card" />
     </div>
   </div>
 </template>
@@ -35,62 +37,26 @@ export default {
       newPostOpis: "",
       newPostGame: "",
       newPostName: "",
-      Imeiprezime: ""
-      //newPostComment: ""
+      Imeiprezime: "",
     };
   },
   mounted() {
     this.getPosts();
   },
+  computed: {
+    filteredCards() {
+      let termin = this.store.searchTerm;
+      return this.cards.filter((card) => card.name.includes(termin));
+    },
+  },
   methods: {
-    /* newComment() {
-      const comment = this.newPostComment;
-      db.collection("posts")
-        .add({
-          userName: userDisplayName,
-          comment: this.comment,
-          posted_at: Date.now()
-        })
-        .then(doc => {
-          console.log("Spremljen komentar", doc);
-          this.newPostComment = "";
-        })
-        .catch(e => {
-          console.error(e);
-        });
-    }, */
-
-    /* postNewImage() {
-      const postGame = this.newPostGame;
-      const postOpis = this.newPostOpis;
-      const postName = this.newPostName;
-      
-      db.collection("posts")
-        .add({
-          //////////
-          userName: userDisplayName,
-          option: postGame,
-          desc: postOpis,
-          email: store.currentUser,
-          posted_at: Date.now()
-        })
-        .then(doc => {
-          console.log("Spremljeno", doc);
-          this.newPostGame = "";
-          this.newPostOpis = "";
-          this.newPostName = "";
-        })
-        .catch(e => {
-          console.error(e);
-        });
-    }, */
     getPosts() {
       console.log("firebase dohvat...");
       db.collection("posts")
         .orderBy("posted_at", "desc")
         .get()
-        .then(query => {
-          query.forEach(doc => {
+        .then((query) => {
+          query.forEach((doc) => {
             const data = doc.data();
             console.log(data);
 
@@ -99,7 +65,7 @@ export default {
               time: data.posted_at,
               description: data.desc,
               option: data.option,
-              name: data.userName
+              name: data.userName,
             });
           });
         });
@@ -112,10 +78,15 @@ export default {
           store.currentUser = null;
           this.$router.push({ name: "Pocetna" });
         });
-    }
+    },
   },
   components: {
-    Card
-  }
+    Card,
+  },
 };
 </script>
+<style scoped>
+.pretraga {
+  margin-bottom: 20px;
+}
+</style>

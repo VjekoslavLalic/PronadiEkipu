@@ -145,7 +145,7 @@ export default {
       store,
       newPostOpis: "",
       newPostGame: "",
-      Imeiprezime: ""
+      Imeiprezime: "",
     };
   },
 
@@ -166,25 +166,25 @@ export default {
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
-          posted_at: Date.now()
+          posted_at: Date.now(),
         })
-        .then(doc => {
+        .then((doc) => {
           console.log("Spremljeno", doc);
           this.newPostGame = "";
           this.newPostOpis = "";
           this.$router.push({ name: "Naslovna" });
           let postId = doc.id;
         })
-        .catch(e => {
+        .catch((e) => {
           console.error(e);
         });
       for (let x = 0; x < pack_data.length; x++) {
         db.doc(pack_data[x].id);
       }
-    }
-  }
+    },
+  },
 };
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged((user) => {
   // const currentRoute = router.currentRoute;
   if (user) {
     // User is signed in.
