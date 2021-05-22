@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <card
+          <home-card
             v-for="(card, drac) in filteredCards"
             :key="drac"
             :info="card"
@@ -35,7 +35,7 @@
 
 import { firebase } from "@/firebase.js";
 import store from "@/store";
-import Card from "@/components/HomeCard.vue";
+import HomeCard from "../components/HomeCard.vue";
 
 let cards = [];
 
@@ -94,7 +94,7 @@ export default {
     },
   },
   components: {
-    Card,
+    HomeCard,
   },
 };
 </script>

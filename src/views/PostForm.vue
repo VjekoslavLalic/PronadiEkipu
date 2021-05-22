@@ -132,7 +132,6 @@
   </div>
 </template>
 <script>
-import Card from "@/components/Post.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import { db } from "@/firebase";
@@ -148,10 +147,6 @@ export default {
       Imeiprezime: "",
     };
   },
-
-  /* mounted() {
-    this.getPosts();
-  }, */
 
   methods: {
     postNewImage() {

@@ -1,12 +1,11 @@
 <template>
   <div v-if="card">
-    <InstagramCard :info="card" :showcomments="true" />
+    <post :info="card" :showcomments="true" />
   </div>
 </template>
 
 <script>
-import Post from "@/components/Post.vue";
-import store from "@/store.js";
+import Post from "../components/Post.vue";
 
 export default {
   name: "post-detail",

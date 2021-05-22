@@ -17,16 +17,15 @@
     </div>
 
     <div class="post">
-      <card v-for="(card, drac) in filteredCards" :key="drac" :info="card" />
+      <post v-for="(card, drac) in filteredCards" :key="drac" :info="card" />
     </div>
   </div>
 </template>
 <script>
-import Card from "@/components/Post.vue";
 import { firebase } from "@/firebase.js";
 import store from "@/store";
-import router from "@/router";
-import { db, storage } from "@/firebase";
+import { db } from "@/firebase";
+import Post from "../components/Post.vue";
 
 export default {
   name: "naslovna",
@@ -81,7 +80,7 @@ export default {
     },
   },
   components: {
-    Card,
+    Post,
   },
 };
 </script>

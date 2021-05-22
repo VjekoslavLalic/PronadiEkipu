@@ -21,7 +21,7 @@ import { db, storage } from "@/firebase";
 
 export default {
   props: ["info"],
-  name: "Post",
+  name: "PostCard",
   data() {
     return {
       store,
