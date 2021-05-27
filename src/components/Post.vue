@@ -58,7 +58,7 @@ export default {
     };
   },
   mounted() {
-    this.getPosts();
+    this.getComments();
   },
   methods: {
     postComment() {
@@ -84,7 +84,7 @@ export default {
     formatTime(t) {
       return moment(t.posted_at).fromNow();
     },
-    getPosts() {
+    getComments() {
       console.log("firebase dohvat...");
       db.collection("posts")
         .doc(this.info.id)
