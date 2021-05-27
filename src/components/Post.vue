@@ -6,7 +6,35 @@
       <div class="container">
         <p>{{ info.description }}</p>
         <p>{{ postedFromNow }}</p>
-        <div></div>
+
+        <!-- <div v-if="showcomments">
+           <div class="comments list-group">
+            <a
+              :key="c.posted_at"
+              v-for="c in comments"
+              href="#"
+              class="animate list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <small>{{ formatTime(c.posted_at) }} by {{ c.email }} </small>
+              </div>
+              <small>{{ c.comment }}</small>
+            </a>
+          </div> -->
+        <div>
+          <form @submit.prevent="postComment" class="form-inline mb-5">
+            <div class="form-group">
+              <input
+                v-model="newComment"
+                type="text"
+                class="form-control"
+                id="imageUrl"
+                placeholder="Any comment?"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary ml-2">Post</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -21,14 +49,34 @@ import { db, storage } from "@/firebase";
 
 export default {
   props: ["info"],
-  name: "PostCard",
+  name: "Post",
   data() {
     return {
       store,
-      newPostComment: "",
+      newComment: "",
     };
   },
-  methods: {},
+  methods: {
+    postComment() {
+      if (this.newComment) {
+        db.collection("posts") // kolekcija roditelj
+          .doc(this.info.id) // konkretni post
+          .collection("comments") // podkolekcija
+          .add({
+            email: this.global.userEmail,
+            comment: this.newComment,
+            posted_at: Date.now(),
+          })
+          .then((result) => {
+            console.log(result);
+            this.newComment = "";
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      }
+    },
+  },
   computed: {
     postedFromNow() {
       return moment(this.info.time).fromNow();

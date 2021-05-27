@@ -17,7 +17,7 @@
     </div>
 
     <div class="post">
-      <post v-for="(card, drac) in filteredCards" :key="drac" :info="card" />
+      <Post v-for="(card, drac) in filteredCards" :key="drac" :info="card" />
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
-      return this.cards.filter((card) => card.name.includes(termin));
+      return this.cards.filter((card) => card.description.includes(termin));
     },
   },
   methods: {
