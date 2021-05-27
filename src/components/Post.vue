@@ -7,20 +7,20 @@
         <p>{{ info.description }}</p>
         <p>{{ postedFromNow }}</p>
 
-        <!-- <div v-if="showcomments">
-           <div class="comments list-group">
-            <a
-              :key="c.posted_at"
-              v-for="c in comments"
-              href="#"
-              class="animate list-group-item list-group-item-action flex-column align-items-start"
-            >
-              <div class="d-flex w-100 justify-content-between">
-                <small>{{ formatTime(c.posted_at) }} by {{ c.email }} </small>
-              </div>
-              <small>{{ c.comment }}</small>
-            </a>
-          </div> -->
+        <div class="komentari">
+          <a
+            :key="c.posted_at"
+            v-for="c in comments"
+            href="#"
+            class="animate list-group-item list-group-item-action flex-column align-items-start"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <small>{{ formatTime(c.posted_at) }} by {{ c.email }} </small>
+            </div>
+            <small>{{ c.comment }}</small>
+          </a>
+        </div>
+
         <div>
           <form @submit.prevent="postComment" class="form-inline mb-5">
             <div class="form-group">
@@ -53,8 +53,12 @@ export default {
   data() {
     return {
       store,
+      comments: [],
       newComment: "",
     };
+  },
+  mounted() {
+    this.getPosts();
   },
   methods: {
     postComment() {
@@ -63,7 +67,8 @@ export default {
           .doc(this.info.id) // konkretni post
           .collection("comments") // podkolekcija
           .add({
-            email: this.global.userEmail,
+            email: store.currentUser,
+            userName: store.userDisplayName,
             comment: this.newComment,
             posted_at: Date.now(),
           })
@@ -75,6 +80,29 @@ export default {
             console.error(e);
           });
       }
+    },
+    formatTime(t) {
+      return moment(t.posted_at).fromNow();
+    },
+    getPosts() {
+      console.log("firebase dohvat...");
+      db.collection("posts")
+        .doc(this.info.id)
+        .collection("comments")
+        .orderBy("posted_at")
+        .get()
+        .then((query) => {
+          query.forEach((doc) => {
+            const data = doc.data();
+            console.log(data);
+            this.comments.push({
+              posted_at: data.posted_at,
+              comment: data.comment,
+              name: data.userName,
+              email: data.email,
+            });
+          });
+        });
     },
   },
   computed: {
