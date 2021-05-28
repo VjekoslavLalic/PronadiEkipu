@@ -13,9 +13,7 @@
           ></croppa>
 
           <div class="form-submit">
-            <button type="submit" value="Objavi" id="objavi">
-              Objavi
-            </button>
+            <button type="submit" value="Objavi" id="objavi">Objavi</button>
             <!--<input type="submit" value="Objavi" id="objavi" />-->
           </div>
           <!-- mb-4 -->
@@ -80,7 +78,7 @@ import router from "@/router";
 import { db, storage } from "@/firebase";
 import Card from "@/components/userData.vue";
 
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged((user) => {
   // const currentRoute = router.currentRoute;
   if (user) {
     // User is signed in.
@@ -120,7 +118,7 @@ export default {
       store,
       cards: [],
       imageReference: null,
-      newUserOpis: ""
+      newUserOpis: "",
     };
   },
   mounted() {
@@ -155,15 +153,15 @@ export default {
 
       db.collection(collection)
         .get()
-        .then(query => {
-          query.forEach(doc => {
+        .then((query) => {
+          query.forEach((doc) => {
             this.cards = [];
             const data = doc.data();
             console.log(data);
             //i sada pristupamo cards i dodajemo sa metodom push novi objekt u kojem ovaj id time option...
             this.cards.push({
               //id: doc.id,
-              img: data.url
+              img: data.url,
             });
           });
         });
@@ -173,19 +171,19 @@ export default {
       db.collection("userData")
         .add({
           email: store.currentUser,
-          opis: userOpis
+          opis: userOpis,
         })
-        .then(doc => {
+        .then((doc) => {
           console.log("Spremljeno", doc);
           this.newUserOpis = "";
         })
-        .catch(e => {
+        .catch((e) => {
           console.error(e);
         });
     },
     postNewImage() {
       let collection = store.currentUser;
-      this.imageReference.generateBlob(blobData => {
+      this.imageReference.generateBlob((blobData) => {
         console.log(blobData);
 
         let imageName =
@@ -195,41 +193,51 @@ export default {
         storage
           .ref(imageName)
           .put(blobData)
-          .then(result => {
+          .then((result) => {
             // uspjesna linija
             result.ref
               .getDownloadURL()
-              .then(url => {
+              .then((url) => {
                 console.log("Javni link", url);
 
                 db.collection(collection)
                   .add({
                     url: url,
-                    email: store.currentUser
+                    email: store.currentUser,
                   })
-                  .then(doc => {
+                  .then((doc) => {
                     console.log("Spremljeno", doc);
                     this.imageReference.remove();
 
                     this.getPosts();
                   })
-                  .catch(e => {
+                  .catch((e) => {
+                    console.error(e);
+                  });
+
+                var user = firebase.auth().currentUser;
+
+                user
+                  .updateProfile({
+                    photoURL: url,
+                  })
+                  .catch(function (error) {
                     console.error(e);
                   });
               })
-              .catch(e => {
+              .catch((e) => {
                 console.error(e);
               });
           })
-          .catch(e => {
+          .catch((e) => {
             console.error(e);
           });
       });
-    }
+    },
   },
   components: {
-    Card
-  }
+    Card,
+  },
 };
 </script>
 

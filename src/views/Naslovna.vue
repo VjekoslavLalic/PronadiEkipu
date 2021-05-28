@@ -45,7 +45,10 @@ export default {
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
-      return this.cards.filter((card) => card.description.includes(termin));
+
+      return this.cards.filter((card) =>
+        card.description.toLowerCase().includes(termin.toLowerCase())
+      );
     },
   },
   methods: {
@@ -65,6 +68,7 @@ export default {
               description: data.desc,
               option: data.option,
               name: data.userName,
+              profilePicture: store.profilePicture,
             });
           });
         });

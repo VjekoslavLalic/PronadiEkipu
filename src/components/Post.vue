@@ -1,6 +1,8 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
+      <img class="card-img-top" :src="store.profilePicture" />
+
       <p>{{ info.name }}</p>
       <img class="card-img-top" :src="info.option" />
       <div class="container">
@@ -9,13 +11,12 @@
 
         <div class="komentari">
           <a
-            :key="c.posted_at"
             v-for="c in comments"
-            href="#"
+            v-bind:key="c.posted_at"
             class="animate list-group-item list-group-item-action flex-column align-items-start"
           >
             <div class="d-flex w-100 justify-content-between">
-              <small>{{ formatTime(c.posted_at) }} by {{ c.email }} </small>
+              <small>{{ formatTime(c.posted_at) }} by {{ c.name }} </small>
             </div>
             <small>{{ c.comment }}</small>
           </a>
@@ -28,7 +29,6 @@
                 v-model="newComment"
                 type="text"
                 class="form-control"
-                id="imageUrl"
                 placeholder="Any comment?"
               />
             </div>
@@ -79,6 +79,13 @@ export default {
           .catch((e) => {
             console.error(e);
           });
+
+        this.comments.push({
+          email: store.currentUser,
+          name: store.userDisplayName,
+          comment: this.newComment,
+          posted_at: Date.now(),
+        });
       }
     },
     formatTime(t) {
