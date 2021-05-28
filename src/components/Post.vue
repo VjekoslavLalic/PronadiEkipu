@@ -1,13 +1,14 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
-      <img class="card-img-top" :src="store.profilePicture" />
-
-      <p>{{ info.name }}</p>
+      <div class="userPostImgName">
+        <img class="" :src="store.profilePicture" />
+        <p>{{ info.name }}</p>
+        <p>{{ postedFromNow }}</p>
+      </div>
       <img class="card-img-top" :src="info.option" />
       <div class="container">
         <p>{{ info.description }}</p>
-        <p>{{ postedFromNow }}</p>
 
         <div class="komentari">
           <a
@@ -138,6 +139,21 @@ export default {
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
+}
+.userPostImgName {
+  display: flex;
+  float: left;
+  padding: 2px;
+  width: 100%;
+  background-color: rgb(240, 231, 231);
+}
+.userPostImgName img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.userPostImgName p {
+  margin: auto 5px auto 5px;
 }
 </style>
 
