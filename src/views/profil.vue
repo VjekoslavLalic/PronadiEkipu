@@ -1,30 +1,34 @@
 <template>
-  <div class="container my-4">
-    <!--Grid column-->
+  <div class="profil">
     <div class="profilHeader">
-      <form class="md-form" method="POST" @submit.prevent="postNewImage">
         <div class="profilSlika">
-          <croppa
+          <div class="avatar" v-if="!showCroppa">
+      <card v-for="(card, drac) in cards" :key="drac" :info="card" />
+      <button @click.prevent="hideCroppa">Uredi</button>
+      </div>
+      <form class="md-form" method="POST" @submit.prevent="postNewImage" v-if="showCroppa">
+            <croppa 
+            
             id="croppaAvatar"
             :width="100"
             :height="100"
             placeholder="Učitaj sliku"
             v-model="imageReference"
           ></croppa>
-
           <div class="form-submit">
-            <button type="submit" value="Objavi" id="objavi">Objavi</button>
+            <button @click.prevent="hideCroppa" type="submit" value="Objavi" id="objavi">Objavi</button>
             <!--<input type="submit" value="Objavi" id="objavi" />-->
           </div>
+          </form> 
+          
           <!-- mb-4 -->
           <p contenteditable="true">
             {{ store.userDisplayName }}
           </p>
         </div>
-        <!-- md-form -->
-      </form>
-      <!-- col-md-6 mb-4 -->
+      
     </div>
+
     <div class="profilForma">
       <div class="profilPodaci">
         <div class="profilPodaci1">
@@ -62,9 +66,7 @@
         <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
       </div>
     </form>
-    <div class="Avatar">
-      <card v-for="(card, drac) in cards" :key="drac" :info="card" />
-    </div>
+    
 
     <!-- / container my-4 -->
   </div>
@@ -119,6 +121,7 @@ export default {
       cards: [],
       imageReference: null,
       newUserOpis: "",
+      showCroppa: true,
     };
   },
   mounted() {
@@ -145,6 +148,9 @@ export default {
           });
         });
     }, */
+  hideCroppa() {
+    this.showCroppa = !this.showCroppa;
+  },
 
     getPosts() {
       console.log("firebase dohvat...");
@@ -208,8 +214,9 @@ export default {
                   .then((doc) => {
                     console.log("Spremljeno", doc);
                     this.imageReference.remove();
-
+                    
                     this.getPosts();
+
                   })
                   .catch((e) => {
                     console.error(e);
@@ -305,5 +312,9 @@ export default {
 .profilSlika {
   margin: 0;
   background-color: #e4857f;
+}
+.avatar{
+  width: 100px;
+  border-radius: 20rem;
 }
 </style>
