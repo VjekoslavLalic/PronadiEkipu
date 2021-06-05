@@ -161,6 +161,7 @@ export default {
           option: postGame,
           desc: postOpis,
           email: store.currentUser,
+          img: store.profilePicture,
           posted_at: Date.now(),
         })
         .then((doc) => {

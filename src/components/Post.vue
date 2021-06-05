@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-body p-0">
+    <div class="">
       <div class="userPostImgName">
         <img class="" :src="store.profilePicture" />
         <p>{{ info.name }}</p>
@@ -14,7 +14,12 @@
             <a
               v-for="c in comments"
               v-bind:key="c.posted_at"
-              class="animate list-group-item list-group-item-action flex-column align-items-start"
+              class="
+                animate
+                list-group-item list-group-item-action
+                flex-column
+                align-items-start
+              "
             >
               <div class="d-flex w-100 justify-content-between">
                 <small>{{ formatTime(c.posted_at) }} by {{ c.name }} </small>
