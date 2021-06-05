@@ -42,6 +42,7 @@
           <div class="komentarShowHide">
             <i class="fa fa-comment" aria-hidden="true"></i>
             <a @click="show = !show">Komentar</a>
+            <!-- <button @click.prevent="toogleModal">Open modal</button> -->
           </div>
         </div>
       </div>
@@ -65,12 +66,16 @@ export default {
       comments: [],
       newComment: "",
       show: false,
+      /* isVisibility: false, */
     };
   },
   mounted() {
     this.getComments();
   },
   methods: {
+    /* toogleModal() {
+      this.isVisibility = !this.isVisibility;
+    }, */
     postComment() {
       if (this.newComment) {
         db.collection("posts") // kolekcija roditelj

@@ -90,7 +90,7 @@ export default {
 </script>
 <style scoped>
 .pretraga {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .naslovna {
   background-color: rgb(209, 204, 204);
