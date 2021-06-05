@@ -92,4 +92,7 @@ export default {
 .pretraga {
   margin-bottom: 20px;
 }
+.naslovna {
+  background-color: rgb(209, 204, 204);
+}
 </style>

@@ -9,32 +9,40 @@
       <img class="card-img-top" :src="info.option" />
       <div class="container">
         <p>{{ info.description }}</p>
+        <div class="komentari" v-show="show">
+          <div>
+            <a
+              v-for="c in comments"
+              v-bind:key="c.posted_at"
+              class="animate list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <small>{{ formatTime(c.posted_at) }} by {{ c.name }} </small>
+              </div>
+              <small>{{ c.comment }}</small>
+            </a>
+          </div>
 
-        <div class="komentari">
-          <a
-            v-for="c in comments"
-            v-bind:key="c.posted_at"
-            class="animate list-group-item list-group-item-action flex-column align-items-start"
-          >
-            <div class="d-flex w-100 justify-content-between">
-              <small>{{ formatTime(c.posted_at) }} by {{ c.name }} </small>
-            </div>
-            <small>{{ c.comment }}</small>
-          </a>
+          <div>
+            <form @submit.prevent="postComment" class="form-inline mb-5">
+              <div class="form-group">
+                <input
+                  v-model="newComment"
+                  type="text"
+                  class="form-control"
+                  placeholder="Any comment?"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary ml-2">Post</button>
+            </form>
+          </div>
         </div>
-
+        <!-- komentari -->
         <div>
-          <form @submit.prevent="postComment" class="form-inline mb-5">
-            <div class="form-group">
-              <input
-                v-model="newComment"
-                type="text"
-                class="form-control"
-                placeholder="Any comment?"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary ml-2">Post</button>
-          </form>
+          <div class="komentarShowHide">
+            <i class="fa fa-comment" aria-hidden="true"></i>
+            <a @click="show = !show">Komentar</a>
+          </div>
         </div>
       </div>
     </div>
@@ -56,6 +64,7 @@ export default {
       store,
       comments: [],
       newComment: "",
+      show: false,
     };
   },
   mounted() {
@@ -123,12 +132,12 @@ export default {
 
 <style>
 .card {
-  /* Add shadows to create the "card" effect */
   transition: 0.3s;
   max-width: 750px;
   left: 0;
   right: 0;
-  margin: 0px auto 50px auto;
+  margin: 0px auto 10px auto;
+  background-color: rgba(255, 255, 255, 0.918);
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -145,7 +154,6 @@ export default {
   float: left;
   padding: 2px;
   width: 100%;
-  background-color: rgb(240, 231, 231);
 }
 .userPostImgName img {
   width: 50px;
@@ -154,6 +162,18 @@ export default {
 }
 .userPostImgName p {
   margin: auto 5px auto 5px;
+}
+.komentarShowHide {
+  width: 60%;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+}
+.komentarShowHide i {
+  margin: auto 0px auto auto;
+}
+.komentarShowHide a {
+  margin: auto auto auto 2px;
 }
 </style>
 
