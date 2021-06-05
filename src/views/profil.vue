@@ -1,32 +1,32 @@
 <template>
   <div class="profil">
     <div class="profilHeader">
-        <div class="profilSlika">
-          <div class="avatar" v-if="!showCroppa">
-      <card v-for="(card, drac) in cards" :key="drac" :info="card" />
-      <button @click.prevent="hideCroppa">Uredi</button>
+      <div class="avatar" v-if="!showCroppa">
+        <card v-for="(card, drac) in cards" :key="drac" :info="card" />
+        <button @click.prevent="hideCroppa">Uredi</button>
       </div>
-      <form class="md-form" method="POST" @submit.prevent="postNewImage" v-if="showCroppa">
-            <croppa 
-            
-            id="croppaAvatar"
-            :width="100"
-            :height="100"
-            placeholder="Učitaj sliku"
-            v-model="imageReference"
-          ></croppa>
-          <div class="form-submit">
-            <button @click.prevent="hideCroppa" type="submit" value="Objavi" id="objavi">Objavi</button>
-            <!--<input type="submit" value="Objavi" id="objavi" />-->
-          </div>
-          </form> 
-          
-          <!-- mb-4 -->
-          <p contenteditable="true">
-            {{ store.userDisplayName }}
-          </p>
+      <form
+        class="md-form"
+        method="POST"
+        @submit.prevent="postNewImage"
+        v-if="showCroppa"
+      >
+        <croppa
+          id="croppaAvatar"
+          :width="100"
+          :height="100"
+          placeholder="Učitaj sliku"
+          v-model="imageReference"
+        ></croppa>
+        <div class="form-submit">
+          <button type="submit" value="Objavi" id="objavi">Objavi</button>
+          <!--<input type="submit" value="Objavi" id="objavi" />-->
         </div>
-      
+      </form>
+      <!-- mb-4 -->
+      <p contenteditable="true">
+        {{ store.userDisplayName }}
+      </p>
     </div>
 
     <div class="profilForma">
@@ -45,9 +45,7 @@
         </div>
         <!-- / profilPodaci -->
       </div>
-      <router-link to="Chat"
-        ><div class="messengerLogo"><img src="@/assets/messenger.png" /></div
-      ></router-link>
+
       <!-- / profilForma -->
     </div>
     <form method="POST" @submit.prevent="postNewOpis">
@@ -66,9 +64,6 @@
         <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
       </div>
     </form>
-    
-
-    <!-- / container my-4 -->
   </div>
 </template>
 
@@ -121,7 +116,7 @@ export default {
       cards: [],
       imageReference: null,
       newUserOpis: "",
-      showCroppa: true,
+      showCroppa: false,
     };
   },
   mounted() {
@@ -148,9 +143,9 @@ export default {
           });
         });
     }, */
-  hideCroppa() {
-    this.showCroppa = !this.showCroppa;
-  },
+    hideCroppa() {
+      this.showCroppa = !this.showCroppa;
+    },
 
     getPosts() {
       console.log("firebase dohvat...");
@@ -190,11 +185,8 @@ export default {
     postNewImage() {
       let collection = store.currentUser;
       this.imageReference.generateBlob((blobData) => {
-        console.log(blobData);
-
         let imageName =
           "posts/" + store.currentUser + "/" + Date.now() + ".png";
-        console.log(imageName);
 
         storage
           .ref(imageName)
@@ -204,8 +196,6 @@ export default {
             result.ref
               .getDownloadURL()
               .then((url) => {
-                console.log("Javni link", url);
-
                 db.collection(collection)
                   .add({
                     url: url,
@@ -214,9 +204,8 @@ export default {
                   .then((doc) => {
                     console.log("Spremljeno", doc);
                     this.imageReference.remove();
-                    
+                    this.showCroppa = !this.showCroppa;
                     this.getPosts();
-
                   })
                   .catch((e) => {
                     console.error(e);
@@ -249,26 +238,6 @@ export default {
 </script>
 
 <style>
-.kv-avatar .krajee-default.file-preview-frame,
-.kv-avatar .krajee-default.file-preview-frame:hover {
-  margin: 0;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-  text-align: center;
-}
-.kv-avatar {
-  display: inline-block;
-}
-.kv-avatar .file-input {
-  display: table-cell;
-  width: 213px;
-}
-.kv-reqd {
-  color: red;
-  font-family: monospace;
-  font-weight: normal;
-}
 .profilForma {
   margin: 0px auto;
   display: flex;
@@ -288,14 +257,12 @@ export default {
 .profilPodaci2 {
   margin: 0px auto 0px 0px;
 }
-
-.messengerLogo {
-  text-align: center;
-  margin: 0px auto 0px 0px;
-  margin-top: 25px;
-}
-.messengerLogo img {
-  width: 100px;
+.profilHeader {
+  max-width: 750px;
+  margin-right: auto;
+  margin-left: auto;
+  margin: 0;
+  background-color: #e4857f;
 }
 .profilOpis {
   text-align: left;
@@ -306,15 +273,11 @@ export default {
   width: 100%;
   height: 100px;
 }
-.profilSlika img {
-  margin: 0px auto;
-}
-.profilSlika {
-  margin: 0;
-  background-color: #e4857f;
-}
-.avatar{
+
+.avatar {
   width: 100px;
-  border-radius: 20rem;
+  margin-right: auto;
+  margin-left: auto;
+  display: inline-block;
 }
 </style>

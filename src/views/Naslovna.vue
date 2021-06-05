@@ -12,9 +12,15 @@
         <a href="#" @click.prevent="logout()">Logout</a>
       </div>
     </div>
-    
+
     <div class="pretraga">
-      <input  class="search-input" v-model="store.searchTerm" name="search" type="search" placeholder="Pretraga" />
+      <input
+        class="search-input"
+        v-model="store.searchTerm"
+        name="search"
+        type="search"
+        placeholder="Pretraga"
+      />
     </div>
     <div class="post">
       <Post v-for="(card, drac) in filteredCards" :key="drac" :info="card" />
@@ -96,13 +102,10 @@ export default {
 .naslovna {
   background-color: rgb(209, 204, 204);
 }
-.pretraga input{
+.pretraga input {
   border-radius: 12px;
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
 }
-
-
-
 </style>
