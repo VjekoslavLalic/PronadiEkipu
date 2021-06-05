@@ -3,7 +3,8 @@
     <div class="profilHeader">
       <div class="avatar" v-if="!showCroppa">
         <card v-for="(card, drac) in cards" :key="drac" :info="card" />
-        <button @click.prevent="hideCroppa">Uredi</button>
+
+        <a @click.prevent="hideCroppa">Uredi</a>
       </div>
       <form
         class="md-form"
@@ -273,11 +274,20 @@ export default {
   width: 100%;
   height: 100px;
 }
-
+.profilHeader .croppa {
+  border-radius: 50rem;
+}
 .avatar {
   width: 100px;
   margin-right: auto;
   margin-left: auto;
-  display: inline-block;
+}
+.avatar .card {
+  width: 100px;
+  margin: 0;
+  border-radius: 50rem;
+}
+.avatar .card img {
+  border-radius: 50rem;
 }
 </style>
