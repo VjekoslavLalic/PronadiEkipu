@@ -31,6 +31,7 @@
 import { firebase } from "@/firebase.js";
 import store from "@/store";
 import { db } from "@/firebase";
+import router from "@/router";
 import Post from "../components/Post.vue";
 
 export default {
@@ -74,6 +75,7 @@ export default {
               description: data.desc,
               option: data.option,
               name: data.userName,
+              img: data.img,
               profilePicture: store.profilePicture,
             });
           });

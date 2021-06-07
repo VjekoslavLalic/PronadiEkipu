@@ -222,6 +222,10 @@ export default {
                     console.error(e);
                   });
               })
+              .then(() => {
+                store.profilePicture = user.photoURL;
+              })
+              .then(() => {})
               .catch((e) => {
                 console.error(e);
               });

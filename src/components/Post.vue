@@ -2,7 +2,7 @@
   <div class="card">
     <div class="">
       <div class="userPostImgName">
-        <img class="" :src="store.profilePicture" />
+        <img class="" :src="info.img" />
         <p>{{ info.name }}</p>
         <p>{{ postedFromNow }}</p>
       </div>

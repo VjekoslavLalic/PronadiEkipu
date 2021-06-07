@@ -134,8 +134,29 @@
 <script>
 import { firebase } from "@/firebase.js";
 import store from "@/store";
-import { db } from "@/firebase";
+import { db, storage } from "@/firebase";
+import router from "@/router";
 
+firebase.auth().onAuthStateChanged((user) => {
+  const currentRoute = router.currentRoute;
+  if (user) {
+    // User is signed in.
+    store.currentUser = user.email;
+
+    if (user.displayName) {
+      store.userDisplayName = user.displayName;
+    }
+  } else {
+    // No user is signed in.
+    store.currentUser = null;
+  }
+  if (user.email) {
+    store.userEmail = user.email;
+  }
+  if (user.phoneNumber) {
+    store.userPhoneNumber = user.phoneNumber;
+  }
+});
 export default {
   name: "PostForm",
   data() {
@@ -180,24 +201,4 @@ export default {
     },
   },
 };
-firebase.auth().onAuthStateChanged((user) => {
-  // const currentRoute = router.currentRoute;
-  if (user) {
-    // User is signed in.
-    store.currentUser = user.email;
-
-    if (user.displayName) {
-      store.userDisplayName = user.displayName;
-    }
-  } else {
-    // No user is signed in.
-    store.currentUser = null;
-  }
-  if (user.email) {
-    store.userEmail = user.email;
-  }
-  if (user.phoneNumber) {
-    store.userPhoneNumber = user.phoneNumber;
-  }
-});
 </script>
