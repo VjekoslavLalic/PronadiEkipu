@@ -76,6 +76,13 @@ a:visited {
      margin-left: -100px;
      text-align: center;
   }
+  .fa-events-icons-ready{
+ background-image:url(https://michiganross.umich.edu/sites/default/files/images/articles/remote-connections.jpg);
+ height: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat:repeat;
+}
   }
 
 
