@@ -25,20 +25,6 @@
 
             <div class="form-group">
               <div class="label1">
-                <label for="exampleInputNumber1">Broj</label>
-              </div>
-              <input
-                type="number"
-                v-model="Broj"
-                class="form-control"
-                id="number"
-                aria-describedby="emailHelp"
-                placeholder=""
-              />
-            </div>
-
-            <div class="form-group">
-              <div class="label1">
                 <label for="exampleInputEmail1">Email</label>
               </div>
               <input
@@ -63,21 +49,6 @@
                 placeholder=""
               />
             </div>
-            <div class="form-group">
-              <div class="label1">
-                <label for="exampleInputOpis1">Opis</label>
-              </div>
-              <textarea
-                type="text"
-                v-model="Opis"
-                class="form-control"
-                id="opis"
-                aria-describedby="emailHelp"
-                rows="5"
-                cols="50"
-                placeholder="Napišite nešto o sebi."
-              ></textarea>
-            </div>
 
             <button type="button" @click="signup()" class="button">
               Registriraj se
@@ -101,10 +72,8 @@ export default {
   data() {
     return {
       Imeiprezime: "",
-      Broj: "",
       Email: "",
       Lozinka: "",
-      Opis: ""
       //myRoute
     };
   },
@@ -113,34 +82,30 @@ export default {
       //let myRoute;
       const userName = this.Imeiprezime;
       const userEmail = this.Email;
-      const userNumber = this.Broj;
-      const userOpis = this.Opis;
       const userPassword = this.Lozinka;
 
       db.collection("userData")
         .add({
           Email: userEmail,
           userFullName: userName,
-          Number: userNumber,
           userPassword: userPassword,
-          userOpis: userOpis
         })
-        .then(doc => {
+        .then((doc) => {
           console.log("Spremljeno", doc);
         })
-        .catch(e => {
+        .catch((e) => {
           console.error(e);
         });
 
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.Email, this.Lozinka)
-        .then(result => {
+        .then((result) => {
           console.log("Uspješna prijava", result);
 
           this.$router.replace({ name: "Home" });
         })
-        .then(user => {
+        .then((user) => {
           firebase
             .auth()
             .currentUser.updateProfile({ displayName: this.Imeiprezime });
@@ -179,7 +144,7 @@ export default {
 					console.error("verifyError " + error);
 				});
 		},*/
-    }
-  }
+    },
+  },
 };
 </script>

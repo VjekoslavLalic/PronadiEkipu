@@ -34,14 +34,15 @@
       <div class="profilPodaci">
         <div class="profilPodaci1">
           <p>Email:</p>
-          <p>Broj:</p>
-          <p>Age:</p>
+          <p>Spol:</p>
+          <p>Godine:</p>
           <!-- / profilPodaci1 -->
         </div>
         <div class="profilPodaci2">
-          <p contenteditable="true">{{ store.userEmail }}</p>
-          <p contenteditable="true">broj moba</p>
-          <p contenteditable="true">21</p>
+          <p>{{ store.userEmail }}</p>
+          <input type="text" v-model="userSex" />
+          <input type="text" v-model="userAge" />
+
           <!-- / profilPodaci2 -->
         </div>
         <!-- / profilPodaci -->
@@ -57,7 +58,7 @@
           placeholder="Napišite nešto o sebi."
           rows="5"
           cols="50"
-          v-model="newUserOpis"
+          v-model="userOpis"
         >
         </textarea>
       </div>
@@ -116,7 +117,9 @@ export default {
       store,
       cards: [],
       imageReference: null,
-      newUserOpis: "",
+      userOpis: "",
+      userAge: "",
+      userSex: "",
       showCroppa: false,
     };
   },
@@ -169,11 +172,15 @@ export default {
         });
     },
     postNewOpis() {
-      const userOpis = this.newUserOpis;
+      const userOpis = this.userOpis;
+      const userAge = this.userAge;
+      const userSex = this.userSex;
       db.collection("userData")
         .add({
           email: store.currentUser,
           opis: userOpis,
+          spol: userSex,
+          godine: userAge,
         })
         .then((doc) => {
           console.log("Spremljeno", doc);

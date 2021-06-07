@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="">
+    <div class="userPost">
       <div class="userPostImgName">
         <img class="" :src="info.img" />
         <p>{{ info.name }}</p>
@@ -146,13 +146,12 @@ export default {
   max-width: 750px;
   left: 0;
   right: 0;
-  margin: 0px auto 10px auto;
+  margin: 0px auto 20px auto;
   background-color: rgba(255, 255, 255, 0.918);
 }
-
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgb(255, 255, 255);
+  box-shadow: 0 8px 16px 0spx rgb(0, 0, 0);
 }
 
 /* Add some padding inside the card container */

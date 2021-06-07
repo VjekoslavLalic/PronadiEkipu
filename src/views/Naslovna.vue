@@ -102,7 +102,8 @@ export default {
   position: relative;
 }
 .naslovna {
-  background-color: rgb(209, 204, 204);
+  /*  background-color: rgb(209, 204, 204); */
+  background-color: white;
 }
 .pretraga input {
   border-radius: 12px;
