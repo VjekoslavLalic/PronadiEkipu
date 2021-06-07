@@ -1,33 +1,80 @@
 <template>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <div id="start">
     <div class="container">
       <div class="row row-cols-2 g-2">
         <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
+          <div class="p-3 border bg-light1">Mi spajamo ljude.</div>
         </div>
 
         <div class="w-100"></div>
 
         <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
+          <div class="p-3 border bg-light1">Vi stvarate prijateljstva.</div>
         </div>
 
         <div class="w-100"></div>
 
         <div class="col">
-          <a href="/Login"><div class="p-3 border bg-light">Zapocnimo</div></a>
+          <a href="/Login"><div class="p-3 border bg-light2">Započnimo</div></a>
         </div>
       </div>
     </div>
   </div>
+</body>
 </template>
 
-<style>
+<style >
 #start {
   position: fixed;
-  top: 30%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
+  top: 25%;
+  left: 35%;
 }
+
+.p-3.border.bg-light1{
+  background-color:pink;
+  font-size: x-large;
+  border-radius: 30px;
+  ;
+  
+}
+
+.p-3.border.bg-light2{
+background-color: powderblue;
+font-size: x-large;
+border-radius: 30px;
+}
+
+.fa-events-icons-ready{
+ background-image:url(https://michiganross.umich.edu/sites/default/files/images/articles/remote-connections.jpg);
+ height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.col{
+  margin:30px;
+  padding:5px;
+  
+}
+
+a:visited {
+ color:black
+}
+
+@media screen and (max-width: 600px) {
+  .p-3.border.bg-light1 {
+     margin-left: -100px;
+     text-align: center;
+  }
+  .p-3.border.bg-light2 {
+     margin-left: -100px;
+     text-align: center;
+  }
+  }
+
+
+
 </style>
