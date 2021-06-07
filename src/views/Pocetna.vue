@@ -36,7 +36,7 @@
   background-color:pink;
   font-size: x-large;
   border-radius: 30px;
-  ;
+  text-align: center;
   
 }
 
@@ -44,6 +44,7 @@
 background-color: powderblue;
 font-size: x-large;
 border-radius: 30px;
+text-align: center;
 }
 
 .fa-events-icons-ready{
@@ -61,13 +62,15 @@ border-radius: 30px;
 }
 
 a:visited {
- color:black
+ color: black;
+ 
 }
 
 @media screen and (max-width: 600px) {
   .p-3.border.bg-light1 {
      margin-left: -100px;
      text-align: center;
+     font-size: x-large;
   }
   .p-3.border.bg-light2 {
      margin-left: -100px;
