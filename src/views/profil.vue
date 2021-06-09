@@ -171,6 +171,8 @@ export default {
           });
         });
     },
+    //proba
+
     postNewOpis() {
       const userOpis = this.userOpis;
       const userAge = this.userAge;

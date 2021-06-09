@@ -19,7 +19,6 @@
 export default {
   props: ["info"],
   name: "Card",
-  methods: {},
 };
 </script>
 
