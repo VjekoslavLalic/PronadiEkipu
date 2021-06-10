@@ -31,7 +31,7 @@
     </div>
     <!-- headerrrrrrrrrrrrrrrrrrrrrr -->
 
-    <div class="osobniPodaci">
+    <div class="osobniPodaci" v-show="show">
       <form method="POST" @submit.prevent="postUserData">
         <div class="podaci">
           Spol:
@@ -59,12 +59,19 @@
         </div>
 
         <div class="form-submit">
-          <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
+          <button type="submit" value="Dodaj" id="dodaj" @click="show = !show">
+            Dodaj
+          </button>
         </div>
       </form>
     </div>
 
-    <UserInfo v-for="(card, drac) in userInfo" :key="drac" :info="card" />
+    <UserInfo
+      v-for="(card, drac) in userInfo"
+      :key="drac"
+      :info="card"
+      v-show="!show"
+    />
   </div>
 </template>
 
@@ -122,6 +129,8 @@ export default {
       userSex: "",
       showCroppa: false,
       userInfo: [],
+      showUserInfoInput: true,
+      show: true,
     };
   },
   mounted() {
@@ -154,6 +163,9 @@ export default {
     },
     hideCroppa() {
       this.showCroppa = !this.showCroppa;
+    },
+    hideUserInfoInput() {
+      this.showUserInfoInput = !this.showUserInfoInput;
     },
 
     getPosts() {
@@ -194,6 +206,7 @@ export default {
         })
         .then((doc) => {
           console.log("Spremljeno", doc);
+          this.showUserInfoInput = !this.showUserInfoInput;
           this.userOpis = "";
           this.userAge = "";
           this.userSex = "";
