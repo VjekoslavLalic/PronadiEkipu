@@ -7,48 +7,43 @@
         <p>{{ postedFromNow }}</p>
       </div>
       <img class="card-img-top" :src="info.option" />
-      <div class="container">
-        <p>{{ info.description }}</p>
-        <div class="komentari" v-show="show">
-          <div>
-            <a
-              v-for="c in comments"
-              v-bind:key="c.posted_at"
-              class="
-                animate
-                list-group-item list-group-item-action
-                flex-column
-                align-items-start
-              "
-            >
-              <div class="d-flex w-100 justify-content-between">
-                <small>{{ formatTime(c.posted_at) }} by {{ c.name }} </small>
-              </div>
-              <small>{{ c.comment }}</small>
-            </a>
-          </div>
-
-          <div>
-            <form @submit.prevent="postComment" class="form-inline mb-5">
-              <div class="form-group">
-                <input
-                  v-model="newComment"
-                  type="text"
-                  class="form-control"
-                  placeholder="Any comment?"
-                />
-              </div>
-              <button type="submit" class="btn btn-primary ml-2">Post</button>
-            </form>
-          </div>
-        </div>
-        <!-- komentari -->
+      <p class="description">{{ info.description }}</p>
+      <hr />
+      <div class="komentari" v-show="show">
         <div>
-          <div class="komentarShowHide">
-            <i class="fa fa-comment" aria-hidden="true"></i>
-            <a @click="show = !show">Komentar</a>
-            <!-- <button @click.prevent="toogleModal">Open modal</button> -->
-          </div>
+          <a v-for="c in comments" v-bind:key="c.posted_at">
+            <div class="comment">
+              <div class="commentName">
+                <small>{{ c.name }}: </small>
+              </div>
+              <div class="commentText">
+                <small>{{ c.comment }}</small>
+              </div>
+            </div>
+            <hr />
+          </a>
+        </div>
+        <!-- {{ formatTime(c.posted_at) }} by  -->
+        <div class="commentInput">
+          <form @submit.prevent="postComment">
+            <input
+              v-model="newComment"
+              type="text"
+              placeholder="Any comment?"
+            />
+            <button type="submit" class="btn btn-outline-secondary">
+              Post
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- komentari -->
+      <div>
+        <div class="komentarShowHide">
+          <i class="fa fa-comment" aria-hidden="true"></i>
+          <a @click="show = !show">Komentar</a>
+
+          <!-- <button @click.prevent="toogleModal">Open modal</button> -->
         </div>
       </div>
     </div>
@@ -153,10 +148,9 @@ export default {
 .card:hover {
   box-shadow: 0 8px 16px 0spx rgb(0, 0, 0);
 }
-
 /* Add some padding inside the card container */
 .container {
-  padding: 2px 16px;
+  width: 100%;
 }
 .userPostImgName {
   display: flex;
@@ -172,6 +166,10 @@ export default {
 .userPostImgName p {
   margin: auto 5px auto 5px;
 }
+.description {
+  margin: 7px 5px 5px 5px;
+  font-size: 20px;
+}
 .komentarShowHide {
   width: 60%;
   display: flex;
@@ -183,6 +181,37 @@ export default {
 }
 .komentarShowHide a {
   margin: auto auto auto 2px;
+}
+.comment {
+  display: flex;
+  width: 100%;
+}
+.comment .commentName {
+  width: 40%;
+  float: left;
+}
+.comment .commentText {
+  width: 60%;
+  text-align: left;
+}
+.commentInput {
+  width: 100%;
+  display: flex;
+  float: left;
+}
+.commentInput input {
+  border-radius: 20px;
+  width: 78%;
+  height: 31px;
+  opacity: 60%;
+}
+.commentInput form {
+  margin: 0px auto 0px auto;
+}
+.btn {
+  border-radius: 50rem;
+  width: 22%;
+  height: 33px;
 }
 </style>
 

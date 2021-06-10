@@ -10,20 +10,16 @@
       <div class="red">DRUŽENJA</div>
       <div class="red"><a href="#" @click.prevent="logout()">Logout</a></div>
     </div>
-    <div>
+    <div class="pretraga">
       <input v-model="store.searchTerm" type="search" placeholder="Pretraga" />
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <home-card
-            v-for="(card, drac) in filteredCards"
-            :key="drac"
-            :info="card"
-          />
-        </div>
-      </div>
+    <div class="row">
+      <home-card
+        v-for="(card, drac) in filteredCards"
+        :key="drac"
+        :info="card"
+      />
     </div>
   </div>
 </template>
@@ -98,3 +94,14 @@ export default {
   },
 };
 </script>
+<style scoped>
+.pretraga input {
+  border-radius: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+.card {
+  width: 100%;
+}
+</style>
