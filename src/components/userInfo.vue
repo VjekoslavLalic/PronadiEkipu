@@ -1,8 +1,19 @@
 <template>
   <div class="card">
-    <p>Godine: {{ info.godine }}</p>
-    <p>Spol: {{ info.spol }}</p>
-    <p>Opis: {{ info.opis }}</p>
+    <div class="osobniPodaci">
+      <div class="podaci">
+        Spol:
+        <p class="spol">{{ info.spol }}</p>
+      </div>
+      <div class="podaci">
+        Godine:
+        <p class="godine">{{ info.godine }}</p>
+      </div>
+      <div class="podaci">
+        Opis:
+        <p class="opis">{{ info.opis }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,3 +30,23 @@ export default {
   },
 };
 </script>
+
+<style>
+.spol {
+  width: 51%;
+  margin-left: 45px;
+}
+.godine {
+  width: 51%;
+  margin-left: 30px;
+}
+.podaci {
+  display: flex;
+  text-align: left;
+  margin: 30px;
+}
+.opis {
+  width: 51%;
+  margin-left: 45px;
+}
+</style>
