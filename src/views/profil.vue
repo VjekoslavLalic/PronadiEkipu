@@ -147,25 +147,6 @@ export default {
           });
         });
     }, */
-    /* getData() {
-      console.log("firebase dohvat...");
-
-      db.collection("userData")
-        .get()
-        .then(query => {
-          query.forEach(doc => {
-            this.cards = [];
-            const data = doc.data();
-            console.log(data);
-            //i sada pristupamo cards i dodajemo sa metodom push novi objekt u kojem ovaj id time option...
-            this.cards.push({
-              id: doc.id,
-              userEmail: data.Email,
-              userPhoneNumber: data.Number
-            });
-          });
-        });
-    }, */
     hideCroppa() {
       this.showCroppa = !this.showCroppa;
     },
@@ -246,14 +227,14 @@ export default {
                   .updateProfile({
                     photoURL: url,
                   })
+                  .then(() => {
+                    store.profilePicture = user.photoURL;
+                  })
                   .catch(function (error) {
                     console.error(e);
                   });
               })
-              .then(() => {
-                store.profilePicture = user.photoURL;
-              })
-              .then(() => {})
+
               .catch((e) => {
                 console.error(e);
               });
