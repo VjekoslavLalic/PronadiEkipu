@@ -50,7 +50,7 @@
 
       <!-- / profilForma -->
     </div>
-    <form method="POST" @submit.prevent="postNewOpis">
+    <form method="POST" @submit.prevent="postUserData">
       <div class="profilOpis">
         <p>Opis:</p>
         <textarea
@@ -66,6 +66,7 @@
         <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
       </div>
     </form>
+    <UserInfo v-for="(card, drac) in userInfo" :key="drac" :info="card" />
   </div>
 </template>
 
@@ -76,6 +77,7 @@ import { firebase } from "@/firebase";
 import router from "@/router";
 import { db, storage } from "@/firebase";
 import Card from "@/components/userData.vue";
+import UserInfo from "../components/userInfo.vue";
 
 firebase.auth().onAuthStateChanged((user) => {
   // const currentRoute = router.currentRoute;
@@ -121,32 +123,37 @@ export default {
       userAge: "",
       userSex: "",
       showCroppa: false,
+      userInfo: [],
     };
   },
   mounted() {
     console.log("MOUNTED");
     this.getPosts();
+    this.getUserData();
   },
   methods: {
-    /* getData() {
+    getUserData() {
+      let collection = store.currentUser;
       console.log("firebase dohvat...");
 
       db.collection("userData")
+        .doc(collection)
+        .collection("podaci")
         .get()
-        .then(query => {
-          query.forEach(doc => {
-            this.cards = [];
+        .then((query) => {
+          query.forEach((doc) => {
+            this.userInfo = [];
             const data = doc.data();
             console.log(data);
-            //i sada pristupamo cards i dodajemo sa metodom push novi objekt u kojem ovaj id time option...
-            this.cards.push({
-              id: doc.id,
-              userEmail: data.Email,
-              userPhoneNumber: data.Number
+
+            this.userInfo.push({
+              godine: data.godine,
+              spol: data.spol,
+              opis: data.opis,
             });
           });
         });
-    }, */
+    },
     hideCroppa() {
       this.showCroppa = !this.showCroppa;
     },
@@ -173,11 +180,14 @@ export default {
     },
     //proba
 
-    postNewOpis() {
+    postUserData() {
+      let collection = store.currentUser;
       const userOpis = this.userOpis;
       const userAge = this.userAge;
       const userSex = this.userSex;
       db.collection("userData")
+        .doc(collection)
+        .collection("podaci")
         .add({
           email: store.currentUser,
           opis: userOpis,
@@ -186,7 +196,9 @@ export default {
         })
         .then((doc) => {
           console.log("Spremljeno", doc);
-          this.newUserOpis = "";
+          this.userOpis = "";
+          this.userAge = "";
+          this.userSex = "";
         })
         .catch((e) => {
           console.error(e);
@@ -247,6 +259,7 @@ export default {
   },
   components: {
     Card,
+    UserInfo,
   },
 };
 </script>
