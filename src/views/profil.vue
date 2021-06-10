@@ -31,7 +31,7 @@
     </div>
     <!-- headerrrrrrrrrrrrrrrrrrrrrr -->
 
-    <div class="osobniPodaci" v-show="show">
+    <div class="osobniPodaci" v-if="showUserInfoInput">
       <form method="POST" @submit.prevent="postUserData">
         <div class="podaci">
           Spol:
@@ -59,19 +59,21 @@
         </div>
 
         <div class="form-submit">
-          <button type="submit" value="Dodaj" id="dodaj" @click="show = !show">
+          <button
+            type="submit"
+            value="Dodaj"
+            id="dodaj"
+            @click.prevent="hideUserInfoInput"
+          >
             Dodaj
           </button>
         </div>
       </form>
     </div>
 
-    <UserInfo
-      v-for="(card, drac) in userInfo"
-      :key="drac"
-      :info="card"
-      v-show="!show"
-    />
+    <div v-if="!showUserInfoInput">
+      <UserInfo v-for="(card, drac) in userInfo" :key="drac" :info="card" />
+    </div>
   </div>
 </template>
 
@@ -130,7 +132,6 @@ export default {
       showCroppa: false,
       userInfo: [],
       showUserInfoInput: true,
-      show: true,
     };
   },
   mounted() {
