@@ -14,7 +14,6 @@
         class="fa fa-user-circle fa-2x facss"
       ></router-link>
     </div>
-    <!-- Tabs navs -->
   </div>
 </template>
 <script>

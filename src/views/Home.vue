@@ -95,13 +95,13 @@ export default {
 };
 </script>
 <style scoped>
+.pretraga {
+  margin-bottom: 5px;
+}
 .pretraga input {
   border-radius: 12px;
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
-}
-.card {
-  width: 100%;
 }
 </style>

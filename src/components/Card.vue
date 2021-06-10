@@ -6,7 +6,7 @@
         <h4>
           <b>{{ info.description }}</b>
           <br />
-          <router-link class="btn btnDruzenje" role="button" to="/PostForm"
+          <router-link class="btnDruzenje" role="button" to="/PostForm"
             >Ponudi druženje</router-link
           >
         </h4>
@@ -22,7 +22,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .card {
   /* Add shadows to create the "card" effect */
   transition: 0.3s;
@@ -41,11 +41,13 @@ export default {
 .container {
   padding: 2px 16px;
 }
-
 .btnDruzenje {
-  border-color: #e4857f;
+  font-size: 18px;
   color: #e4857f;
+  text-decoration: none;
+  padding: 5px;
   border-radius: 10px;
+  border: 1px solid #e4857f;
 }
 .btnDruzenje:focus {
   background-color: #e4857f;
