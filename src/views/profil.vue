@@ -29,43 +29,41 @@
         {{ store.userDisplayName }}
       </p>
     </div>
+    <!-- headerrrrrrrrrrrrrrrrrrrrrr -->
 
-    <div class="profilForma">
-      <div class="profilPodaci">
-        <div class="profilPodaci1">
-          <p>Email:</p>
-          <p>Spol:</p>
-          <p>Godine:</p>
-          <!-- / profilPodaci1 -->
+    <div class="osobniPodaci">
+      <form method="POST" @submit.prevent="postUserData">
+        <div class="podaci">
+          Spol:
+          <select v-model="userSex">
+            <option value="M">M</option>
+            <option value="Ž">Ž</option>
+          </select>
         </div>
-        <div class="profilPodaci2">
-          <p>{{ store.userEmail }}</p>
-          <input type="text" v-model="userSex" />
+        <div class="podaci">
+          Godine:
           <input type="text" v-model="userAge" />
-
-          <!-- / profilPodaci2 -->
         </div>
-        <!-- / profilPodaci -->
-      </div>
+        <div class="profilOpis">
+          <div class="podaci">
+            Opis:
+            <textarea
+              contenteditable="true"
+              placeholder="Napišite nešto o sebi."
+              rows="5"
+              cols="50"
+              v-model="userOpis"
+            >
+            </textarea>
+          </div>
+        </div>
 
-      <!-- / profilForma -->
+        <div class="form-submit">
+          <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
+        </div>
+      </form>
     </div>
-    <form method="POST" @submit.prevent="postUserData">
-      <div class="profilOpis">
-        <p>Opis:</p>
-        <textarea
-          contenteditable="true"
-          placeholder="Napišite nešto o sebi."
-          rows="5"
-          cols="50"
-          v-model="userOpis"
-        >
-        </textarea>
-      </div>
-      <div class="form-submit">
-        <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
-      </div>
-    </form>
+
     <UserInfo v-for="(card, drac) in userInfo" :key="drac" :info="card" />
   </div>
 </template>
@@ -265,25 +263,6 @@ export default {
 </script>
 
 <style>
-.profilForma {
-  margin: 0px auto;
-  display: flex;
-  max-width: 750px;
-  left: 0;
-  right: 0;
-}
-.profilPodaci {
-  margin: 0px auto;
-  width: 100%;
-  text-align: left;
-  display: flex;
-}
-.profilPodaci1 {
-  margin: 0px 15px 0px 0px;
-}
-.profilPodaci2 {
-  margin: 0px auto 0px 0px;
-}
 .profilHeader {
   max-width: 750px;
   margin-right: auto;
@@ -291,15 +270,7 @@ export default {
   margin: 0;
   background-color: #e4857f;
 }
-.profilOpis {
-  text-align: left;
-  max-width: 750px;
-  margin: 0px auto;
-}
-.profilOpis textarea {
-  width: 100%;
-  height: 100px;
-}
+
 .profilHeader .croppa {
   border-radius: 50rem;
 }
@@ -315,5 +286,22 @@ export default {
 }
 .avatar .card img {
   border-radius: 50rem;
+}
+select {
+  width: 51%;
+  margin-left: 45px;
+}
+input {
+  width: 51%;
+  margin-left: 30px;
+}
+.podaci {
+  display: flex;
+  text-align: left;
+  margin: 30px;
+}
+textarea {
+  width: 51%;
+  margin-left: 45px;
 }
 </style>

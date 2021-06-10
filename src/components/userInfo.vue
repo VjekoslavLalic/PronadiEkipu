@@ -1,7 +1,6 @@
 <template>
   <div class="card">
     <p>Godine: {{ info.godine }}</p>
-
     <p>Spol: {{ info.spol }}</p>
     <p>Opis: {{ info.opis }}</p>
   </div>
