@@ -2,6 +2,10 @@
   <div class="card">
     <div class="osobniPodaci">
       <div class="podaci">
+        Email:
+        <p class="spol">{{ store.currentUser }}</p>
+      </div>
+      <div class="podaci">
         Spol:
         <p class="spol">{{ info.spol }}</p>
       </div>

@@ -31,8 +31,12 @@
     </div>
     <!-- headerrrrrrrrrrrrrrrrrrrrrr -->
 
-    <div class="osobniPodaci" v-if="showUserInfoInput">
+    <div class="osobniPodaci" v-show="!show">
       <form method="POST" @submit.prevent="postUserData">
+        <div class="podaci">
+          Email:
+          <p class="spol">{{ store.currentUser }}</p>
+        </div>
         <div class="podaci">
           Spol:
           <select v-model="userSex">
@@ -59,19 +63,12 @@
         </div>
 
         <div class="form-submit">
-          <button
-            type="submit"
-            value="Dodaj"
-            id="dodaj"
-            @click.prevent="hideUserInfoInput"
-          >
-            Dodaj
-          </button>
+          <button type="submit" value="Dodaj" id="dodaj">Dodaj</button>
         </div>
       </form>
     </div>
 
-    <div v-if="!showUserInfoInput">
+    <div v-show="show">
       <UserInfo v-for="(card, drac) in userInfo" :key="drac" :info="card" />
     </div>
   </div>
@@ -131,7 +128,7 @@ export default {
       userSex: "",
       showCroppa: false,
       userInfo: [],
-      showUserInfoInput: true,
+      show: false,
     };
   },
   mounted() {
@@ -164,9 +161,6 @@ export default {
     },
     hideCroppa() {
       this.showCroppa = !this.showCroppa;
-    },
-    hideUserInfoInput() {
-      this.showUserInfoInput = !this.showUserInfoInput;
     },
 
     getPosts() {
@@ -207,7 +201,7 @@ export default {
         })
         .then((doc) => {
           console.log("Spremljeno", doc);
-          this.showUserInfoInput = !this.showUserInfoInput;
+          this.show = !this.show;
           this.userOpis = "";
           this.userAge = "";
           this.userSex = "";
