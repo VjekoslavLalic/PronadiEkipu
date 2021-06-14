@@ -205,6 +205,7 @@ export default {
           this.userOpis = "";
           this.userAge = "";
           this.userSex = "";
+          this.getUserData(); 
         })
         .catch((e) => {
           console.error(e);
