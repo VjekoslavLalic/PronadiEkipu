@@ -64,3 +64,10 @@
   }
 } */
 </style>
+
+<script>
+import router from "@/router";
+export default ({
+   name: "Pocetna"
+})
+</script>
